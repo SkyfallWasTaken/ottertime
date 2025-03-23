@@ -23,7 +23,7 @@ export default function SiteHeader() {
             <div className="flex items-center justify-between">
                 <div className="flex items-center">
                     <Link to="/" className="mr-4 flex items-center gap-2 lg:mr-6">
-                        <span className="hidden font-bold lg:inline-block">
+                        <span className="hidden font-bold lg:inline-block transition">
                             Quackatime
                         </span>
                     </Link>
@@ -44,7 +44,7 @@ export default function SiteHeader() {
                         ))}
                     </nav>
                 </div>
-                
+
                 {/* Mobile Menu */}
                 <div className="md:hidden">
                     <Drawer>
@@ -74,7 +74,7 @@ export default function SiteHeader() {
                         </DrawerContent>
                     </Drawer>
                 </div>
-                
+
                 {/* Theme Toggle */}
                 <ThemeToggle />
             </div>

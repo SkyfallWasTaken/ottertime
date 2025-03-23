@@ -13,6 +13,8 @@ import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
 import Header from '~/components/Header'
 import '@fontsource-variable/inter'
+import '@fontsource-variable/fira-code'
+import { ThemeProvider } from '~/components/ThemeProvider'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -67,7 +69,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <ThemeProvider>
+        <Outlet />
+      </ThemeProvider>
     </RootDocument>
   )
 }
@@ -80,7 +84,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <Header />
-        {children}
+        <div className="container mx-auto py-6">
+          {children}
+        </div>
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>
