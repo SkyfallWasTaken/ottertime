@@ -6,10 +6,6 @@ import {
 } from "~/components/ui/card"
 import TopProjectsChart from "~/components/home/TopProjectsChart"
 
-export const Route = createFileRoute('/')({
-  component: Home,
-})
-
 const timeQuotes = [
   "tick tock!",
   "time's ticking!",
@@ -26,12 +22,21 @@ const timeQuotes = [
   "about time!"
 ];
 
+export const Route = createFileRoute('/')({
+  component: Home,
+  loader: () => ({
+    quote: getRandomItem(timeQuotes),
+  }),
+})
+
 function Home() {
+  const { quote } = Route.useLoaderData();
+
   return (
     <div className="space-y-4">
       <div>
         <h1 className='text-2xl font-bold sm:text-3xl'>Hey Mahad!</h1>
-        <p className="text-muted-foreground text-lg italic">{getRandomItem(timeQuotes)}</p>
+        <p className="text-muted-foreground text-lg italic">{quote}</p>
       </div>
 
       <div className="flex gap-4 w-full grid grid-cols-1 md:grid-cols-5">
