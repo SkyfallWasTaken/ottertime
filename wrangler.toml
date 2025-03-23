@@ -1,5 +1,4 @@
 name = "quackatime"
-build.command = "bun run build"
 pages_build_output_dir = "./dist"
 compatibility_flags = ["nodejs_compat"]
 compatibility_date = "2025-03-23"
