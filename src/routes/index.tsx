@@ -18,7 +18,7 @@ const timeQuotes = [
   "just a second!",
   "all in good time!",
   "give it some time!",
-  "the only thing that can't be bought!",
+  "time's the only thing that can't be bought!",
   "about time!"
 ];
 
@@ -39,7 +39,7 @@ function Home() {
         <p className="text-muted-foreground text-lg italic">{quote}</p>
       </div>
 
-      <div className="flex gap-4 w-full grid grid-cols-1 md:grid-cols-5">
+      <div className="flex gap-4 w-full grid grid-cols-2 md:grid-cols-5">
         <StatCard title="Total Time" value="46h 25m" />
         <StatCard title="Top Project" value="Quackatime" />
         <StatCard title="Top Language" value="Rust" className='bg-orange-600/80' />
