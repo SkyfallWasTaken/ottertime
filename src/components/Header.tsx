@@ -13,6 +13,7 @@ import { Menu } from "lucide-react"
 const paths = [
     { name: 'Home', href: '/' },
     { name: 'Statistics', href: '/statistics' },
+    { name: 'Settings', href: '/settings' },
 ]
 
 export default function SiteHeader() {
