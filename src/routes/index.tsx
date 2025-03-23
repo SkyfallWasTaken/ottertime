@@ -58,7 +58,7 @@ function StatCard({ title, value, className }: { title: string; value: string; c
   return (
     <Card className={className}>
       <CardContent>
-        <h2 className="text-white/80 font-mono uppercase text-sm">{title}</h2>
+        <h2 className="text-foreground/80 font-mono uppercase text-sm">{title}</h2>
         <p className="text-2xl font-bold truncate">{value}</p>
       </CardContent>
     </Card>

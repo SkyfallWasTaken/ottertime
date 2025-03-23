@@ -69,9 +69,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <ThemeProvider>
-        <Outlet />
-      </ThemeProvider>
+      <Outlet />
     </RootDocument>
   )
 }
@@ -83,10 +81,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <Header />
-        <div className="container mx-auto py-6">
-          {children}
-        </div>
+        <ThemeProvider>
+          <Header />
+          <div className="container mx-auto py-6">
+            {children}
+          </div>
+        </ThemeProvider>
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>
