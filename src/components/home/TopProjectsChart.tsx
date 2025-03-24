@@ -93,12 +93,12 @@ export default function TopProjectsChart() {
                             }
                         />
 
-                        <XAxis dataKey="minutes" type="number" hide />
+                        <XAxis dataKey="minutes" type="number" />
                         <ChartTooltip
                             cursor={false}
                             content={<ChartTooltipContent />}
                         />
-                        <Bar dataKey="minutes" layout="vertical" radius={5} label={renderCustomBarLabel} />
+                        <Bar dataKey="minutes" layout="vertical" radius={5} />
                     </BarChart>
                 </ChartContainer>
             </CardContent>
