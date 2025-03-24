@@ -18,7 +18,6 @@
     "@tanstack/react-router-devtools": "^1.114.27",
     "@tanstack/react-start": "^1.114.27",
     "alea": "^1.0.1",
-    "arktype": "^2.1.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
@@ -34,7 +33,8 @@
     "tw-animate-css": "^1.2.4",
     "unenv": "^1.10.0",
     "vaul": "^1.1.2",
-    "vinxi": "0.5.3"
+    "vinxi": "0.5.3",
+    "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.15",

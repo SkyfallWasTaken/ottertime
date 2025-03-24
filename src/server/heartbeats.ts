@@ -1,7 +1,13 @@
-import { db, usersTable } from "./db";
-import type { Heartbeat } from "../common/heartbeats";
+import { db, heartbeatsTable, type Heartbeat } from "./db";
 
 export default async function emitHeartbeats(
-	heartbeats: (typeof Heartbeat)[],
+	heartbeats: Heartbeat[],
 	userId: string,
-) {}
+) {
+	await db.insert(heartbeatsTable).values(
+		heartbeats.map((heartbeat) => ({
+			...heartbeat,
+			userId,
+		})),
+	);
+}

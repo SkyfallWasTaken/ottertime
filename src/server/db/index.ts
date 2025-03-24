@@ -1,5 +1,12 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import { usersTable } from "./schema";
+import {
+	usersTable,
+	heartbeatsTable,
+	heartbeatsSchema,
+	heartbeatSchema,
+	type Heartbeat,
+} from "./schema";
 const db = drizzle(import.meta.env.DATABASE_URL);
 
-export { db, usersTable };
+export { db, usersTable, heartbeatsTable, heartbeatsSchema, heartbeatSchema };
+export type { Heartbeat };

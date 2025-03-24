@@ -1,0 +1,1 @@
+ALTER TABLE "heartbeats" ADD COLUMN "userId" varchar(255) NOT NULL;

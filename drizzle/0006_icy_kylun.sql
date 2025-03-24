@@ -1,0 +1,1 @@
+ALTER TABLE "heartbeats" ALTER COLUMN "category" SET DATA TYPE category USING category::category;
