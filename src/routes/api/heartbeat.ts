@@ -4,7 +4,7 @@ import { db, usersTable } from "~/server/db";
 import { eq } from "drizzle-orm";
 import { fromError as fromZodError } from "zod-validation-error";
 import { heartbeatSchema } from "~/common/heartbeats";
-import emitHeartbeats from "~/server/heartbeats";
+import emitHeartbeats from "~/server/quackatime/heartbeats";
 import { getPasswordFromAuthHeader } from "~/utils/misc";
 
 export const APIRoute = createAPIFileRoute("/api/heartbeat")({

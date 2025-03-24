@@ -20,6 +20,7 @@ export const usersTable = pgTable("users", {
 
 export const type = pgEnum("hb_type", ["file", "app", "domain"]);
 export const category = pgEnum("hb_category", [
+	"coding",
 	"building",
 	"indexing",
 	"debugging",
@@ -46,7 +47,7 @@ export const heartbeatsTable = pgTable("heartbeats", {
 	type: type().notNull(),
 
 	// Optional category
-	category: category(),
+	category: category().default("coding"),
 
 	// Timestamp - using real to support fractional seconds
 	time: real("time").notNull(),

@@ -71,6 +71,20 @@
       "when": 1742854571782,
       "tag": "0009_gorgeous_the_order",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1742855532680,
+      "tag": "0010_square_night_thrasher",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1742855562468,
+      "tag": "0011_light_hulk",
+      "breakpoints": true
     }
   ]
 }

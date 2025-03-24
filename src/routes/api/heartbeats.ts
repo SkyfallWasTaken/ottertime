@@ -6,11 +6,9 @@ import { eq } from "drizzle-orm";
 import { fromError as fromZodError } from "zod-validation-error";
 import { heartbeatSchema } from "~/common/heartbeats";
 import { getPasswordFromAuthHeader } from "~/utils/misc";
-import emitHeartbeats from "~/server/heartbeats";
+import emitHeartbeats from "~/server/quackatime/heartbeats";
 
-const apiResponseSchema = z.object({
-	heartbeats: z.array(heartbeatSchema).min(1).max(25),
-});
+const apiResponseSchema = z.array(heartbeatSchema).min(1).max(25);
 
 export const APIRoute = createAPIFileRoute("/api/heartbeats")({
 	POST: async ({ request }) => {
@@ -45,7 +43,7 @@ export const APIRoute = createAPIFileRoute("/api/heartbeats")({
 			return json({ message: "Invalid API key" }, { status: 401 });
 		}
 
-		await emitHeartbeats(apiResponse.data.heartbeats, user.id);
+		await emitHeartbeats(apiResponse.data, user.id);
 
 		return json({ message: "Heartbeats received" }, { status: 201 });
 	},

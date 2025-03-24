@@ -2,7 +2,7 @@ import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Heartbeat } from "~/common/heartbeats";
 import { usersTable, heartbeatsTable } from "~/server/db";
-import { hashHeartbeat } from "~/server/heartbeats";
+import { hashHeartbeat } from "~/server/quackatime/heartbeats";
 
 if (!process.env.DATABASE_URL) {
 	throw new Error("DATABASE_URL is not defined");
