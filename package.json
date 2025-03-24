@@ -24,6 +24,7 @@
     "drizzle-orm": "^0.41.0",
     "jotai": "^2.12.2",
     "lucide-react": "^0.483.0",
+    "murmurhash": "^2.0.1",
     "nanoid": "^5.1.5",
     "pg": "^8.14.1",
     "postgres": "^3.4.5",

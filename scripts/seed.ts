@@ -1,6 +1,8 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { usersTable, heartbeatsTable } from "../src/server/db/schema";
+import { Heartbeat } from "~/common/heartbeats";
+import { usersTable, heartbeatsTable } from "~/server/db";
+import { hashHeartbeat } from "~/server/heartbeats";
 
 if (!process.env.DATABASE_URL) {
 	throw new Error("DATABASE_URL is not defined");
@@ -37,21 +39,29 @@ console.log("Getting all users from the database: ", users);
 
 const startTs = Date.now() / 1000;
 for (let i = 0; i < 10; i++) {
-	const heartbeat: typeof heartbeatsTable.$inferInsert = {
+	const rawHb: Omit<typeof heartbeatsTable.$inferInsert, "hash"> = {
 		userId: "1",
 		entity: `welcome${i + 1}.txt`,
 		type: "file",
-		time: startTs + 600,
+		time: startTs + i * 600,
+	};
+	const heartbeat = {
+		...rawHb,
+		hash: await hashHeartbeat(rawHb),
 	};
 
 	await db.insert(heartbeatsTable).values(heartbeat);
 }
 for (let i = 0; i < 10; i++) {
-	const heartbeat: typeof heartbeatsTable.$inferInsert = {
+	const rawHb: Omit<typeof heartbeatsTable.$inferInsert, "hash"> = {
 		userId: "1",
 		type: "domain",
 		entity: "figma.com",
-		time: startTs + 600,
+		time: startTs + i * 600,
+	};
+	const heartbeat = {
+		...rawHb,
+		hash: await hashHeartbeat(rawHb),
 	};
 
 	await db.insert(heartbeatsTable).values(heartbeat);

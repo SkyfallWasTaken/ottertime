@@ -76,4 +76,9 @@ export const heartbeatsTable = pgTable("heartbeats", {
 
 	// Timestamps for record tracking
 	createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
+
+	// Hash of the heartbeat.
+	// Question: Why not just do an UNIQUE INDEX on the entirety of the heartbeat?
+	// Answer: See https://stackoverflow.com/q/65980064/3112139.
+	hash: varchar("hash", { length: 255 }).notNull().unique(),
 });
