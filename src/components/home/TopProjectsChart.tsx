@@ -1,13 +1,9 @@
-"use client"
-
-import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "~/components/ui/card"
@@ -18,7 +14,9 @@ import {
     ChartTooltipContent,
 } from "~/components/ui/chart"
 import Alea from "alea";
-import { clamp } from "~/utils/misc";
+import { clamp, convertMinutes } from "~/utils/misc";
+import { themeAtom } from "../ThemeProvider";
+import { useAtom } from "jotai";
 
 const rng = Alea("Numbers!"); // Seeded RNG - keeps the bar colours deterministic
 
@@ -37,7 +35,7 @@ const chartData = [
     { browser: "safari", minutes: 200, fill: getRandomColor() },
     { browser: "firefox", minutes: 187, fill: getRandomColor() },
     { browser: "edge", minutes: 90, fill: getRandomColor() },
-    { browser: "other", minutes: 50, fill: getRandomColor() },
+    { browser: "other", minutes: 10, fill: getRandomColor() },
 ].sort((a, b) => b.minutes - a.minutes)
 
 const chartConfig = {
@@ -100,10 +98,41 @@ export default function TopProjectsChart() {
                             cursor={false}
                             content={<ChartTooltipContent />}
                         />
-                        <Bar dataKey="minutes" layout="vertical" radius={5} />
+                        <Bar dataKey="minutes" layout="vertical" radius={5} label={renderCustomBarLabel} />
                     </BarChart>
                 </ChartContainer>
             </CardContent>
         </Card>
     )
 }
+
+const renderCustomBarLabel = ({ x, y, width, height, value }: { x: number, y: number, width: number, height: number, value: number }) => {
+    const [theme] = useAtom(themeAtom);
+    const MIN_BAR_WIDTH = 80;
+
+    if (width < MIN_BAR_WIDTH) {
+        // If bar is too small, position label to the right of the bar
+        return <text
+            x={x + width + 10}
+            y={y + height / 2}
+            fontSize={16}
+            // text-foreground
+            fill={theme === "light" ? "#0a0a0a" : "#fafafa"}
+            textAnchor="start"
+            dominantBaseline="central"
+        >
+            {convertMinutes(value)}
+        </text>;
+    }
+
+    return <text
+        x={x + width / 2}
+        y={y + height / 2}
+        fontSize={16}
+        fill="#fafafa"
+        textAnchor="middle"
+        dominantBaseline="central"
+    >
+        {convertMinutes(value)}
+    </text>;
+};
