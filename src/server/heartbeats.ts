@@ -1,4 +1,5 @@
-import { db, heartbeatsTable, type Heartbeat } from "./db";
+import { db, heartbeatsTable } from "./db";
+import type { Heartbeat } from "../common/heartbeats";
 
 export default async function emitHeartbeats(
 	heartbeats: Heartbeat[],

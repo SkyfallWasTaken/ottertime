@@ -23,3 +23,28 @@ export function convertMinutes(totalMinutes: number): string {
 	}
 	return `${minutes}m`;
 }
+
+export function getPasswordFromAuthHeader(authHeader: string):
+	| {
+			ok: false;
+			error: string;
+	  }
+	| { ok: true; password: string } {
+	if (!authHeader.startsWith("Basic ")) {
+		return { ok: false, error: "Invalid Authorization header" };
+	}
+
+	// Decode the Base64 part
+	const base64Credentials = authHeader.split(" ")[1];
+	const credentials = Buffer.from(base64Credentials, "base64").toString(
+		"utf-8",
+	);
+
+	// Split into username and password
+	const [_, password] = credentials.split(":");
+	if (!password) {
+		return { ok: false, error: "Invalid Authorization header" };
+	}
+
+	return { ok: true, password };
+}

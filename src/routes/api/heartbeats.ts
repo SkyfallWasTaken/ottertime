@@ -1,9 +1,11 @@
 import { json } from "@tanstack/react-start";
 import { createAPIFileRoute } from "@tanstack/react-start/api";
 import { z } from "zod";
-import { db, usersTable, heartbeatSchema } from "~/server/db";
+import { db, usersTable } from "~/server/db";
 import { eq } from "drizzle-orm";
 import { fromError as fromZodError } from "zod-validation-error";
+import { heartbeatSchema } from "~/common/heartbeats";
+import { getPasswordFromAuthHeader } from "~/utils/misc";
 import emitHeartbeats from "~/server/heartbeats";
 
 const apiResponseSchema = z.object({
@@ -11,7 +13,7 @@ const apiResponseSchema = z.object({
 });
 
 export const APIRoute = createAPIFileRoute("/api/heartbeats")({
-	POST: async ({ request, params }) => {
+	POST: async ({ request }) => {
 		const apiResponse = apiResponseSchema.safeParse(await request.json());
 		if (!apiResponse.success) {
 			return json(
@@ -28,22 +30,23 @@ export const APIRoute = createAPIFileRoute("/api/heartbeats")({
 		if (!basicAuth) {
 			return json({ message: "Missing Authorization header" }, { status: 401 });
 		}
-
-		const apiKey = basicAuth.split(" ")[1];
-		if (!apiKey) {
-			return json({ message: "Missing API key" }, { status: 401 });
+		const parseResult = getPasswordFromAuthHeader(basicAuth);
+		if (!parseResult.ok) {
+			return json({ message: parseResult.error }, { status: 401 });
 		}
+		const apiKey = parseResult.password;
 
 		const [user] = await db
 			.select()
 			.from(usersTable)
-			.where(eq(usersTable.apiKey, apiKey));
+			.where(eq(usersTable.apiKey, apiKey))
+			.execute();
 		if (!user) {
 			return json({ message: "Invalid API key" }, { status: 401 });
 		}
 
 		await emitHeartbeats(apiResponse.data.heartbeats, user.id);
 
-		return json({ message: "Heartbeats received" });
+		return json({ message: "Heartbeats received" }, { status: 201 });
 	},
 });
