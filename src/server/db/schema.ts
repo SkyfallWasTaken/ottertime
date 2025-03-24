@@ -9,6 +9,7 @@ import {
 	timestamp,
 	varchar,
 } from "drizzle-orm/pg-core";
+import { nanoid } from "nanoid";
 
 export const usersTable = pgTable("users", {
 	id: varchar({ length: 255 }).primaryKey(),
@@ -17,13 +18,32 @@ export const usersTable = pgTable("users", {
 	apiKey: varchar({ length: 255 }).notNull().unique(),
 });
 
-export const category = pgEnum("category", ["file", "app", "domain"]);
+export const type = pgEnum("hb_type", ["file", "app", "domain"]);
+export const category = pgEnum("hb_category", [
+	"building",
+	"indexing",
+	"debugging",
+	"browsing",
+	"running tests",
+	"writing tests",
+	"manual testing",
+	"writing docs",
+	"communicating",
+	"code reviewing",
+	"researching",
+	"learning",
+	"designing",
+]);
 export const heartbeatsTable = pgTable("heartbeats", {
 	userId: varchar({ length: 255 }).notNull(), // TODO: should probably be a relation?
 
+	id: varchar({ length: 255 })
+		.primaryKey()
+		.$defaultFn(() => nanoid(48)),
+
 	// Entity details
 	entity: text("entity").notNull(),
-	type: varchar("type", { length: 50 }).notNull(),
+	type: type().notNull(),
 
 	// Optional category
 	category: category(),

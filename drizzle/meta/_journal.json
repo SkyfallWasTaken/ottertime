@@ -50,6 +50,20 @@
       "when": 1742850619500,
       "tag": "0006_icy_kylun",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1742853312271,
+      "tag": "0007_petite_azazel",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1742853647941,
+      "tag": "0008_open_mandarin",
+      "breakpoints": true
     }
   ]
 }
