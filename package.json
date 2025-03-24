@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
-    "start": "vinxi start"
+    "start": "vinxi start",
+    "seed": "bun scripts/seed.ts"
   },
   "dependencies": {
     "@fontsource-variable/fira-code": "^5.2.5",
@@ -17,6 +18,7 @@
     "@tanstack/react-router-devtools": "^1.114.27",
     "@tanstack/react-start": "^1.114.27",
     "alea": "^1.0.1",
+    "arktype": "^2.1.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
@@ -37,8 +39,10 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.15",
     "@types/node": "^22.5.4",
+    "@types/pg": "^8.11.11",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "drizzle-kit": "^0.30.5",
     "postcss": "^8.5.1",
     "tailwindcss": "^4.0.15",
     "typescript": "^5.7.2",
