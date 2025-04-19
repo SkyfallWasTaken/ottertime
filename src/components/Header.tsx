@@ -34,9 +34,9 @@ export default function SiteHeader() {
                                 key={href}
                                 to={href}
                                 className={cn(
-                                    "transition-colors hover:text-blue-700",
+                                    "transition-colors hover:text-sidebar-primary-foreground",
                                     location.pathname === href
-                                        ? "text-blue-600 font-semibold"
+                                        ? "text-sidebar-primary-foreground font-semibold"
                                         : ""
                                 )}
                             >

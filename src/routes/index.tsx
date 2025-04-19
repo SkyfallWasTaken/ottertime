@@ -42,7 +42,7 @@ function Home() {
       <div className="gap-4 w-full grid grid-cols-2 md:grid-cols-5">
         <StatCard title="Total Time" value="46h 25m" />
         <StatCard title="Top Project" value="Quackatime" />
-        <StatCard title="Top Language" value="Rust" className='bg-orange-600/80' />
+        <StatCard title="Top Language" value="Rust" />
         <StatCard title="Top OS" value="Windows" />
         <StatCard title="Top Editor" value="Figma" />
       </div>
