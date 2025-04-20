@@ -73,7 +73,7 @@ function RouteComponent() {
             onClick={() => copyToClipboard(curlCommand, setScriptCopied)}
           >
             {scriptCopied ? <CheckIcon className="h-4 w-4" /> : <ClipboardCopyIcon className="h-4 w-4" />}
-            {scriptCopied ? "Copied!" : "Copy to clipboard"}
+            {scriptCopied ? "Copied!" : "Copy command"}
           </Button>
         </div>
 
