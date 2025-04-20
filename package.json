@@ -7,7 +7,7 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "seed": "bun scripts/seed.ts"
+    "check": "tsc"
   },
   "dependencies": {
     "@fontsource-variable/fira-code": "^5.2.5",
