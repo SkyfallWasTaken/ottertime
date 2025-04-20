@@ -61,16 +61,15 @@ function RouteComponent() {
         <div>
           <h3 className="text-lg font-medium">Installation</h3>
           <p className="text-sm text-muted-foreground">
-            Run this command in your terminal to install QuackaTime with your API key:
+            Run this command in your terminal to install Quackatime with your API key:
           </p>
         </div>
 
-        <div className="relative mb-2">
+        <div className="space-y-2 md:space-y-0 md:relative mb-2">
           <div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow]">{curlCommand}</div>
           <Button
-            variant="outline"
             size="sm"
-            className="absolute top-2 right-2"
+            className="md:absolute md:top-2 md:right-2 w-full md:w-fit"
             onClick={() => copyToClipboard(curlCommand, setScriptCopied)}
           >
             {scriptCopied ? <CheckIcon className="h-4 w-4" /> : <ClipboardCopyIcon className="h-4 w-4" />}
