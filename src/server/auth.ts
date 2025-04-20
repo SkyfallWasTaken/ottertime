@@ -8,6 +8,7 @@ import {
   verification,
   account,
   session,
+  apikey,
 } from "~/server/db";
 import { eq } from "drizzle-orm";
 
@@ -19,6 +20,7 @@ export const auth = betterAuth({
       verification,
       account,
       session,
+      apikey,
     },
   }),
   emailAndPassword: {

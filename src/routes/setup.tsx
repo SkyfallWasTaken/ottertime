@@ -3,6 +3,7 @@ import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { CheckIcon, ClipboardCopyIcon } from "lucide-react"
 import { useState, useEffect } from 'react'
+import { authClient } from "~/utils/auth"
 
 export const Route = createFileRoute('/setup')({
   component: RouteComponent,
@@ -16,7 +17,6 @@ function RouteComponent() {
     })
   }
   const [copied, setCopied] = useState(false)
-  const apiKey = "5roUc8h19k7kRLDgchaEOneQyhwfRCcd" // FIXME: replace with actual API key
 
   const [scriptCopied, setScriptCopied] = useState(false)
   const [hostname, setHostname] = useState("")
@@ -24,6 +24,13 @@ function RouteComponent() {
   useEffect(() => {
     setHostname(window.location.host)
   }, [])
+
+  const {
+    data: session,
+  } = authClient.useSession()
+  console.log("session", session)
+  const apiKey = session?.user?.apiKey || ""
+
 
   // FIXME: replace with real command
   const curlCommand = `curl -fsSL https://${hostname}/dl/setup.sh | QUACKATIME_API_KEY="${apiKey}" bash`

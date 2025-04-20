@@ -36,6 +36,13 @@
       "when": 1745153251963,
       "tag": "0004_smiling_lady_mastermind",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1745155351100,
+      "tag": "0005_glamorous_quentin_quire",
+      "breakpoints": true
     }
   ]
 }

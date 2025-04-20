@@ -30,6 +30,19 @@ function RouteComponent() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const isFormValid = () => {
+    if (!firstName || !lastName || !email || !password || !passwordConfirmation) {
+      return false;
+    }
+    if (password !== passwordConfirmation) {
+      return false;
+    }
+    if (password.length < 8) {
+      return false;
+    }
+    return true;
+  }
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -147,14 +160,14 @@ function RouteComponent() {
           <Button
             type="submit"
             className="w-full"
-            disabled={loading}
+            disabled={loading || !isFormValid()}
             onClick={async () => {
               await authClient.signUp.email({
                 email,
                 password,
                 name: `${firstName} ${lastName}`,
                 image: image ? await convertImageToBase64(image) : "",
-                callbackURL: "/dashboard",
+                callbackURL: "/setup",
                 fetchOptions: {
                   onResponse: () => {
                     setLoading(false);
