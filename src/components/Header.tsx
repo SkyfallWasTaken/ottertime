@@ -20,11 +20,11 @@ export default function SiteHeader() {
     const location = useLocation();
 
     return (
-        <header className="border-grid sticky top-0 z-50 w-full border-b py-4 px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="border-grid sticky top-0 z-50 w-full border-b py-3 px-4 md:py-4 md:px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="flex items-center justify-between">
                 <div className="flex items-center">
                     <Link to="/" className="mr-4 flex items-center gap-2 lg:mr-6">
-                        <span className="hidden font-bold lg:inline-block transition">
+                        <span className="font-bold text-sm md:text-base lg:inline-block">
                             Quackatime
                         </span>
                     </Link>
@@ -46,38 +46,40 @@ export default function SiteHeader() {
                     </nav>
                 </div>
 
-                {/* Mobile Menu */}
-                <div className="md:hidden">
-                    <Drawer>
-                        <DrawerTrigger asChild>
-                            <Button variant="ghost" size="icon">
-                                <Menu className="h-5 w-5" />
-                                <span className="sr-only">Toggle menu</span>
-                            </Button>
-                        </DrawerTrigger>
-                        <DrawerContent>
-                            <div className="flex flex-col space-y-4 p-4">
-                                {paths.map(({ name, href }) => (
-                                    <Link
-                                        key={href}
-                                        to={href}
-                                        className={cn(
-                                            "text-sm font-medium transition-colors hover:text-blue-700",
-                                            location.pathname === href
-                                                ? "text-blue-600 font-semibold"
-                                                : ""
-                                        )}
-                                    >
-                                        {name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </DrawerContent>
-                    </Drawer>
-                </div>
+                <div className="flex items-center gap-2">
+                    {/* Mobile Menu */}
+                    <div className="md:hidden">
+                        <Drawer>
+                            <DrawerTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-8 w-8">
+                                    <Menu className="h-4 w-4" />
+                                    <span className="sr-only">Toggle menu</span>
+                                </Button>
+                            </DrawerTrigger>
+                            <DrawerContent>
+                                <div className="flex flex-col space-y-4 p-4">
+                                    {paths.map(({ name, href }) => (
+                                        <Link
+                                            key={href}
+                                            to={href}
+                                            className={cn(
+                                                "text-sm font-medium transition-colors hover:text-accent-foreground",
+                                                location.pathname === href
+                                                    ? "text-accent-foreground font-semibold"
+                                                    : ""
+                                            )}
+                                        >
+                                            {name}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </DrawerContent>
+                        </Drawer>
+                    </div>
 
-                {/* Theme Toggle */}
-                <ThemeToggle />
+                    {/* Theme Toggle */}
+                    <ThemeToggle />
+                </div>
             </div>
         </header>
     )
