@@ -13,9 +13,7 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "~/components/ui/chart"
-import { clamp, convertMinutes } from "~/utils/misc";
-import { themeAtom } from "../ThemeProvider";
-import { useAtom } from "jotai";
+import { clamp } from "~/utils/misc";
 
 const chartData = [
     { project: "Quackatime", minutes: 275, fill: "var(--chart-1)" },
@@ -75,33 +73,33 @@ export default function TopProjectsChart() {
     )
 }
 
-const renderCustomBarLabel = ({ x, y, width, height, value }: { x: number, y: number, width: number, height: number, value: number }) => {
-    const [theme] = useAtom(themeAtom);
-    const MIN_BAR_WIDTH = 80;
+// const renderCustomBarLabel = ({ x, y, width, height, value }: { x: number, y: number, width: number, height: number, value: number }) => {
+//     const [theme] = useAtom(themeAtom);
+//     const MIN_BAR_WIDTH = 80;
 
-    if (width < MIN_BAR_WIDTH) {
-        // If bar is too small, position label to the right of the bar
-        return <text
-            x={x + width + 10}
-            y={y + height / 2}
-            fontSize={16}
-            // text-foreground
-            fill={theme === "light" ? "#0a0a0a" : "#fafafa"}
-            textAnchor="start"
-            dominantBaseline="central"
-        >
-            {convertMinutes(value)}
-        </text>;
-    }
+//     if (width < MIN_BAR_WIDTH) {
+//         // If bar is too small, position label to the right of the bar
+//         return <text
+//             x={x + width + 10}
+//             y={y + height / 2}
+//             fontSize={16}
+//             // text-foreground
+//             fill={theme === "light" ? "#0a0a0a" : "#fafafa"}
+//             textAnchor="start"
+//             dominantBaseline="central"
+//         >
+//             {convertMinutes(value)}
+//         </text>;
+//     }
 
-    return <text
-        x={x + width / 2}
-        y={y + height / 2}
-        fontSize={16}
-        fill="#fafafa"
-        textAnchor="middle"
-        dominantBaseline="central"
-    >
-        {convertMinutes(value)}
-    </text>;
-};
+//     return <text
+//         x={x + width / 2}
+//         y={y + height / 2}
+//         fontSize={16}
+//         fill="#fafafa"
+//         textAnchor="middle"
+//         dominantBaseline="central"
+//     >
+//         {convertMinutes(value)}
+//     </text>;
+// };

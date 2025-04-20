@@ -5,6 +5,7 @@ import {
   CardContent,
 } from "~/components/ui/card"
 import TopProjectsChart from "~/components/home/TopProjectsChart"
+import TopLanguagesChart from "~/components/home/TopLanguagesChart"
 
 const timeQuotes = [
   "tick tock!",
@@ -47,8 +48,9 @@ function Home() {
         <StatCard title="Top Editor" value="Figma" />
       </div>
 
-      <div className="grid xl:grid-cols-3 md:grid-cols-2">
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4">
         <TopProjectsChart />
+        <TopLanguagesChart />
       </div>
     </div>
   )
