@@ -32,7 +32,7 @@ export default function TopLanguagesChart() {
                 <CardTitle>Top Languages</CardTitle>
                 <CardDescription>17th March – 23rd March</CardDescription>
             </CardHeader>
-            <CardContent style={{ height: 300 }}>
+            <CardContent>
                 <ChartContainer config={chartConfig} className="[&_.recharts-pie-label-text]:fill-foreground">
                     <PieChart>
                         <ChartTooltip

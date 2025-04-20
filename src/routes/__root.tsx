@@ -83,7 +83,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <ThemeProvider>
           <Header />
-          <div className="container mx-auto py-6">
+          <div className="container mx-auto px-4 sm:px-0 py-6">
             {children}
           </div>
         </ThemeProvider>
