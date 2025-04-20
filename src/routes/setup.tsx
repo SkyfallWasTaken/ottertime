@@ -28,9 +28,7 @@ function RouteComponent() {
   const {
     data: session,
   } = authClient.useSession()
-  console.log("session", session)
-  const apiKey = session?.user?.apiKey || ""
-
+  const apiKey = session?.user.apiKey || "";
 
   // FIXME: replace with real command
   const curlCommand = `curl -fsSL https://${hostname}/dl/setup.sh | QUACKATIME_API_KEY="${apiKey}" bash`
@@ -51,7 +49,7 @@ function RouteComponent() {
         </div>
 
         <div className="flex items-center space-x-2 mb-2">
-          <Input value={apiKey} readOnly className="font-mono w-full sm:w-3/5 md:w-3/10" />
+          <Input value={apiKey} readOnly className="font-mono" />
           <Button
             variant="outline"
             size="icon"

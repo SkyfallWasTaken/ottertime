@@ -40,6 +40,15 @@ export const auth = betterAuth({
     apiKey(),
     reactStartCookies(),
   ],
+  user: {
+    additionalFields: {
+      apiKey: {
+        type: "string",
+        nullable: true,
+        input: false,
+      },
+    },
+  },
   databaseHooks: {
     user: {
       create: {

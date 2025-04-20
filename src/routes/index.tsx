@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { getRandomItem } from '~/utils/misc'
 import {
   Card,
@@ -25,18 +25,26 @@ const timeQuotes = [
 
 export const Route = createFileRoute('/')({
   component: Home,
-  loader: () => ({
-    quote: getRandomItem(timeQuotes),
-  }),
+  beforeLoad: async ({ context }) => {
+    if (!context.user) {
+      throw redirect({ to: "/auth/signin" });
+    }
+  },
+  loader: async ({ context }) => {
+    return {
+      firstName: context.user?.name.split(" ")[0] || "there",
+      quote: getRandomItem(timeQuotes),
+    }
+  },
 })
 
 function Home() {
-  const { quote } = Route.useLoaderData();
+  const { quote, firstName } = Route.useLoaderData();
 
   return (
     <div className="space-y-4">
       <div>
-        <h1 className='text-2xl font-bold sm:text-3xl'>Hey Mahad!</h1>
+        <h1 className='text-2xl font-bold sm:text-3xl'>Hey {firstName}!</h1>
         <p className="text-muted-foreground text-lg italic">{quote}</p>
       </div>
 

@@ -1,9 +1,8 @@
 import {
   HeadContent,
-  Link,
   Outlet,
   Scripts,
-  createRootRoute,
+  createRootRouteWithContext,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import type * as React from 'react'
@@ -17,7 +16,22 @@ import '@fontsource-variable/fira-code'
 import { ThemeProvider } from '~/components/ThemeProvider'
 import { Toaster } from "~/components/ui/sonner"
 
-export const Route = createRootRoute({
+import { createServerFn } from "@tanstack/react-start";
+import { getWebRequest } from "@tanstack/react-start/server";
+import { auth } from "~/server/auth";
+import { QueryClient } from '@tanstack/react-query'
+
+const getUser = createServerFn({ method: "GET" }).handler(async () => {
+  const { headers } = getWebRequest()!;
+  const session = await auth.api.getSession({ headers });
+
+  return session?.user || null;
+});
+
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+  user: Awaited<ReturnType<typeof getUser>>;
+}>()({
   head: () => ({
     meta: [
       {
