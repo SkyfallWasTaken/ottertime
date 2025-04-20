@@ -1,12 +1,21 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { CheckIcon, ClipboardCopyIcon } from "lucide-react"
 import { useState, useEffect } from 'react'
-import { authClient } from "~/utils/auth"
 
 export const Route = createFileRoute('/setup')({
   component: RouteComponent,
+  beforeLoad: async ({ context }) => {
+    if (!context.user) {
+      throw redirect({ to: "/auth/signin" });
+    }
+  },
+  loader: async ({ context }) => {
+    return {
+      apiKey: context.user?.apiKey || ""
+    }
+  },
 })
 
 function RouteComponent() {
@@ -25,11 +34,7 @@ function RouteComponent() {
     setHostname(window.location.host)
   }, [])
 
-  const {
-    data: session,
-  } = authClient.useSession()
-  const apiKey = session?.user.apiKey || "";
-
+  const { apiKey } = Route.useLoaderData()
   // FIXME: replace with real command
   const curlCommand = `curl -fsSL https://${hostname}/dl/setup.sh | QUACKATIME_API_KEY="${apiKey}" bash`
 

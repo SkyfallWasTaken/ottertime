@@ -24,7 +24,6 @@ import { QueryClient } from '@tanstack/react-query'
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
   const { headers } = getWebRequest()!;
   const session = await auth.api.getSession({ headers });
-
   return session?.user || null;
 });
 
@@ -32,6 +31,13 @@ export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
   user: Awaited<ReturnType<typeof getUser>>;
 }>()({
+  beforeLoad: async ({ context }) => {
+    const user = await context.queryClient.fetchQuery({
+      queryKey: ["user"],
+      queryFn: ({ signal }) => getUser({ signal }),
+    }); // we're using react-query for caching, see router.tsx
+    return { user };
+  },
   head: () => ({
     meta: [
       {
