@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as StatisticsImport } from './routes/statistics'
+import { Route as SetupImport } from './routes/setup'
 import { Route as SettingsImport } from './routes/settings'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
@@ -21,6 +22,12 @@ import { Route as AuthSignupImport } from './routes/auth/signup'
 const StatisticsRoute = StatisticsImport.update({
   id: '/statistics',
   path: '/statistics',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SetupRoute = SetupImport.update({
+  id: '/setup',
+  path: '/setup',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsImport
       parentRoute: typeof rootRoute
     }
+    '/setup': {
+      id: '/setup'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof SetupImport
+      parentRoute: typeof rootRoute
+    }
     '/statistics': {
       id: '/statistics'
       path: '/statistics'
@@ -82,6 +96,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/settings': typeof SettingsRoute
+  '/setup': typeof SetupRoute
   '/statistics': typeof StatisticsRoute
   '/auth/signup': typeof AuthSignupRoute
 }
@@ -89,6 +104,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/settings': typeof SettingsRoute
+  '/setup': typeof SetupRoute
   '/statistics': typeof StatisticsRoute
   '/auth/signup': typeof AuthSignupRoute
 }
@@ -97,22 +113,24 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/settings': typeof SettingsRoute
+  '/setup': typeof SetupRoute
   '/statistics': typeof StatisticsRoute
   '/auth/signup': typeof AuthSignupRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/settings' | '/statistics' | '/auth/signup'
+  fullPaths: '/' | '/settings' | '/setup' | '/statistics' | '/auth/signup'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/settings' | '/statistics' | '/auth/signup'
-  id: '__root__' | '/' | '/settings' | '/statistics' | '/auth/signup'
+  to: '/' | '/settings' | '/setup' | '/statistics' | '/auth/signup'
+  id: '__root__' | '/' | '/settings' | '/setup' | '/statistics' | '/auth/signup'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SettingsRoute: typeof SettingsRoute
+  SetupRoute: typeof SetupRoute
   StatisticsRoute: typeof StatisticsRoute
   AuthSignupRoute: typeof AuthSignupRoute
 }
@@ -120,6 +138,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SettingsRoute: SettingsRoute,
+  SetupRoute: SetupRoute,
   StatisticsRoute: StatisticsRoute,
   AuthSignupRoute: AuthSignupRoute,
 }
@@ -136,6 +155,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/settings",
+        "/setup",
         "/statistics",
         "/auth/signup"
       ]
@@ -145,6 +165,9 @@ export const routeTree = rootRoute
     },
     "/settings": {
       "filePath": "settings.tsx"
+    },
+    "/setup": {
+      "filePath": "setup.tsx"
     },
     "/statistics": {
       "filePath": "statistics.tsx"
