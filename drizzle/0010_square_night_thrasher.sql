@@ -1,1 +1,0 @@
-ALTER TYPE "public"."hb_category" ADD VALUE 'coding' BEFORE 'building';

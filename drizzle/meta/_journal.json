@@ -5,85 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1742846597728,
-      "tag": "0000_tan_electro",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1742848032459,
-      "tag": "0001_zippy_archangel",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1742848410582,
-      "tag": "0002_flashy_human_robot",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1742849780061,
-      "tag": "0003_skinny_alice",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1742849789670,
-      "tag": "0004_cooing_peter_quill",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1742850602058,
-      "tag": "0005_fresh_komodo",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1742850619500,
-      "tag": "0006_icy_kylun",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1742853312271,
-      "tag": "0007_petite_azazel",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1742853647941,
-      "tag": "0008_open_mandarin",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "7",
-      "when": 1742854571782,
-      "tag": "0009_gorgeous_the_order",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "7",
-      "when": 1742855532680,
-      "tag": "0010_square_night_thrasher",
-      "breakpoints": true
-    },
-    {
-      "idx": 11,
-      "version": "7",
-      "when": 1742855562468,
-      "tag": "0011_light_hulk",
+      "when": 1745134492711,
+      "tag": "0000_legal_switch",
       "breakpoints": true
     }
   ]

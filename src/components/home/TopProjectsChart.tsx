@@ -13,55 +13,27 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "~/components/ui/chart"
-import Alea from "alea";
 import { clamp, convertMinutes } from "~/utils/misc";
 import { themeAtom } from "../ThemeProvider";
 import { useAtom } from "jotai";
 
-const rng = Alea("Numbers!"); // Seeded RNG - keeps the bar colours deterministic
-
-const getRandomColor = () => {
-    const blackAmount = Math.floor(rng() * 60); // Increase black mix range (0% to 50%)
-    const whiteAmount = Math.floor(rng() * 30); // Introduce white mix (0% to 30%)
-
-    return `color-mix(in srgb, 
-        color-mix(in srgb, var(--color-blue-700) ${100 - blackAmount}%, black ${blackAmount}%) 
-        ${100 - whiteAmount}%, white ${whiteAmount}%)`;
-};
-
-
 const chartData = [
-    { browser: "chrome", minutes: 275, fill: getRandomColor() },
-    { browser: "safari", minutes: 200, fill: getRandomColor() },
-    { browser: "firefox", minutes: 187, fill: getRandomColor() },
-    { browser: "edge", minutes: 90, fill: getRandomColor() },
-    { browser: "other", minutes: 10, fill: getRandomColor() },
+    { project: "Quackatime", minutes: 275, fill: "var(--chart-1)" },
+    { project: "Archimedes", minutes: 200, fill: "var(--chart-2)" },
+    { project: "hc-site", minutes: 187, fill: "var(--chart-3)" },
+    { project: "Edge", minutes: 90, fill: "var(--chart-4)" },
+    { project: "Other", minutes: 10, fill: "var(--chart-5)" },
 ].sort((a, b) => b.minutes - a.minutes)
 
 const chartConfig = {
     minutes: {
         label: "Minutes",
     },
-    chrome: {
-        label: "Quackatime",
-    },
-    safari: {
-        label: "Archimedes",
-    },
-    firefox: {
-        label: "hc-site",
-    },
-    edge: {
-        label: "Edge",
-    },
-    other: {
-        label: "Other",
-    },
 } satisfies ChartConfig
 
 export default function TopProjectsChart() {
     const longestLabel = Math.max(
-        ...Object.values(chartConfig).map((config) => config.label.length)
+        ...Object.values(chartData).map((config) => config.project.length)
     );
     const yAxisWidth = clamp(longestLabel * 9, 90, 200)
 
@@ -82,15 +54,12 @@ export default function TopProjectsChart() {
                         }}
                     >
                         <YAxis
-                            dataKey="browser"
+                            dataKey="project"
                             type="category"
                             tickLine={false}
                             tickMargin={10}
                             axisLine={false}
                             width={yAxisWidth}
-                            tickFormatter={(value) =>
-                                chartConfig[value as keyof typeof chartConfig]?.label
-                            }
                         />
 
                         <XAxis dataKey="minutes" type="number" />

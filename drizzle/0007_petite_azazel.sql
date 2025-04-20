@@ -1,1 +1,0 @@
-ALTER TABLE "heartbeats" ADD COLUMN "id" varchar(255) PRIMARY KEY NOT NULL;
