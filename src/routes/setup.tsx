@@ -79,9 +79,12 @@ function RouteComponent() {
         </div>
 
         <p className="text-xs text-muted-foreground">
-          This script will create a <code>~/.wakatime.cfg</code> file on your system with your API key and URL.
+          This script will create a <code>~/.wakatime.cfg</code> file on your system with your API key and URL.<br />
+          It'll also install the WakaTime extension if you have VSCode installed, although the script will still work if you don't.
         </p>
       </div>
+
+      <p>Once you're done, <a href="https://wakatime.com/help/editors" className="underline" target="_blank">install an editor extension</a> and you're done!</p>
     </div>
   )
 }
