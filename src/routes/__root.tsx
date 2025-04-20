@@ -15,6 +15,7 @@ import Header from '~/components/Header'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/fira-code'
 import { ThemeProvider } from '~/components/ThemeProvider'
+import { Toaster } from "~/components/ui/sonner"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -89,6 +90,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         </ThemeProvider>
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
+        <Toaster
+          toastOptions={{
+            className: 'z-50',
+            duration: 3000,
+            style: {
+              background: 'var(--background)',
+              color: 'var(--text)',
+            },
+          }}
+        />
       </body>
     </html>
   )

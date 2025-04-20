@@ -83,7 +83,7 @@ function RouteComponent() {
         </p>
       </div>
 
-      <p>Once you're done, <a href="https://wakatime.com/help/editors" className="underline" target="_blank">install an editor extension</a> and you're done!</p>
+      <p>Once you're done, <a href="https://wakatime.com/help/editors" className="underline" target="_blank">install an editor extension</a> and you're good to go!</p>
     </div>
   )
 }

@@ -13,6 +13,7 @@ import { Label } from "~/components/ui/label";
 import { useState } from "react";
 import { Loader2, X } from "lucide-react";
 import { authClient } from "~/utils/auth";
+import { toast } from "sonner"
 
 export const Route = createFileRoute('/auth/signup')({
   component: RouteComponent,
@@ -42,7 +43,7 @@ function RouteComponent() {
   };
 
   return (
-    <Card className="z-50 rounded-md rounded-t-none max-w-md">
+    <Card className="z-50 rounded-xl max-w-md mx-auto">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
         <CardDescription className="text-xs md:text-sm">
@@ -162,7 +163,7 @@ function RouteComponent() {
                     setLoading(true);
                   },
                   onError: (ctx) => {
-                    toast.error(ctx.error.message);
+                    toast.error(ctx.error.message || "An unknown error occurred. Please try again!");
                   },
                   onSuccess: async () => {
                     navigate({ to: "/setup" })
@@ -181,8 +182,8 @@ function RouteComponent() {
       </CardContent>
       <CardFooter>
         <div className="flex justify-center w-full border-t py-4">
-          <p className="text-center text-xs text-neutral-500">
-            Need help?{" "}<a href="mailto:hi@skyfall.dev">Send us an email.</a>
+          <p className="text-center text-xs text-foreground/80">
+            Need help?{" "}<a href="mailto:hi@skyfall.dev" className="underline">Send us an email.</a>
           </p>
         </div>
       </CardFooter>

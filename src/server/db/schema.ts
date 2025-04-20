@@ -11,13 +11,6 @@ import {
 } from "drizzle-orm/pg-core";
 import { nanoid } from "nanoid";
 
-export const usersTable = pgTable("users", {
-  id: varchar({ length: 255 }).primaryKey(),
-  name: varchar({ length: 255 }).notNull().unique(),
-  email: varchar({ length: 255 }).notNull().unique(),
-  apiKey: varchar({ length: 255 }).notNull().unique(),
-});
-
 export const type = pgEnum("hb_type", ["file", "app", "domain"]);
 export const category = pgEnum("hb_category", [
   "coding",
@@ -35,7 +28,7 @@ export const category = pgEnum("hb_category", [
   "learning",
   "designing",
 ]);
-export const heartbeatsTable = pgTable("heartbeats", {
+export const heartbeats = pgTable("heartbeats", {
   userId: varchar({ length: 255 }).notNull(), // TODO: should probably be a relation?
 
   id: varchar({ length: 255 })
@@ -92,6 +85,7 @@ export const user = pgTable("user", {
   image: text("image"),
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
+  apiKey: text("api_key").unique(),
 });
 
 export const session = pgTable("session", {
