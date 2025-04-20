@@ -8,6 +8,13 @@
       "when": 1745134492711,
       "tag": "0000_legal_switch",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1745149290394,
+      "tag": "0001_chemical_kylun",
+      "breakpoints": true
     }
   ]
 }
