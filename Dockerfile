@@ -1,37 +1,32 @@
-# ---------- Build stage ----------
-FROM node:current-slim AS build
-WORKDIR /app
+# syntax=docker/dockerfile:1.7-labs
+ARG BUN_VERSION=1.2.10
+FROM oven/bun:${BUN_VERSION}-slim as base
 
-# Install curl, unzip, and git for Bun
-RUN apt-get update && apt-get install -y curl unzip git \
-  && rm -rf /var/lib/apt/lists/*
+LABEL fly_launch_runtime="Bun"
 
-# Install Bun
-RUN curl -fsSL https://bun.sh/install | bash \
-  && mv /root/.bun/bin/bun /usr/local/bin/bun
+WORKDIR /usr/src/app
 
-# Pre-copy only lockfile and package for caching
-COPY bun.lock package.json ./
+FROM base AS install
+RUN mkdir -p /temp/prod/server
+COPY package.json bun.lock /temp/prod/server/
+RUN cd /temp/prod/server && bun install --frozen-lockfile --production
 
-# Install dependencies
-RUN bun install --frozen-lockfile
+RUN mkdir -p /temp/prod/frontend
+COPY frontend/bun.lock frontend/package.json /temp/prod/frontend/
+RUN cd /temp/prod/frontend && bun install --frozen-lockfile
 
-# Copy the full source
+FROM base as build
 COPY . .
+COPY --from=install /temp/prod/server/node_modules node_modules
+COPY --from=install /temp/prod/frontend/node_modules frontend/node_modules
+ENV NODE_ENV=production
+RUN cd frontend && bun run build -d
 
-# Build using Bun
-RUN bun run build
+FROM base as release
+COPY --from=install /temp/prod/server/node_modules node_modules
+COPY --exclude=frontend --from=build /usr/src/app .
+COPY --from=build /usr/src/app/frontend/dist ./frontend/dist
 
-# ---------- Runtime stage ----------
-FROM node:current-slim AS runtime
-
-WORKDIR /app
-
-# Copy built files and node_modules from build stage
-COPY --from=build /app /app
-
-# Only copy Bun if you still want it in runtime (optional)
-COPY --from=build /usr/local/bin/bun /usr/local/bin/bun
-
-# Start the app using Node
-CMD ["npm", "run", "start:node"]    
+USER bun
+EXPOSE 3000/tcp
+ENTRYPOINT [ "bun", "run", "start:bun" ]

@@ -7,7 +7,7 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "start:node": "node .output/server/index.mjs",
+    "start:bun": "bun .output/server/index.mjs",
     "check": "tsc"
   },
   "dependencies": {
