@@ -28,15 +28,15 @@ function RouteComponent() {
   const [copied, setCopied] = useState(false)
 
   const [scriptCopied, setScriptCopied] = useState(false)
-  const [hostname, setHostname] = useState("")
+  const [origin, setOrigin] = useState("")
 
   useEffect(() => {
-    setHostname(window.location.host)
+    setOrigin(window.location.origin)
   }, [])
 
   const { apiKey } = Route.useLoaderData()
   // FIXME: replace with real command
-  const curlCommand = `curl -fsSL https://${hostname}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${hostname}/api" bash`
+  const curlCommand = `curl -fsSL https://${origin}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${origin}/api" bash`
 
   return (
     <div className="space-y-4">
