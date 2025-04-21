@@ -13,5 +13,8 @@ RUN bun install --frozen-lockfile
 # Build the project
 RUN bun run build
 
+# Run the migrations
+RUN bun drizzle-kit migrate
+
 # Run the server when the container launches
 ENTRYPOINT ["bun", "start:bun"]
