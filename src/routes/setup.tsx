@@ -75,22 +75,22 @@ function RouteComponent() {
           </p>
         </div>
 
-        <div className="space-y-2 md:space-y-0 md:relative mb-2">
-          <div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow]">{curlCommand}</div>
+        <div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow]">{curlCommand}</div>
+
+        <div className="flex flex-col gap-2 md:flex-row md:gap-0 mt-4">
+          <p className="text-xs text-muted-foreground">
+            This script will create a <code>~/.wakatime.cfg</code> file on your system with your API key and URL.<br />
+            It'll also install the WakaTime extension if you have VSCode installed, although the script will still work if you don't.
+          </p>
           <Button
             size="sm"
-            className="md:absolute md:top-2 md:right-2 w-full md:w-fit"
+            className="w-full md:w-fit md:ml-auto"
             onClick={() => copyToClipboard(curlCommand, setScriptCopied)}
           >
             {scriptCopied ? <CheckIcon className="h-4 w-4" /> : <ClipboardCopyIcon className="h-4 w-4" />}
-            {scriptCopied ? "Copied!" : "Copy command"}
+            {scriptCopied ? "Copied!" : "Copy to clipboard"}
           </Button>
         </div>
-
-        <p className="text-xs text-muted-foreground">
-          This script will create a <code>~/.wakatime.cfg</code> file on your system with your API key and URL.<br />
-          It'll also install the WakaTime extension if you have VSCode installed, although the script will still work if you don't.
-        </p>
       </div>
 
       <p>Once you're done, <a href="https://wakatime.com/help/editors" className="underline" target="_blank">install an editor extension</a> and you're good to go!</p>
