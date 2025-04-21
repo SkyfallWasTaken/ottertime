@@ -10,5 +10,8 @@ COPY . .
 # Install dependencies
 RUN bun install --frozen-lockfile
 
+# Build the project
+RUN bun run build
+
 # Run the server when the container launches
 ENTRYPOINT ["bun", "start"]
