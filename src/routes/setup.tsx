@@ -36,7 +36,7 @@ function RouteComponent() {
 
   const { apiKey } = Route.useLoaderData()
   // FIXME: replace with real command
-  const curlCommand = `curl -fsSL https://${origin}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${origin}/api" bash`
+  const curlCommand = `curl -fsSL ${origin}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${origin}/api" bash`
 
   return (
     <div className="space-y-4">
