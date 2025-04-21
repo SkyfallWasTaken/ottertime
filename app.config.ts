@@ -20,5 +20,7 @@ export default defineConfig({
 				preset: "cloudflare-pages",
 				unenv: cloudflare,
 			}
-		: undefined,
+		: {
+			preset: "bun"
+		},
 });
