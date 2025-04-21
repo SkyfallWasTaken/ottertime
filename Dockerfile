@@ -8,10 +8,10 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN bun install --frozen-lockfile
+RUN ["bun", "install", "--frozen-lockfile"]
 
 # Build the project
-RUN bun run build
+RUN ["bun", "run", "build"]
 
 # Run the server when the container launches
-ENTRYPOINT ["bun", "start"]
+ENTRYPOINT ["bun", "run", "start:bun"]
