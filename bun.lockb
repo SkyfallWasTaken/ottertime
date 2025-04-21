@@ -1,5 +1,0 @@
-// this file is required to make Cloudflare Pages use bun instead of npm
-// to install dependencies. Pages *still* doesn't detect bun.lock files!
-//
-// this works because bun prioritises bun.lock over bun.lockb.
-// TODO: delete this when Pages supports bun.lock
