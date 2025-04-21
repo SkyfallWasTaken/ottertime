@@ -77,7 +77,7 @@ function RouteComponent() {
 
         <div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow]">{curlCommand}</div>
 
-        <div className="flex flex-col gap-2 md:flex-row md:gap-0 mt-4">
+        <div className="flex flex-col-reverse gap-2 md:flex-row md:gap-0 mt-4">
           <p className="text-xs text-muted-foreground">
             This script will create a <code>~/.wakatime.cfg</code> file on your system with your API key and URL.<br />
             It'll also install the WakaTime extension if you have VSCode installed, although the script will still work if you don't.
