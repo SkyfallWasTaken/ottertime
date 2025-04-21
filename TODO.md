@@ -6,3 +6,4 @@
 - Fix the /api/heartbeat and /api/heartbeats endpoints
 - Implement settings
 - Restrict image lengths
+- Projects chart looks pretty bad in general
