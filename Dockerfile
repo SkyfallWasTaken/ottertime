@@ -1,10 +1,8 @@
-# Use an official Debian-based image with latest Node.js (via nvm)
-FROM node:current-slim AS base
-
-# Set working directory
+# ---------- Build stage ----------
+FROM node:current-slim AS build
 WORKDIR /app
 
-# Install curl + unzip + git for downloading Bun + useful tools
+# Install curl, unzip, and git for Bun
 RUN apt-get update && apt-get install -y curl unzip git \
   && rm -rf /var/lib/apt/lists/*
 
@@ -12,26 +10,28 @@ RUN apt-get update && apt-get install -y curl unzip git \
 RUN curl -fsSL https://bun.sh/install | bash \
   && mv /root/.bun/bin/bun /usr/local/bin/bun
 
-# Copy only package files first for better caching
-COPY bun.lock package.json ./
+# Pre-copy only lockfile and package for caching
+COPY bun.lockb package.json ./
 
-# Install dependencies using Bun (very fast)
+# Install dependencies
 RUN bun install --frozen-lockfile
 
-# Copy the rest of your app
+# Copy the full source
 COPY . .
 
-# Final production image (multi-stage for cleanliness)
-FROM node:current-slim AS prod
+# Build using Bun
+RUN bun run build
+
+# ---------- Runtime stage ----------
+FROM node:current-slim AS runtime
 
 WORKDIR /app
 
-# Install only runtime deps for Node (bun isn't needed now)
-COPY --from=base /app /app
-COPY --from=base /usr/local/bin/bun /usr/local/bin/bun
+# Copy built files and node_modules from build stage
+COPY --from=build /app /app
 
-# Optional: prune dev dependencies if using separate builds
-# RUN npm prune --production
+# Only copy Bun if you still want it in runtime (optional)
+COPY --from=build /usr/local/bin/bun /usr/local/bin/bun
 
-# Default command runs using Node (but Bun used for install)
-CMD ["npm", "run", "start:node"]
+# Start the app using Node
+CMD ["npm", "run", "start:node"]    
