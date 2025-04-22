@@ -1,6 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs"
 import { CheckIcon, ClipboardCopyIcon } from "lucide-react"
 import { useState, useEffect } from 'react'
 
@@ -29,14 +30,25 @@ function RouteComponent() {
 
   const [scriptCopied, setScriptCopied] = useState(false)
   const [origin, setOrigin] = useState("")
+  const [selectedTab, setSelectedTab] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.navigator.userAgent.includes('Windows') ? "windows" : "unix";
+    }
+    return "unix"; // Default fallback if not in browser environment
+  });
 
   useEffect(() => {
     setOrigin(window.location.origin)
   }, [])
 
   const { apiKey } = Route.useLoaderData()
-  // FIXME: replace with real command
-  const curlCommand = `curl -fsSL ${origin}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${origin}/api" bash`
+  const apiUrl = `${origin}/api`
+  const unixCommand = `curl -fsSL ${origin}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${apiUrl}" bash`
+  const windowsCommand = `$env:QUACKATIME_API_KEY="${apiKey}"; $env:QUACKATIME_API_URL="${apiUrl}"; irm ${origin}/install-windows.ps1 | iex`
+
+  const getCurrentCommand = () => {
+    return selectedTab === "windows" ? windowsCommand : unixCommand;
+  }
 
   return (
     <div className="space-y-4">
@@ -75,7 +87,17 @@ function RouteComponent() {
           </p>
         </div>
 
-        <div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow]">{curlCommand}</div>
+        <Tabs defaultValue={selectedTab} onValueChange={setSelectedTab}>
+          <TabsList>
+            <TabsTrigger value="windows">Windows</TabsTrigger>
+            <TabsTrigger value="unix">Linux/macOS</TabsTrigger>
+          </TabsList>
+
+          <div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow]">
+            <TabsContent value="windows">{windowsCommand}</TabsContent>
+            <TabsContent value="unix">{unixCommand}</TabsContent>
+          </div>
+        </Tabs>
 
         <div className="flex flex-col-reverse gap-2 md:flex-row md:gap-0 mt-4">
           <p className="text-xs text-muted-foreground">
@@ -85,7 +107,7 @@ function RouteComponent() {
           <Button
             size="sm"
             className="w-full md:w-fit md:ml-auto"
-            onClick={() => copyToClipboard(curlCommand, setScriptCopied)}
+            onClick={() => copyToClipboard(getCurrentCommand(), setScriptCopied)}
           >
             {scriptCopied ? <CheckIcon className="h-4 w-4" /> : <ClipboardCopyIcon className="h-4 w-4" />}
             {scriptCopied ? "Copied!" : "Copy to clipboard"}
