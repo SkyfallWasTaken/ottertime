@@ -17,6 +17,8 @@ export default async function emitHeartbeats(
           };
           return {
             ...rawHb,
+            // stableJsonStringify is, well, stable! This means that object X will always stringify to Y,
+            // regardless of the order of the keys in X.
             hash: stableJsonStringify(rawHb),
           };
         })
