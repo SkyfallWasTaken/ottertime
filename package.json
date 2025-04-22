@@ -28,6 +28,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.42.0",
+    "fast-json-stable-stringify": "^2.1.0",
     "jotai": "^2.12.2",
     "lucide-react": "^0.503.0",
     "nanoid": "^5.1.5",
