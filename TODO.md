@@ -3,7 +3,17 @@
 - Add forgot password implementation
 - Add auth middleware
 - Actually process heartbeats (LOL)
-- Fix the /api/heartbeat and /api/heartbeats endpoints
+- Add ratelimiting to the /api/heartbeat and /api/heartbeats endpoints
+  - Might be worth implementing authentication/authorization/ratelimiting as a middleware
 - Implement settings
 - Restrict image lengths
 - Projects chart looks pretty bad in general
+- There's both a `created_at` and `time` field for heartbeats
+- Write tests (API/browser tests)
+- See how Quackatime copes with scale
+  - 100k heartbeats
+  - 600k heartbeats
+  - 5 million heartbeats
+- Add API key regeneration
+  - **Keep in sync w/ api_key column**
+- Get API key for user via Better Auth, not via separate `api_key` column
