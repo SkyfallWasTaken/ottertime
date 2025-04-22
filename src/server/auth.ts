@@ -10,6 +10,7 @@ import {
   session,
   apikey,
 } from "~/server/db";
+import { getPasswordFromAuthHeader } from "~/utils/misc";
 import { eq } from "drizzle-orm";
 
 export const auth = betterAuth({
@@ -67,3 +68,33 @@ export const auth = betterAuth({
     },
   },
 });
+
+export const getUserIdFromApiKey = async (
+  headers: Headers
+): Promise<
+  | { error: string }
+  | {
+      userId: string;
+    }
+> => {
+  const basicAuth = headers.get("Authorization");
+  if (!basicAuth) {
+    return { error: "Missing Authorization header" };
+  }
+  const parseResult = getPasswordFromAuthHeader(basicAuth);
+  if (!parseResult.ok) {
+    return { error: parseResult.error };
+  }
+  const apiKey = parseResult.password;
+
+  const { error, key } = await auth.api.verifyApiKey({
+    body: {
+      key: apiKey,
+    },
+  });
+  if (error || !key) {
+    return { error: error?.message || error?.code || "UNKNOWN_API_KEY_ERROR" };
+  }
+
+  return { userId: key.userId };
+};

@@ -12,7 +12,7 @@ import {
 import { nanoid } from "nanoid";
 
 export const type = pgEnum("hb_type", ["file", "app", "domain"]);
-export const category = pgEnum("hb_category", [
+export const categories = [
   "coding",
   "building",
   "indexing",
@@ -27,7 +27,8 @@ export const category = pgEnum("hb_category", [
   "researching",
   "learning",
   "designing",
-]);
+] as const;
+export const category = pgEnum("hb_category", categories);
 export const heartbeats = pgTable("heartbeats", {
   userId: varchar({ length: 255 }).notNull(), // TODO: should probably be a relation?
 
@@ -75,6 +76,9 @@ export const heartbeats = pgTable("heartbeats", {
   // Question: Why not just do an UNIQUE INDEX on the entirety of the heartbeat?
   // Answer: See https://stackoverflow.com/q/65980064/3112139.
   hash: varchar("hash", { length: 255 }).notNull().unique(),
+
+  // User agent
+  userAgent: text("user_agent").default("unknown"),
 });
 
 export const user = pgTable("user", {
