@@ -102,7 +102,7 @@ function RouteComponent() {
         <div className="flex flex-col-reverse gap-2 md:flex-row md:gap-0 mt-4">
           <p className="text-xs text-muted-foreground">
             This script will create a <code>~/.wakatime.cfg</code> file on your system with your API key and URL.<br />
-            It'll also install the WakaTime extension if you have VSCode installed, although the script will still work if you don't.
+            It'll also install the WakaTime extension if you have a <a href="https://github.com/quackatime/extension-installer#supported-ides" className="underline" target="_blank">supported IDE/code editor</a> installed, although the script will still work if you don't.
           </p>
           <Button
             size="sm"
