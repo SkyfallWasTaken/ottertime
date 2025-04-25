@@ -12,13 +12,14 @@ import {
     ChartTooltip,
     ChartTooltipContent
 } from "~/components/ui/chart"
+import githubColors from "github-colors"
 
 const chartData = [
-    { language: "Rust", minutes: 275, fill: "var(--chart-1)" },
-    { language: "TypeScript", minutes: 200, fill: "var(--chart-2)" },
-    { language: "Go", minutes: 187, fill: "var(--chart-3)" },
-    { language: "Java", minutes: 90, fill: "var(--chart-4)" },
-    { language: "Lua", minutes: 10, fill: "var(--chart-5)" },
+    { language: "Rust", minutes: 275, fill: githubColors.get("Rust", true).color },
+    { language: "TypeScript", minutes: 200, fill: githubColors.get("TypeScript", true).color },
+    { language: "Go", minutes: 187, fill: githubColors.get("Go", true).color },
+    { language: "Java", minutes: 90, fill: githubColors.get("Java", true).color },
+    { language: "Lua", minutes: 10, fill: githubColors.get("Lua", true).color },
 ].sort((a, b) => b.minutes - a.minutes)
 
 const chartConfig = {

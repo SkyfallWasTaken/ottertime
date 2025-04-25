@@ -17,3 +17,4 @@
 - Add API key regeneration
   - **Keep in sync w/ api_key column**
 - Get API key for user via Better Auth, not via separate `api_key` column
+- Move off github-colors package (or at the very least, write types for it!)
