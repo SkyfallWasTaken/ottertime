@@ -1,50 +1,54 @@
 export function getRandomItem<T>(items: T[]): T {
-	return items[Math.floor(Math.random() * items.length)];
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 export function clamp(num: number, lower: number, upper: number) {
-	return Math.min(Math.max(num, lower), upper);
+  return Math.min(Math.max(num, lower), upper);
 }
 
 export function convertMinutes(totalMinutes: number): string {
-	// Handle negative input
-	if (totalMinutes < 0) {
-		return "0m";
-	}
+  // Handle negative input
+  if (totalMinutes < 0) {
+    return "0m";
+  }
 
-	// Calculate hours and remaining minutes
-	const hours = Math.floor(totalMinutes / 60);
-	const minutes = totalMinutes % 60;
+  // Calculate hours and remaining minutes
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
 
-	// Format the output
-	if (hours > 0) {
-		// Pad minutes with leading zero if hours exist
-		return `${hours}h ${minutes.toString().padStart(2, "0")}m`;
-	}
-	return `${minutes}m`;
+  // Format the output
+  if (hours > 0) {
+    // Pad minutes with leading zero if hours exist
+    return `${hours}h ${minutes.toString().padStart(2, "0")}m`;
+  }
+  return `${minutes}m`;
 }
 
 export function getPasswordFromAuthHeader(authHeader: string):
-	| {
-			ok: false;
-			error: string;
-	  }
-	| { ok: true; password: string } {
-	if (!authHeader.startsWith("Basic ")) {
-		return { ok: false, error: "Invalid Authorization header" };
-	}
+  | {
+      ok: false;
+      error: string;
+    }
+  | { ok: true; password: string } {
+  if (!authHeader.startsWith("Basic ") && !authHeader.startsWith("Bearer ")) {
+    return { ok: false, error: "Invalid Authorization header" };
+  }
 
-	// Decode the Base64 part
-	const base64Credentials = authHeader.split(" ")[1];
-	const credentials = Buffer.from(base64Credentials, "base64").toString(
-		"utf-8",
-	);
+  if (authHeader.startsWith("Bearer ")) {
+    return { ok: true, password: authHeader.slice(7) };
+  }
 
-	// Split into username and password
-	const [_, password] = credentials.split(":");
-	if (!password) {
-		return { ok: false, error: "Invalid Authorization header" };
-	}
+  // Decode the Base64 part
+  const base64Credentials = authHeader.split(" ")[1];
+  const credentials = Buffer.from(base64Credentials, "base64").toString(
+    "utf-8"
+  );
 
-	return { ok: true, password };
+  // Split into username and password
+  const [_, password] = credentials.split(":");
+  if (!password) {
+    return { ok: false, error: "Invalid Authorization header" };
+  }
+
+  return { ok: true, password };
 }

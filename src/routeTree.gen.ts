@@ -11,20 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as StatisticsImport } from './routes/statistics'
 import { Route as SetupImport } from './routes/setup'
 import { Route as SettingsImport } from './routes/settings'
+import { Route as ProjectsImport } from './routes/projects'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as AuthSigninImport } from './routes/auth/signin'
 
 // Create/Update Routes
-
-const StatisticsRoute = StatisticsImport.update({
-  id: '/statistics',
-  path: '/statistics',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const SetupRoute = SetupImport.update({
   id: '/setup',
@@ -35,6 +29,12 @@ const SetupRoute = SetupImport.update({
 const SettingsRoute = SettingsImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProjectsRoute = ProjectsImport.update({
+  id: '/projects',
+  path: '/projects',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsImport
+      parentRoute: typeof rootRoute
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -79,13 +86,6 @@ declare module '@tanstack/react-router' {
       path: '/setup'
       fullPath: '/setup'
       preLoaderRoute: typeof SetupImport
-      parentRoute: typeof rootRoute
-    }
-    '/statistics': {
-      id: '/statistics'
-      path: '/statistics'
-      fullPath: '/statistics'
-      preLoaderRoute: typeof StatisticsImport
       parentRoute: typeof rootRoute
     }
     '/auth/signin': {
@@ -109,18 +109,18 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
   '/setup': typeof SetupRoute
-  '/statistics': typeof StatisticsRoute
   '/auth/signin': typeof AuthSigninRoute
   '/auth/signup': typeof AuthSignupRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
   '/setup': typeof SetupRoute
-  '/statistics': typeof StatisticsRoute
   '/auth/signin': typeof AuthSigninRoute
   '/auth/signup': typeof AuthSignupRoute
 }
@@ -128,9 +128,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
   '/setup': typeof SetupRoute
-  '/statistics': typeof StatisticsRoute
   '/auth/signin': typeof AuthSigninRoute
   '/auth/signup': typeof AuthSignupRoute
 }
@@ -139,25 +139,25 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/projects'
     | '/settings'
     | '/setup'
-    | '/statistics'
     | '/auth/signin'
     | '/auth/signup'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/projects'
     | '/settings'
     | '/setup'
-    | '/statistics'
     | '/auth/signin'
     | '/auth/signup'
   id:
     | '__root__'
     | '/'
+    | '/projects'
     | '/settings'
     | '/setup'
-    | '/statistics'
     | '/auth/signin'
     | '/auth/signup'
   fileRoutesById: FileRoutesById
@@ -165,18 +165,18 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjectsRoute: typeof ProjectsRoute
   SettingsRoute: typeof SettingsRoute
   SetupRoute: typeof SetupRoute
-  StatisticsRoute: typeof StatisticsRoute
   AuthSigninRoute: typeof AuthSigninRoute
   AuthSignupRoute: typeof AuthSignupRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjectsRoute: ProjectsRoute,
   SettingsRoute: SettingsRoute,
   SetupRoute: SetupRoute,
-  StatisticsRoute: StatisticsRoute,
   AuthSigninRoute: AuthSigninRoute,
   AuthSignupRoute: AuthSignupRoute,
 }
@@ -192,9 +192,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/projects",
         "/settings",
         "/setup",
-        "/statistics",
         "/auth/signin",
         "/auth/signup"
       ]
@@ -202,14 +202,14 @@ export const routeTree = rootRoute
     "/": {
       "filePath": "index.tsx"
     },
+    "/projects": {
+      "filePath": "projects.tsx"
+    },
     "/settings": {
       "filePath": "settings.tsx"
     },
     "/setup": {
       "filePath": "setup.tsx"
-    },
-    "/statistics": {
-      "filePath": "statistics.tsx"
     },
     "/auth/signin": {
       "filePath": "auth/signin.tsx"

@@ -12,7 +12,7 @@ import { Menu } from "lucide-react"
 
 const paths = [
     { name: 'Home', href: '/' },
-    { name: 'Statistics', href: '/statistics' },
+    { name: 'Projects', href: '/projects' },
     { name: 'Settings', href: '/settings' },
 ]
 
