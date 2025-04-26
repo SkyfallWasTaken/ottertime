@@ -1,72 +1,47 @@
-# Welcome to TanStack.com!
+# Quackatime
 
-This site is built with TanStack Router!
+![Screenshot](https://files.catbox.moe/02c2v9.png)
 
-- [TanStack Router Docs](https://tanstack.com/router)
+Quackatime is an open-source, self-hostable time tracking server compatible with [WakaTime.](https://waka.hackclub.com)
 
-It's deployed automagically with Netlify!
+## Running the installer
 
-- [Netlify](https://netlify.com/)
+Sign in to Quackatime, then go to the [setup page](https://quack.skyfall.dev) and copy and paste the relevant command for your platform.
+
+The installer's code is [here](https://github.com/quackatime/extension-installer), and supports VSCode, VSCode forks like Cursor and Windsurf, and most JetBrains IDEs.
 
 ## Development
 
-From your terminal:
+Set the following `.env` variables:
 
-```sh
-pnpm install
-pnpm dev
+```
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=
+BUN_VERSION=1.2.10
+DATABASE_URL=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+Then, run:
 
-## Editing and previewing the docs of TanStack projects locally
-
-The documentations for all TanStack projects except for `React Charts` are hosted on [https://tanstack.com](https://tanstack.com), powered by this TanStack Router app.
-In production, the markdown doc pages are fetched from the GitHub repos of the projects, but in development they are read from the local file system.
-
-Follow these steps if you want to edit the doc pages of a project (in these steps we'll assume it's [`TanStack/form`](https://github.com/tanstack/form)) and preview them locally :
-
-1. Create a new directory called `tanstack`.
-
-```sh
-mkdir tanstack
+```
+bun install
+bun dev
 ```
 
-2. Enter the directory and clone this repo and the repo of the project there.
+---
 
-```sh
-cd tanstack
-git clone git@github.com:TanStack/tanstack.com.git
-git clone git@github.com:TanStack/form.git
-```
+#### License
 
-> [!NOTE]
-> Your `tanstack` directory should look like this:
->
-> ```
-> tanstack/
->    |
->    +-- form/
->    |
->    +-- tanstack.com/
-> ```
+<sup>
+Licensed under the <a href="LICENSE">GNU Affero General Public License v3.0</a>.
+</sup>
 
-> [!WARNING]
-> Make sure the name of the directory in your local file system matches the name of the project's repo. For example, `tanstack/form` must be cloned into `form` (this is the default) instead of `some-other-name`, because that way, the doc pages won't be found.
+<br>
 
-3. Enter the `tanstack/tanstack.com` directory, install the dependencies and run the app in dev mode:
-
-```sh
-cd tanstack.com
-pnpm i
-# The app will run on https://localhost:3000 by default
-pnpm dev
-```
-
-4. Now you can visit http://localhost:3000/form/latest/docs/overview in the browser and see the changes you make in `tanstack/form/docs`.
-
-> [!NOTE]
-> The updated pages need to be manually reloaded in the browser.
-
-> [!WARNING]
-> You will need to update the `docs/config.json` file (in the project's repo) if you add a new doc page!
+<sub>
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in this application by you, as defined in the GNU Affero General Public License v3.0, shall
+be licensed as above, without any additional terms or conditions.
+</sub>
