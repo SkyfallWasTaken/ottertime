@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, useNavigate, Link } from '@tanstack/react-router'
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -195,9 +195,9 @@ function RouteComponent() {
       </CardContent>
       <CardFooter>
         <div className="flex justify-center w-full border-t py-4">
-          <p className="text-center text-xs text-foreground/80">
-            Need help?{" "}<a href="mailto:hi@skyfall.dev" className="underline">Send us an email.</a>
-          </p>
+          <Link to="/auth/signin" className="text-center text-sm underline text-foreground/80">
+            Already have an account?
+          </Link>
         </div>
       </CardFooter>
     </Card>
