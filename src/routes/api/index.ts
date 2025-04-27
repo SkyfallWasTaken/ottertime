@@ -1,0 +1,82 @@
+import { Hono } from "hono";
+import { HTTPException } from "hono/http-exception";
+
+import type { Context } from "./util";
+import { getPasswordFromAuthHeader } from "~/utils/misc";
+import { auth } from "~/server/auth";
+import heartbeatsRouter from "./routes/heartbeats";
+import authRouter from "./routes/auth";
+
+const app = new Hono<Context>();
+
+app.use("*", async (c, next) => {
+  const authHeader = c.req.header("Authorization");
+
+  if (!authHeader) {
+    c.set("userId", null);
+    return next();
+  }
+
+  const parseResult = getPasswordFromAuthHeader(authHeader);
+  if (!parseResult.ok) {
+    return c.json({ error: parseResult.error }, 401);
+  }
+  const apiKey = parseResult.password;
+  console.log("API Key:", apiKey);
+
+  const { error, key } = await auth.api.verifyApiKey({
+    body: {
+      key: "c81997f6-bbe5-40e6-850a-5977ff1d71b9",
+    },
+  });
+  if (error || !key) {
+    return c.json(
+      { error: error?.message || error?.code || "UNKNOWN_API_KEY_ERROR" },
+      401
+    );
+  }
+
+  c.set("userId", key.userId);
+  return next();
+});
+
+app.onError((err, c) => {
+  if (err instanceof HTTPException) {
+    const errResponse =
+      err.res ??
+      c.json(
+        {
+          success: false,
+          error: err.message,
+          isFormError:
+            err.cause && typeof err.cause === "object" && "form" in err.cause
+              ? err.cause.form === true
+              : false,
+        },
+        err.status
+      );
+
+    return errResponse;
+  }
+
+  return c.json(
+    {
+      success: false,
+      error:
+        import.meta.env.NODE_ENV === "production"
+          ? "Internal Server Error"
+          : (err.stack ?? err.message),
+    },
+    500
+  );
+});
+
+export type ApiRoutes = typeof routes;
+
+const routes = app
+  .basePath("/api")
+  .get("/hello", (c) => c.json({ message: "Hello from the API!" }))
+  .route("/users/current", heartbeatsRouter)
+  .route("/auth", authRouter);
+
+export default app;

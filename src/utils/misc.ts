@@ -39,8 +39,7 @@ export function getPasswordFromAuthHeader(authHeader: string):
   }
 
   // Decode the Base64 part
-  const base64Credentials = authHeader.split(" ")[1];
-  const credentials = Buffer.from(base64Credentials, "base64").toString(
+  const credentials = Buffer.from(authHeader.slice(6), "base64").toString(
     "utf-8"
   );
 
