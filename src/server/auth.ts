@@ -42,6 +42,7 @@ export const auth = betterAuth({
         // WakaTime plugins check for this: https://github.com/wakatime/wakatime-cli/blob/a76bb39bb741740851d6eb4d3142c6d9732e9ee8/cmd/params/params.go#L46
         return crypto.randomUUID();
       },
+      defaultKeyLength: 32,
     }),
     reactStartCookies(),
   ],

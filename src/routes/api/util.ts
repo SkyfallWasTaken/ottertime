@@ -10,10 +10,8 @@ export type Context = Env & {
 export const requireAuth: MiddlewareHandler<{
   Variables: { userId: string };
 }> = async (c, next) => {
-  console.log("Foo");
   const userId = c.get("userId");
   if (!userId) {
-    console.log("not authed");
     return c.json({ error: "Unauthorized" }, 401);
   }
   await next();

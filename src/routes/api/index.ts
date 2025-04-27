@@ -22,11 +22,10 @@ app.use("*", async (c, next) => {
     return c.json({ error: parseResult.error }, 401);
   }
   const apiKey = parseResult.password;
-  console.log("API Key:", apiKey);
 
   const { error, key } = await auth.api.verifyApiKey({
     body: {
-      key: "c81997f6-bbe5-40e6-850a-5977ff1d71b9",
+      key: apiKey,
     },
   });
   if (error || !key) {
