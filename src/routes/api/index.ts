@@ -6,6 +6,7 @@ import { getPasswordFromAuthHeader } from "~/utils/misc";
 import { auth } from "~/server/auth";
 import heartbeatsRouter from "./routes/heartbeats";
 import authRouter from "./routes/auth";
+import statusbarRouter from "./routes/statusbar";
 
 const app = new Hono<Context>();
 
@@ -16,6 +17,8 @@ app.use("*", async (c, next) => {
     c.set("userId", null);
     return next();
   }
+
+  import.meta.env.DEV && console.log(c.req.url, authHeader);
 
   const parseResult = getPasswordFromAuthHeader(authHeader);
   if (!parseResult.ok) {
@@ -29,6 +32,7 @@ app.use("*", async (c, next) => {
     },
   });
   if (error || !key) {
+    console.log("We got a problem!", apiKey.substring(0, 6), error);
     return c.json(
       { error: error?.message || error?.code || "UNKNOWN_API_KEY_ERROR" },
       401
@@ -76,6 +80,7 @@ const routes = app
   .basePath("/api")
   .get("/hello", (c) => c.json({ message: "Hello from the API!" }))
   .route("/users/current", heartbeatsRouter)
+  .route("/users/current", statusbarRouter)
   .route("/auth", authRouter);
 
 export default app;

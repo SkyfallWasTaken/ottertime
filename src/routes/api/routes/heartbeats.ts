@@ -7,7 +7,6 @@ import { Context, requireAuth } from "../util";
 import emitHeartbeats from "~/server/quackatime/heartbeats";
 
 export default new Hono<Context>()
-  .post("/", async (c) => c.text("Hello from the heartbeats API!"))
   .post(
     "/heartbeats.bulk",
     requireAuth,

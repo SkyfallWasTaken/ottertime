@@ -43,6 +43,11 @@ export const auth = betterAuth({
         return crypto.randomUUID();
       },
       defaultKeyLength: 32,
+      rateLimit: {
+        maxRequests: 35,
+        timeWindow: 3 * 60 * 1000, // 3 minute
+        enabled: true,
+      },
     }),
     reactStartCookies(),
   ],

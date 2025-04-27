@@ -44,10 +44,13 @@ export function getPasswordFromAuthHeader(authHeader: string):
   );
 
   // Split into username and password
-  const [_, password] = credentials.split(":");
-  if (!password) {
-    return { ok: false, error: "Invalid Authorization header" };
+  if (credentials.includes(":")) {
+    const [_, password] = credentials.split(":");
+    if (!password) {
+      return { ok: false, error: "Invalid Authorization header" };
+    }
+    return { ok: true, password };
   }
 
-  return { ok: true, password };
+  return { ok: true, password: credentials };
 }
