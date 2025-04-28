@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
+RUN apt-get update -y && apt-get install curl wget ca-certificates -y
 RUN bun install --frozen-lockfile
 
 # Build the project
