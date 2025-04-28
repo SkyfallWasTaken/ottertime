@@ -23,4 +23,3 @@
 - Add email verification
 - Add "Forgot your password?"
 - Add GitHub OAuth
-- When an API key is ratelimited, we return a 401 instead of a 429

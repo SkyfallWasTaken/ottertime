@@ -32,6 +32,13 @@ app.use("*", async (c, next) => {
     },
   });
   if (error || !key) {
+    if (error?.code === "RATE_LIMITED") {
+      const retryInMs = error?.details.tryAgainIn?.toString() || "Infinity";
+      return c.json({ error: "Rate limit exceeded", retryInMs }, 429, {
+        "Retry-After": retryInMs,
+      });
+    }
+
     console.log("We got a problem!", apiKey.substring(0, 6), error);
     return c.json(
       { error: error?.message || error?.code || "UNKNOWN_API_KEY_ERROR" },
@@ -59,9 +66,16 @@ app.onError((err, c) => {
         err.status
       );
 
+    if (import.meta.env.DEV) {
+      console.log(err.message, err.cause);
+    }
+
     return errResponse;
   }
 
+  if (import.meta.env.DEV) {
+    console.error(err);
+  }
   return c.json(
     {
       success: false,
