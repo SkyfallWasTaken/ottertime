@@ -19,3 +19,7 @@
 - Get API key for user via Better Auth, not via separate `api_key` column
 - Move off github-colors package (or at the very least, write types for it!)
   - https://www.npmjs.com/package/linguist-languages has a way smaller bundle size
+- After signing up, you're redirected to the sign in page instead of the setup page
+- Add email verification
+- Add "Forgot your password?"
+- Add GitHub OAuth
