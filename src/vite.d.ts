@@ -1,3 +1,1 @@
 import "vite/client";
-
-export {};

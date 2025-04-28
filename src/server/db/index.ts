@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
+import { env } from "~/utils/env";
 import {
 	account,
 	apikey,
@@ -8,7 +9,6 @@ import {
 	user,
 	verification,
 } from "./schema";
-import { env } from "~/utils/env";
 
 const db = drizzle(env.DATABASE_URL);
 
