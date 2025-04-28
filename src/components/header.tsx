@@ -1,7 +1,7 @@
 import { Link, useLocation } from '@tanstack/react-router'
 
 import { Button } from "~/components/ui/button";
-import { cn } from "~/utils/cn"
+import { cn } from "~/utils/misc"
 import { ThemeToggle } from "~/components/ui/theme-toggle"
 import {
     Drawer,
