@@ -77,7 +77,9 @@ app.onError((err, c) => {
 export type ApiRoutes = typeof routes;
 
 const routes = app
-  .basePath("/api")
+  .basePath("/api/v1")
+  .get("", (c) => c.redirect("/"))
+  .get("/", (c) => c.redirect("/"))
   .get("/hello", (c) => c.json({ message: "Hello from the API!" }))
   .route("/users/current", heartbeatsRouter)
   .route("/users/current", statusbarRouter)

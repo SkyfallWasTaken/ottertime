@@ -42,7 +42,7 @@ function RouteComponent() {
   }, [])
 
   const { apiKey } = Route.useLoaderData()
-  const apiUrl = `${origin}/api`
+  const apiUrl = `${origin}/api/v1`
   const unixCommand = `curl -fsSL ${origin}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${apiUrl}" bash`
   const windowsCommand = `$env:QUACKATIME_API_KEY="${apiKey}"; $env:QUACKATIME_API_URL="${apiUrl}"; irm ${origin}/install-windows.ps1 | iex`
 
