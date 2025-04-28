@@ -1,5 +1,6 @@
 import { db, heartbeats as heartbeatsTable } from "../db";
 import type { Heartbeat } from "~/common/heartbeats";
+import { sha256 } from "~/utils/misc";
 import stableJsonStringify from "fast-json-stable-stringify";
 
 export default async function emitHeartbeats(
@@ -19,7 +20,7 @@ export default async function emitHeartbeats(
             ...rawHb,
             // stableJsonStringify is, well, stable! This means that object X will always stringify to Y,
             // regardless of the order of the keys in X.
-            hash: stableJsonStringify(rawHb),
+            hash: await sha256(stableJsonStringify(rawHb)),
           };
         })
       )
