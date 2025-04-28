@@ -10,180 +10,180 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as SetupImport } from './routes/setup'
-import { Route as SettingsImport } from './routes/settings'
-import { Route as ProjectsImport } from './routes/projects'
-import { Route as IndexImport } from './routes/index'
-import { Route as AuthSignupImport } from './routes/auth/signup'
-import { Route as AuthSigninImport } from './routes/auth/signin'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as SetupImport } from "./routes/setup";
+import { Route as SettingsImport } from "./routes/settings";
+import { Route as ProjectsImport } from "./routes/projects";
+import { Route as IndexImport } from "./routes/index";
+import { Route as AuthSignupImport } from "./routes/auth/signup";
+import { Route as AuthSigninImport } from "./routes/auth/signin";
 
 // Create/Update Routes
 
 const SetupRoute = SetupImport.update({
-  id: '/setup',
-  path: '/setup',
-  getParentRoute: () => rootRoute,
-} as any)
+	id: "/setup",
+	path: "/setup",
+	getParentRoute: () => rootRoute,
+} as any);
 
 const SettingsRoute = SettingsImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => rootRoute,
-} as any)
+	id: "/settings",
+	path: "/settings",
+	getParentRoute: () => rootRoute,
+} as any);
 
 const ProjectsRoute = ProjectsImport.update({
-  id: '/projects',
-  path: '/projects',
-  getParentRoute: () => rootRoute,
-} as any)
+	id: "/projects",
+	path: "/projects",
+	getParentRoute: () => rootRoute,
+} as any);
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
+	id: "/",
+	path: "/",
+	getParentRoute: () => rootRoute,
+} as any);
 
 const AuthSignupRoute = AuthSignupImport.update({
-  id: '/auth/signup',
-  path: '/auth/signup',
-  getParentRoute: () => rootRoute,
-} as any)
+	id: "/auth/signup",
+	path: "/auth/signup",
+	getParentRoute: () => rootRoute,
+} as any);
 
 const AuthSigninRoute = AuthSigninImport.update({
-  id: '/auth/signin',
-  path: '/auth/signin',
-  getParentRoute: () => rootRoute,
-} as any)
+	id: "/auth/signin",
+	path: "/auth/signin",
+	getParentRoute: () => rootRoute,
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/projects': {
-      id: '/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof ProjectsImport
-      parentRoute: typeof rootRoute
-    }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsImport
-      parentRoute: typeof rootRoute
-    }
-    '/setup': {
-      id: '/setup'
-      path: '/setup'
-      fullPath: '/setup'
-      preLoaderRoute: typeof SetupImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/signin': {
-      id: '/auth/signin'
-      path: '/auth/signin'
-      fullPath: '/auth/signin'
-      preLoaderRoute: typeof AuthSigninImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/signup': {
-      id: '/auth/signup'
-      path: '/auth/signup'
-      fullPath: '/auth/signup'
-      preLoaderRoute: typeof AuthSignupImport
-      parentRoute: typeof rootRoute
-    }
-  }
+declare module "@tanstack/react-router" {
+	interface FileRoutesByPath {
+		"/": {
+			id: "/";
+			path: "/";
+			fullPath: "/";
+			preLoaderRoute: typeof IndexImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/projects": {
+			id: "/projects";
+			path: "/projects";
+			fullPath: "/projects";
+			preLoaderRoute: typeof ProjectsImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/settings": {
+			id: "/settings";
+			path: "/settings";
+			fullPath: "/settings";
+			preLoaderRoute: typeof SettingsImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/setup": {
+			id: "/setup";
+			path: "/setup";
+			fullPath: "/setup";
+			preLoaderRoute: typeof SetupImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/auth/signin": {
+			id: "/auth/signin";
+			path: "/auth/signin";
+			fullPath: "/auth/signin";
+			preLoaderRoute: typeof AuthSigninImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/auth/signup": {
+			id: "/auth/signup";
+			path: "/auth/signup";
+			fullPath: "/auth/signup";
+			preLoaderRoute: typeof AuthSignupImport;
+			parentRoute: typeof rootRoute;
+		};
+	}
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/projects': typeof ProjectsRoute
-  '/settings': typeof SettingsRoute
-  '/setup': typeof SetupRoute
-  '/auth/signin': typeof AuthSigninRoute
-  '/auth/signup': typeof AuthSignupRoute
+	"/": typeof IndexRoute;
+	"/projects": typeof ProjectsRoute;
+	"/settings": typeof SettingsRoute;
+	"/setup": typeof SetupRoute;
+	"/auth/signin": typeof AuthSigninRoute;
+	"/auth/signup": typeof AuthSignupRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/projects': typeof ProjectsRoute
-  '/settings': typeof SettingsRoute
-  '/setup': typeof SetupRoute
-  '/auth/signin': typeof AuthSigninRoute
-  '/auth/signup': typeof AuthSignupRoute
+	"/": typeof IndexRoute;
+	"/projects": typeof ProjectsRoute;
+	"/settings": typeof SettingsRoute;
+	"/setup": typeof SetupRoute;
+	"/auth/signin": typeof AuthSigninRoute;
+	"/auth/signup": typeof AuthSignupRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/projects': typeof ProjectsRoute
-  '/settings': typeof SettingsRoute
-  '/setup': typeof SetupRoute
-  '/auth/signin': typeof AuthSigninRoute
-  '/auth/signup': typeof AuthSignupRoute
+	__root__: typeof rootRoute;
+	"/": typeof IndexRoute;
+	"/projects": typeof ProjectsRoute;
+	"/settings": typeof SettingsRoute;
+	"/setup": typeof SetupRoute;
+	"/auth/signin": typeof AuthSigninRoute;
+	"/auth/signup": typeof AuthSignupRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/projects'
-    | '/settings'
-    | '/setup'
-    | '/auth/signin'
-    | '/auth/signup'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/projects'
-    | '/settings'
-    | '/setup'
-    | '/auth/signin'
-    | '/auth/signup'
-  id:
-    | '__root__'
-    | '/'
-    | '/projects'
-    | '/settings'
-    | '/setup'
-    | '/auth/signin'
-    | '/auth/signup'
-  fileRoutesById: FileRoutesById
+	fileRoutesByFullPath: FileRoutesByFullPath;
+	fullPaths:
+		| "/"
+		| "/projects"
+		| "/settings"
+		| "/setup"
+		| "/auth/signin"
+		| "/auth/signup";
+	fileRoutesByTo: FileRoutesByTo;
+	to:
+		| "/"
+		| "/projects"
+		| "/settings"
+		| "/setup"
+		| "/auth/signin"
+		| "/auth/signup";
+	id:
+		| "__root__"
+		| "/"
+		| "/projects"
+		| "/settings"
+		| "/setup"
+		| "/auth/signin"
+		| "/auth/signup";
+	fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ProjectsRoute: typeof ProjectsRoute
-  SettingsRoute: typeof SettingsRoute
-  SetupRoute: typeof SetupRoute
-  AuthSigninRoute: typeof AuthSigninRoute
-  AuthSignupRoute: typeof AuthSignupRoute
+	IndexRoute: typeof IndexRoute;
+	ProjectsRoute: typeof ProjectsRoute;
+	SettingsRoute: typeof SettingsRoute;
+	SetupRoute: typeof SetupRoute;
+	AuthSigninRoute: typeof AuthSigninRoute;
+	AuthSignupRoute: typeof AuthSignupRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ProjectsRoute: ProjectsRoute,
-  SettingsRoute: SettingsRoute,
-  SetupRoute: SetupRoute,
-  AuthSigninRoute: AuthSigninRoute,
-  AuthSignupRoute: AuthSignupRoute,
-}
+	IndexRoute: IndexRoute,
+	ProjectsRoute: ProjectsRoute,
+	SettingsRoute: SettingsRoute,
+	SetupRoute: SetupRoute,
+	AuthSigninRoute: AuthSigninRoute,
+	AuthSignupRoute: AuthSignupRoute,
+};
 
 export const routeTree = rootRoute
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+	._addFileChildren(rootRouteChildren)
+	._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

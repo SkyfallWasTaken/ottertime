@@ -1,62 +1,62 @@
 {
-  "version": "7",
-  "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "7",
-      "when": 1745134492711,
-      "tag": "0000_legal_switch",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1745149290394,
-      "tag": "0001_chemical_kylun",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1745151032809,
-      "tag": "0002_clammy_risque",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1745152491121,
-      "tag": "0003_giant_iron_lad",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1745153251963,
-      "tag": "0004_smiling_lady_mastermind",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1745155351100,
-      "tag": "0005_glamorous_quentin_quire",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1745356443399,
-      "tag": "0006_premium_cargill",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1745862995215,
-      "tag": "0007_overrated_hercules",
-      "breakpoints": true
-    }
-  ]
+	"version": "7",
+	"dialect": "postgresql",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "7",
+			"when": 1745134492711,
+			"tag": "0000_legal_switch",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "7",
+			"when": 1745149290394,
+			"tag": "0001_chemical_kylun",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1745151032809,
+			"tag": "0002_clammy_risque",
+			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "7",
+			"when": 1745152491121,
+			"tag": "0003_giant_iron_lad",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "7",
+			"when": 1745153251963,
+			"tag": "0004_smiling_lady_mastermind",
+			"breakpoints": true
+		},
+		{
+			"idx": 5,
+			"version": "7",
+			"when": 1745155351100,
+			"tag": "0005_glamorous_quentin_quire",
+			"breakpoints": true
+		},
+		{
+			"idx": 6,
+			"version": "7",
+			"when": 1745356443399,
+			"tag": "0006_premium_cargill",
+			"breakpoints": true
+		},
+		{
+			"idx": 7,
+			"version": "7",
+			"when": 1745862995215,
+			"tag": "0007_overrated_hercules",
+			"breakpoints": true
+		}
+	]
 }

@@ -21,6 +21,6 @@ export default defineConfig({
 				unenv: cloudflare,
 			}
 		: {
-			preset: "bun"
-		},
+				preset: "bun",
+			},
 });

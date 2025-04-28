@@ -4,26 +4,26 @@ import { sha256 } from "~/utils/misc";
 import stableJsonStringify from "fast-json-stable-stringify";
 
 export default async function emitHeartbeats(
-  heartbeats: Heartbeat[],
-  userId: string
+	heartbeats: Heartbeat[],
+	userId: string,
 ) {
-  await db
-    .insert(heartbeatsTable)
-    .values(
-      await Promise.all(
-        heartbeats.map(async (heartbeat) => {
-          const rawHb = {
-            ...heartbeat,
-            userId,
-          };
-          return {
-            ...rawHb,
-            // stableJsonStringify is, well, stable! This means that object X will always stringify to Y,
-            // regardless of the order of the keys in X.
-            hash: await sha256(stableJsonStringify(rawHb)),
-          };
-        })
-      )
-    )
-    .onConflictDoNothing();
+	await db
+		.insert(heartbeatsTable)
+		.values(
+			await Promise.all(
+				heartbeats.map(async (heartbeat) => {
+					const rawHb = {
+						...heartbeat,
+						userId,
+					};
+					return {
+						...rawHb,
+						// stableJsonStringify is, well, stable! This means that object X will always stringify to Y,
+						// regardless of the order of the keys in X.
+						hash: await sha256(stableJsonStringify(rawHb)),
+					};
+				}),
+			),
+		)
+		.onConflictDoNothing();
 }
