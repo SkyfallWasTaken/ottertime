@@ -10,7 +10,7 @@ import type { Context } from "./util";
 
 // Run the checks to ensure the env variables are set
 // If they aren't, the API won't work and this will be detected by Coolify health checks
-import "~/env";
+import "~/utils/env";
 
 const app = new Hono<Context>();
 
