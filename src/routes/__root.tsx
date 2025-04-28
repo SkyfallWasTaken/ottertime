@@ -1,3 +1,4 @@
+import type * as React from 'react'
 import {
   HeadContent,
   Outlet,
@@ -5,21 +6,21 @@ import {
   createRootRouteWithContext,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import type * as React from 'react'
-import { DefaultCatchBoundary } from '~/components/default-catch-boundary'
-import { NotFound } from '~/components/not-found'
-import appCss from '~/styles/app.css?url'
-import { seo } from '~/utils/seo'
-import Header from '~/components/header'
-import '@fontsource-variable/inter'
-import '@fontsource-variable/fira-code'
-import { ThemeProvider } from '~/components/theme-provider'
-import { Toaster } from "~/components/ui/sonner"
-
 import { createServerFn } from "@tanstack/react-start";
 import { getWebRequest } from "@tanstack/react-start/server";
-import { auth } from "~/server/auth";
 import { QueryClient } from '@tanstack/react-query'
+import '@fontsource-variable/inter'
+import '@fontsource-variable/fira-code'
+
+import { DefaultCatchBoundary } from '~/components/default-catch-boundary'
+import { NotFound } from '~/components/not-found'
+import { seo } from '~/utils/seo'
+import appCss from '~/styles/app.css?url'
+
+import { auth } from "~/server/auth";
+import { ThemeProvider } from '~/components/theme-provider'
+import { Toaster } from "~/components/ui/sonner"
+import Header from '~/components/header'
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
   const { headers } = getWebRequest()!;

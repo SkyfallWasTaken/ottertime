@@ -4,9 +4,9 @@ import { HTTPException } from "hono/http-exception";
 import type { Context } from "./util";
 import { getPasswordFromAuthHeader } from "~/utils/misc";
 import { auth } from "~/server/auth";
-import heartbeatsRouter from "./routes/heartbeats";
-import authRouter from "./routes/auth";
-import statusbarRouter from "./routes/statusbar";
+import heartbeatsRouter from "./routers/heartbeats";
+import authRouter from "./routers/auth";
+import statusbarRouter from "./routers/statusbar";
 
 const app = new Hono<Context>();
 
