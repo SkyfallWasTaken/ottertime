@@ -6,14 +6,14 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import type * as React from 'react'
-import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary'
-import { NotFound } from '~/components/NotFound'
+import { DefaultCatchBoundary } from '~/components/default-catch-boundary'
+import { NotFound } from '~/components/not-found'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
-import Header from '~/components/Header'
+import Header from '~/components/header'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/fira-code'
-import { ThemeProvider } from '~/components/ThemeProvider'
+import { ThemeProvider } from '~/components/theme-provider'
 import { Toaster } from "~/components/ui/sonner"
 
 import { createServerFn } from "@tanstack/react-start";

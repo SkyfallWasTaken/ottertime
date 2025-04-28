@@ -4,8 +4,8 @@ import {
   Card,
   CardContent,
 } from "~/components/ui/card"
-import TopProjectsChart from "~/components/home/TopProjectsChart"
-import TopLanguagesChart from "~/components/home/TopLanguagesChart"
+import TopProjectsChart from "~/components/home/top-projects-chart"
+import TopLanguagesChart from "~/components/home/top-languages-chart"
 
 const timeQuotes = [
   "tick tock!",
