@@ -80,7 +80,7 @@ app.onError((err, c) => {
 		{
 			success: false,
 			error:
-				import.meta.env.NODE_ENV === "production"
+				import.meta.env.PROD
 					? "Internal Server Error"
 					: (err.stack ?? err.message),
 		},

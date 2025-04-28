@@ -8,9 +8,9 @@ import {
 	user,
 	verification,
 } from "./schema";
-if (!process.env.DATABASE_URL) {
+if (!import.meta.env.DATABASE_URL) {
 	throw new Error("DATABASE_URL is not defined");
 }
-const db = drizzle(process.env.DATABASE_URL);
+const db = drizzle(import.meta.env.DATABASE_URL);
 
 export { db, user, heartbeats, verification, account, session, apikey };
