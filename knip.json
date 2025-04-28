@@ -1,0 +1,10 @@
+{
+	"entry": [
+		"app.config.ts",
+		"drizzle.config.ts",
+		"src/**",
+		"src/components/**",
+		"!src/components/ui/**"
+	],
+	"ignore": ["src/components/ui/**"]
+}

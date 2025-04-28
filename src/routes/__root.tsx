@@ -23,6 +23,7 @@ import { Toaster } from "~/components/ui/sonner";
 import { auth } from "~/server/auth";
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
+	// biome-ignore lint: getWebRequest should always be available in server functions
 	const { headers } = getWebRequest()!;
 	const session = await auth.api.getSession({ headers });
 	return session?.user || null;
