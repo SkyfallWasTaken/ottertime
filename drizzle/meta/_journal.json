@@ -50,6 +50,13 @@
       "when": 1745356443399,
       "tag": "0006_premium_cargill",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1745862995215,
+      "tag": "0007_overrated_hercules",
+      "breakpoints": true
     }
   ]
 }

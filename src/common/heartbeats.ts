@@ -16,7 +16,7 @@ export const heartbeatSchema = z
     line_deletions: z.number().min(0).optional(),
     lineno: z.number().min(1).optional(),
     cursor_pos: z.number().min(1).optional(),
-    is_write: z.boolean().optional(),
+    is_write: z.boolean().default(false),
     category: z.enum(categories).default("coding"),
     user_agent: z.string().default("unknown"),
   })

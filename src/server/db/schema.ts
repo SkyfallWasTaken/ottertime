@@ -67,7 +67,7 @@ export const heartbeats = pgTable("heartbeats", {
   cursorPos: integer("cursor_pos"),
 
   // Write flag
-  isWrite: boolean("is_write"),
+  isWrite: boolean("is_write").notNull().default(false),
 
   // Timestamps for record tracking
   createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
