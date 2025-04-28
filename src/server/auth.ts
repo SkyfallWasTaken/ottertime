@@ -44,7 +44,7 @@ export const auth = betterAuth({
       },
       defaultKeyLength: 32,
       rateLimit: {
-        maxRequests: 35,
+        maxRequests: 50,
         timeWindow: 3 * 60 * 1000, // 3 minute
         enabled: true,
       },
