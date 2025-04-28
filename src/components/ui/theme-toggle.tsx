@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "./button";
 import { useAtom } from "jotai";
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 import { themeAtom } from "../theme-provider";
+import { Button } from "./button";
 
 export function ThemeToggle() {
 	const [theme, setTheme] = useAtom(themeAtom);

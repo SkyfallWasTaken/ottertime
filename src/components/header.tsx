@@ -1,10 +1,10 @@
 import { Link, useLocation } from "@tanstack/react-router";
 
-import { Button } from "~/components/ui/button";
-import { cn } from "~/utils/misc";
-import { ThemeToggle } from "~/components/ui/theme-toggle";
-import { Drawer, DrawerContent, DrawerTrigger } from "~/components/ui/drawer";
 import { Menu } from "lucide-react";
+import { Button } from "~/components/ui/button";
+import { Drawer, DrawerContent, DrawerTrigger } from "~/components/ui/drawer";
+import { ThemeToggle } from "~/components/ui/theme-toggle";
+import { cn } from "~/utils/misc";
 
 const paths = [
 	{ name: "Home", href: "/" },

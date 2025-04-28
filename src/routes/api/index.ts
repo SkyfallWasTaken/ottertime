@@ -1,12 +1,12 @@
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 
-import type { Context } from "./util";
-import { getPasswordFromAuthHeader } from "~/utils/misc";
 import { auth } from "~/server/auth";
-import heartbeatsRouter from "./routers/heartbeats";
+import { getPasswordFromAuthHeader } from "~/utils/misc";
 import authRouter from "./routers/auth";
+import heartbeatsRouter from "./routers/heartbeats";
 import statusbarRouter from "./routers/statusbar";
+import type { Context } from "./util";
 
 const app = new Hono<Context>();
 

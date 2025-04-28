@@ -1,9 +1,9 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { CheckIcon, ClipboardCopyIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { CheckIcon, ClipboardCopyIcon } from "lucide-react";
-import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/setup")({
 	component: RouteComponent,
@@ -122,6 +122,7 @@ function RouteComponent() {
 							href="https://github.com/quackatime/extension-installer#supported-ides"
 							className="underline"
 							target="_blank"
+							rel="noreferrer"
 						>
 							supported IDE/code editor
 						</a>{" "}
@@ -150,6 +151,7 @@ function RouteComponent() {
 					href="https://wakatime.com/help/editors"
 					className="underline"
 					target="_blank"
+					rel="noreferrer"
 				>
 					install an editor extension
 				</a>{" "}

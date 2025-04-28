@@ -1,6 +1,6 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { atomWithStorage } from "jotai/utils";
 import { useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import { type ReactNode, useEffect, useState } from "react";
 
 export const themeAtom = atomWithStorage<"light" | "dark">("theme", "dark");
 

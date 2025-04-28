@@ -1,6 +1,6 @@
 import { defineConfig } from "@tanstack/react-start/config";
-import tsConfigPaths from "vite-tsconfig-paths";
 import { cloudflare } from "unenv";
+import tsConfigPaths from "vite-tsconfig-paths";
 
 const isPages = !!process.env.CF_PAGES;
 

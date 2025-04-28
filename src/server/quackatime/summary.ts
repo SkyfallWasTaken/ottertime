@@ -1,6 +1,6 @@
-import { db, heartbeats as heartbeatsTable } from "../db";
-import { eq, and, between } from "drizzle-orm";
+import { and, between, eq } from "drizzle-orm";
 import type { TimePeriod } from "~/common/summary";
+import { db, heartbeats as heartbeatsTable } from "../db";
 
 export async function getSummary(userId: string, timePeriod: TimePeriod) {
 	const { start, end } = calculateDatesFromTimePeriod(timePeriod);

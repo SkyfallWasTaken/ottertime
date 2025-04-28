@@ -1,7 +1,7 @@
-import { db, heartbeats as heartbeatsTable } from "../db";
+import stableJsonStringify from "fast-json-stable-stringify";
 import type { Heartbeat } from "~/common/heartbeats";
 import { sha256 } from "~/utils/misc";
-import stableJsonStringify from "fast-json-stable-stringify";
+import { db, heartbeats as heartbeatsTable } from "../db";
 
 export default async function emitHeartbeats(
 	heartbeats: Heartbeat[],

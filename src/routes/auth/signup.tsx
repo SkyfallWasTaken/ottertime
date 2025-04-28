@@ -1,4 +1,7 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Loader2, X } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -10,10 +13,7 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { useState } from "react";
-import { Loader2, X } from "lucide-react";
 import { authClient } from "~/utils/auth";
-import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth/signup")({
 	component: RouteComponent,

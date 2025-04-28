@@ -1,8 +1,8 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { getRandomItem } from "~/utils/misc";
-import { Card, CardContent } from "~/components/ui/card";
-import TopProjectsChart from "~/components/home/top-projects-chart";
 import TopLanguagesChart from "~/components/home/top-languages-chart";
+import TopProjectsChart from "~/components/home/top-projects-chart";
+import { Card, CardContent } from "~/components/ui/card";
+import { getRandomItem } from "~/utils/misc";
 
 const timeQuotes = [
 	"tick tock!",

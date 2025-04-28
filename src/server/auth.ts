@@ -1,16 +1,16 @@
 import { betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { apiKey, haveIBeenPwned } from "better-auth/plugins";
 import { reactStartCookies } from "better-auth/react-start";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { eq } from "drizzle-orm";
 import {
+	account,
+	apikey,
 	db,
+	session,
 	user as usersTable,
 	verification,
-	account,
-	session,
-	apikey,
 } from "~/server/db";
-import { eq } from "drizzle-orm";
 
 export const auth = betterAuth({
 	database: drizzleAdapter(db, {

@@ -1,3 +1,4 @@
+import githubColors from "github-colors";
 import { Pie, PieChart } from "recharts";
 import {
 	Card,
@@ -12,7 +13,6 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "~/components/ui/chart";
-import githubColors from "github-colors";
 
 const chartData = [
 	{

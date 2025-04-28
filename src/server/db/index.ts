@@ -1,12 +1,12 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import {
-	user,
-	heartbeats,
-	verification,
 	account,
-	session,
 	apikey,
+	heartbeats,
+	session,
+	user,
+	verification,
 } from "./schema";
 if (!process.env.DATABASE_URL) {
 	throw new Error("DATABASE_URL is not defined");

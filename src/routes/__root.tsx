@@ -1,4 +1,4 @@
-import type * as React from "react";
+import type { QueryClient } from "@tanstack/react-query";
 import {
 	HeadContent,
 	Outlet,
@@ -8,19 +8,19 @@ import {
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { createServerFn } from "@tanstack/react-start";
 import { getWebRequest } from "@tanstack/react-start/server";
-import { QueryClient } from "@tanstack/react-query";
+import type * as React from "react";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/fira-code";
 
 import { DefaultCatchBoundary } from "~/components/default-catch-boundary";
 import { NotFound } from "~/components/not-found";
-import { seo } from "~/utils/seo";
 import appCss from "~/styles/app.css?url";
+import { seo } from "~/utils/seo";
 
-import { auth } from "~/server/auth";
+import Header from "~/components/header";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
-import Header from "~/components/header";
+import { auth } from "~/server/auth";
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
 	const { headers } = getWebRequest()!;
@@ -51,7 +51,8 @@ export const Route = createRootRouteWithContext<{
 			...seo({
 				title:
 					"TanStack Start | Type-Safe, Client-First, Full-Stack React Framework",
-				description: `TanStack Start is a type-safe, client-first, full-stack React framework. `,
+				description:
+					"TanStack Start is a type-safe, client-first, full-stack React framework. ",
 			}),
 		],
 		links: [
