@@ -2,7 +2,7 @@
 
 ![Screenshot](https://files.catbox.moe/02c2v9.png)
 
-Quackatime is an open-source, self-hostable time tracking server compatible with [WakaTime.](https://waka.hackclub.com)
+Quackatime is an open-source, self-hostable time tracking server compatible with [WakaTime.](https://waka.hackclub.com) If you want to figure out how long you're spending on code to e.g. bill for consulting hours (or simply because you're curious about the stats!), setup Quackatime in _two minutes_ and get started!
 
 ## Running the installer
 
