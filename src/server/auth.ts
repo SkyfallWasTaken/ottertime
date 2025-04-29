@@ -84,4 +84,5 @@ export const auth = betterAuth({
 			},
 		},
 	},
+	basePath: "/api/v1/auth",
 });
