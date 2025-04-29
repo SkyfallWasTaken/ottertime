@@ -50,8 +50,7 @@ export const Route = createRootRouteWithContext<{
 				content: "width=device-width, initial-scale=1",
 			},
 			...seo({
-				title:
-					"Quackatime - open-source time tracking for your code",
+				title: "Quackatime - open-source time tracking for your code",
 				description:
 					"Quackatime is an open-source time tracking server for your code.",
 			}),
