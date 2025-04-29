@@ -51,9 +51,9 @@ export const Route = createRootRouteWithContext<{
 			},
 			...seo({
 				title:
-					"TanStack Start | Type-Safe, Client-First, Full-Stack React Framework",
+					"Quackatime - open-source time tracking for your code",
 				description:
-					"TanStack Start is a type-safe, client-first, full-stack React framework. ",
+					"Quackatime is an open-source time tracking server for your code.",
 			}),
 		],
 		links: [
