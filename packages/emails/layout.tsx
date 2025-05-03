@@ -15,7 +15,7 @@ import {
 
 const LOGO_URL = "https://skyfall.dev/_astro/logo.BZI6fuo4_1AndRm.webp";
 
-const Layout = ({ title, heading, children }: { title: string, heading: string | undefined, children: React.ReactNode }) => {
+const Layout = ({ title, heading, children, address }: { title: string, heading: string | undefined, address: string | undefined, children: React.ReactNode }) => {
     return (
         <Html>
             <Tailwind>
@@ -76,9 +76,11 @@ const Layout = ({ title, heading, children }: { title: string, heading: string |
                             © {new Date().getFullYear()} Quackatime. All rights reserved.
                         </Text>
 
-                        <Text className="text-[12px] leading-[16px] text-gray-500 m-0 font-['Inter',Helvetica,Arial,sans-serif]">
-                            27 Old Gloucester Street, London, WC1N 3AX, United Kingdom
-                        </Text>
+                        {address && (
+                            <Text className="text-[12px] leading-[16px] text-gray-500 m-0 font-['Inter',Helvetica,Arial,sans-serif]">
+                                {address}
+                            </Text>
+                        )}
                     </Container>
                 </Body>
             </Tailwind>

@@ -12,6 +12,10 @@ import {
   verification,
 } from "~/server/db";
 import { env } from "~/utils/env";
+import { Resend } from "resend";
+import VerifyEmail from "@repo/emails/emails/verify-email";
+
+const resend = new Resend(env.RESEND_API_KEY);
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -26,6 +30,7 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
   },
   socialProviders: {
     github: {
@@ -83,6 +88,27 @@ export const auth = betterAuth({
         },
       },
     },
+  },
+  emailVerification: {
+    sendVerificationEmail: async ({ user, url }) => {
+      console.log("Sending email verification to", user.email);
+      const res = await resend.emails.send({
+        from: `Quackatime <${env.RESEND_FROM_EMAIL}>`,
+        to: [user.email],
+        subject: "Verify your email for Quackatime",
+        react: VerifyEmail({
+          link: url,
+        }),
+      });
+      if (res.error) {
+        console.error("Error sending email verification", res.error);
+        throw new Error("Error sending email verification");
+      }
+
+      console.log("Email verification sent to", user.email);
+    },
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
   },
   basePath: "/api/v1/auth",
 });

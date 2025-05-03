@@ -5,9 +5,9 @@ import {
     Link
 } from '@react-email/components';
 
-export default function VerifyEmail({ link }: { link: string }) {
+export default function VerifyEmail({ link, address }: { link: string, address?: string }) {
     return (
-        <Layout title="Verify your email for Quackatime" heading="Verify your email">
+        <Layout title="Verify your email for Quackatime" heading="Verify your email" address={address}>
             <Text className="text-[16px] leading-[24px] text-black m-0 mb-[24px] font-['Inter',Helvetica,Arial,sans-serif]">
                 Hey there,
             </Text>
@@ -29,7 +29,7 @@ export default function VerifyEmail({ link }: { link: string }) {
             </Link>
 
             <Text className="text-[14px] leading-[20px] text-gray-600 m-0 mb-[32px] font-['Inter',Helvetica,Arial,sans-serif]">
-                This code will expire in 10 minutes. If you didn't request this email, you can safely ignore it.
+                This link will expire in one hour. If you didn't request this email, you can safely ignore it.
             </Text>
             <br />
 

@@ -20,6 +20,8 @@
 - Move off github-colors package (or at the very least, write types for it!)
   - <https://www.npmjs.com/package/linguist-languages> has a way smaller bundle size
 - After signing up, you're redirected to the sign in page instead of the setup page
-- Add email verification
+- Add an email verification page
 - Add "Forgot your password?"
 - Add GitHub OAuth
+- Sign in/sign out buttons
+- Better sign up flow
