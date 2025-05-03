@@ -1,4 +1,4 @@
-import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { Loader2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -16,6 +16,14 @@ import { Label } from "~/components/ui/label";
 import { authClient } from "~/utils/auth";
 
 export const Route = createFileRoute("/auth/signup")({
+	beforeLoad: async ({ context }) => {
+		if (context.user) {
+			if (context.user.emailVerified) {
+				throw redirect({ to: "/" });
+			}
+			throw redirect({ to: "/auth/verify" });
+		}
+	},
 	component: RouteComponent,
 });
 
@@ -170,7 +178,7 @@ function RouteComponent() {
 								password,
 								name: `${firstName} ${lastName}`,
 								image: image ? await convertImageToBase64(image) : "",
-								callbackURL: "/setup",
+								callbackURL: "/auth/verify",
 								fetchOptions: {
 									onResponse: () => {
 										setLoading(false);

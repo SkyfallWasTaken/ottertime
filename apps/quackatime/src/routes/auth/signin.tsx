@@ -1,4 +1,4 @@
-import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -16,6 +16,15 @@ import { Label } from "~/components/ui/label";
 import { authClient } from "~/utils/auth";
 
 export const Route = createFileRoute("/auth/signin")({
+	beforeLoad: async ({ context }) => {
+		if (context.user) {
+			console.log("User exists", context.user);
+			if (context.user.emailVerified) {
+				throw redirect({ to: "/" });
+			}
+			throw redirect({ to: "/auth/verify" });
+		}
+	},
 	component: RouteComponent,
 });
 

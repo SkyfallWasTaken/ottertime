@@ -23,7 +23,7 @@ const timeQuotes = [
 export const Route = createFileRoute("/")({
 	component: Home,
 	beforeLoad: async ({ context }) => {
-		if (!context.user) {
+		if (!context.user || !context.user.emailVerified) {
 			throw redirect({ to: "/auth/signin" });
 		}
 	},

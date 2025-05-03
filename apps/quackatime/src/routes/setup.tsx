@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 export const Route = createFileRoute("/setup")({
 	component: RouteComponent,
 	beforeLoad: async ({ context }) => {
-		if (!context.user) {
+		if (!context.user || !context.user.emailVerified) {
 			throw redirect({ to: "/auth/signin" });
 		}
 	},

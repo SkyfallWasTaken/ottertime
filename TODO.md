@@ -25,3 +25,4 @@
 - Add GitHub OAuth
 - Sign in/sign out buttons
 - Better sign up flow
+- Ensure email verification is enforced

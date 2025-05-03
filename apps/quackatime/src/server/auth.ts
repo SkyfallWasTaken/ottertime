@@ -30,7 +30,6 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true,
   },
   socialProviders: {
     github: {
