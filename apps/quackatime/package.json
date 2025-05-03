@@ -2,6 +2,7 @@
 	"name": "tanstack-start-example-basic",
 	"private": true,
 	"type": "module",
+	"license": "AGPL-3.0-only",
 	"scripts": {
 		"dev": "vinxi dev",
 		"build": "vinxi build",

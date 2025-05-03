@@ -10,6 +10,7 @@
         "^build"
       ],
       "inputs": [
+        "$TURBO_DEFAULT$",
         ".env*",
         "app.config.ts",
         "src/**",
@@ -17,6 +18,7 @@
         "drizzle.config.ts",
         "postcss.config.mjs",
         "tsconfig.json",
+        "package.json",
         "public/**",
         "!vite.config.js",
         "!app.config.timestamp_*"
@@ -45,6 +47,7 @@
         "drizzle.config.ts",
         "src/server/db/**",
         "drizzle/**",
+        "package.json",
         ".env"
       ],
       "env": [
@@ -61,6 +64,7 @@
         "drizzle.config.ts",
         "src/server/db/**",
         "drizzle/**",
+        "package.json",
         ".env*"
       ],
       "env": [
