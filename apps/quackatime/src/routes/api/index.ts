@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
+import { sentry } from "@hono/sentry";
 
 import { auth } from "~/server/auth";
 import { getPasswordFromAuthHeader } from "~/utils/misc";
@@ -10,9 +11,19 @@ import type { Context } from "./util";
 
 // Run the checks to ensure the env variables are set
 // If they aren't, the API won't work and this will be detected by Coolify health checks
-import "~/utils/env";
+import { env } from "~/utils/env";
 
 const app = new Hono<Context>();
+
+app.use(
+  "*",
+  sentry({
+    dsn: env.PUBLIC_SENTRY_DSN,
+    environment: import.meta.env.PROD ? "production" : "production",
+    debug: import.meta.env.DEV, // Enable debug in development
+    tracesSampleRate: 1.0, // Capture 100% of transactions
+  })
+);
 
 app.use("*", async (c, next) => {
   const authHeader = c.req.header("Authorization");
@@ -55,6 +66,9 @@ app.use("*", async (c, next) => {
 });
 
 app.onError((err, c) => {
+  const sid = c.get("sentry").captureException(err);
+  console.log("Sentry error", sid);
+
   if (err instanceof HTTPException) {
     const errResponse =
       err.res ??
@@ -80,6 +94,7 @@ app.onError((err, c) => {
   if (import.meta.env.DEV) {
     console.error(err);
   }
+
   return c.json(
     {
       success: false,
@@ -96,7 +111,10 @@ export type ApiRoutes = typeof routes;
 const routes = app
   .basePath("/api/v1")
   .on("GET", ["", "/"], (c) => c.redirect("/"))
-  .get("/hello", (c) => c.json({ message: "Hello from the API!" }))
+  .get("/hello", (c) => {
+    // throw new Error("This is a test error");
+    return c.json({ message: "Hello from the API!" });
+  })
   .route("/users/current", heartbeatsRouter)
   .route("/users/current", statusbarRouter)
   .route("/auth", authRouter);
