@@ -67,7 +67,7 @@ export const auth = betterAuth({
   },
   session: {
     cookieCache: {
-      enabled: true,
+      enabled: false, // TODO: store avatars in R2, then re-enable this
       maxAge: 5 * 60, // 5 minutes
     },
   },
