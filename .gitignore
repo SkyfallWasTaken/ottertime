@@ -1,22 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
 node_modules
-package-lock.json
-yarn.lock
+.pnp
+.pnp.js
 
-.DS_Store
-.cache
+# Local env files
 .env
-.vercel
-.output
-.vinxi
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-/build/
-/api/
-/server/build
-/public/build
-.vinxi
-# Sentry Config File
-.env.sentry-build-plugin
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+# Testing
+coverage
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Build Outputs
+.next/
+out/
+build
+dist
+
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+*.pem
+
+**/.output
+**/.vinxi

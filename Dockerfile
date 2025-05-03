@@ -11,11 +11,5 @@ COPY . .
 RUN apt-get update -y && apt-get install curl wget ca-certificates -y
 RUN bun install --frozen-lockfile
 
-# Build the project
-RUN bun run build
-
-# Run the migrations
-RUN bun drizzle-kit migrate
-
 # Run the server when the container launches
-ENTRYPOINT ["bun", "start:bun"]
+ENTRYPOINT ["turbo", "run", "start:bun"]

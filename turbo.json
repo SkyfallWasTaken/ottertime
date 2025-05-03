@@ -1,0 +1,66 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "globalDependencies": [
+    ".env"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*",
+        "!vite.config.js",
+        "!app.config.timestamp_*"
+      ],
+      "outputs": [
+        "**/.vinxi/**",
+        "**/.output/**",
+        "**/dist/**"
+      ],
+      "env": [
+        "DATABASE_URL",
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
+        "PUBLIC_GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET"
+      ]
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ]
+    },
+    "check-types": {
+      "dependsOn": [
+        "^check-types"
+      ]
+    },
+    "migrate": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "drizzle.config.ts",
+        "src/server/db/**",
+        "drizzle/**",
+        ".env"
+      ],
+      "env": [
+        "DATABASE_URL"
+      ]
+    },
+    "start:bun": {
+      "dependsOn": [
+        "build",
+        "migrate"
+      ],
+      "cache": false,
+      "persistent": true
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
