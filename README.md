@@ -14,13 +14,22 @@ The installer's code is [here](https://github.com/quackatime/extension-installer
 
 Set the following `.env` variables:
 
-```
-BETTER_AUTH_SECRET=
-BETTER_AUTH_URL=
-BUN_VERSION=1.2.10
-DATABASE_URL=
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
+```ts
+{
+    DATABASE_URL: z.string().url(),
+    BETTER_AUTH_SECRET: z.string(),
+    GITHUB_CLIENT_SECRET: z.string(),
+    RESEND_API_KEY: z.string().startsWith("re_"),
+    RESEND_FROM_EMAIL: z.string().email(),
+    RESEND_POSTAL_ADDRESS: z.string().optional(),
+    SENTRY_ORG: z.string(),
+    SENTRY_PROJECT: z.string(),
+    SENTRY_AUTH_TOKEN: z.string(),
+    FRONTEND_DOMAIN: z.string().url(),
+    VITE_BETTER_AUTH_URL: z.string().url(),
+    VITE_GITHUB_CLIENT_ID: z.string(),
+    VITE_SENTRY_DSN: z.string(),
+}
 ```
 
 Then, run:
