@@ -111,4 +111,5 @@ export const auth = betterAuth({
     autoSignInAfterVerification: true,
   },
   basePath: "/auth",
+  trustedOrigins: [env.FRONTEND_DOMAIN],
 });
