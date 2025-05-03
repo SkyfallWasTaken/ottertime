@@ -24,30 +24,26 @@ function RouteComponent() {
   const { emailClient } = Route.useLoaderData()
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+    <div className="flex items-center justify-center px-4">
       <Card className="max-w-sm w-full shadow-lg">
-        <CardHeader className="flex flex-col items-center space-y-2 pt-6">
-          <div className="bg-blue-100 rounded-full p-3">
-            <Mail className="w-8 h-8 text-blue-600" strokeWidth={1.5} />
-          </div>
-          <CardTitle className="text-lg font-semibold">Verify Your Email</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-center text-sm text-gray-600">
+        <CardHeader className="flex flex-col items-center space-y-2 pt-2">
+          <Mail className="w-12 h-12 animate-pulse" />
+          <CardTitle className="text-lg font-semibold">Verify your email</CardTitle>
+          <p className="text-center text-muted-foreground text-sm">
             We've sent a verification link to your email. Click the button below to
             auto-open your inbox, or check your email and follow the link to verify your account.
           </p>
-        </CardContent>
-        <CardFooter className="flex flex-col space-y-3 pb-6">
-          <Button asChild className="w-full">
+        </CardHeader>
+        <CardContent>
+          <Button asChild variant={emailClient.secondary ? "secondary" : "default"} className="w-full">
             <a href={emailClient.url} target="_blank" rel="noopener noreferrer">
               Open in {emailClient.name}
             </a>
           </Button>
-          <Button variant="secondary" className="w-full" onClick={() => resendVerification()}>
+          {/* <Button variant="secondary" className="w-full" onClick={() => resendVerification()}>
             Resend Email
-          </Button>
-        </CardFooter>
+          </Button> */}
+        </CardContent>
       </Card>
     </div>
   )
@@ -82,11 +78,11 @@ const getEmailClient = (email: string) => {
   ) {
     return { name: 'iCloud Mail', url: 'https://www.icloud.com/mail' }
   }
-  return { name: 'Gmail', url: 'https://mail.google.com' }
+  return { name: 'Gmail', url: 'https://mail.google.com', secondary: true }
 }
 
-// TODO: implement resendVerification logic to call API for resending the email
-function resendVerification() {
-  // call your API endpoint to resend verification
-  // show toast notification on success/failure
-}
+// // TODO: implement resendVerification logic to call API for resending the email
+// function resendVerification() {
+//   // call your API endpoint to resend verification
+//   // show toast notification on success/failure
+// }
