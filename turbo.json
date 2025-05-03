@@ -10,8 +10,14 @@
         "^build"
       ],
       "inputs": [
-        "$TURBO_DEFAULT$",
         ".env*",
+        "app.config.ts",
+        "src/**",
+        "drizzle/**",
+        "drizzle.config.ts",
+        "postcss.config.mjs",
+        "tsconfig.json",
+        "public/**",
         "!vite.config.js",
         "!app.config.timestamp_*"
       ],
