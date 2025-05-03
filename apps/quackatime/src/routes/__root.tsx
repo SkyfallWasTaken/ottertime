@@ -23,12 +23,17 @@ import { seo } from "~/utils/seo";
 import Header from "~/components/header";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
-import { auth } from "~/server/auth";
+import { authClient } from "~/utils/auth";
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
 	// biome-ignore lint: getWebRequest should always be available in server functions
 	const { headers } = getWebRequest()!;
-	const session = await auth.api.getSession({ headers });
+	const { data: session } = await authClient.getSession({
+		fetchOptions: {
+			headers,
+			credentials: "include",
+		}
+	});
 	return session?.user || null;
 });
 

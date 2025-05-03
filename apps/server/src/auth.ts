@@ -10,8 +10,8 @@ import {
   session,
   user as usersTable,
   verification,
-} from "~/server/db";
-import { env } from "~/utils/env";
+} from "~/db";
+import { env } from "~/env";
 import { Resend } from "resend";
 import VerifyEmail from "@repo/emails/emails/verify-email";
 
@@ -110,5 +110,5 @@ export const auth = betterAuth({
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
   },
-  basePath: "/api/v1/auth",
+  basePath: "/auth",
 });

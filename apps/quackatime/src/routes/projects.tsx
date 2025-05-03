@@ -6,5 +6,5 @@ export const Route = createFileRoute("/projects")({
 });
 
 function RouteComponent() {
-	return <div>Hello "/{env.VITE_GITHUB_CLIENT_ID}"!</div>;
+	return <div>Hello!</div>;
 }

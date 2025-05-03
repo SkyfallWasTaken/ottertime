@@ -1,6 +1,6 @@
 {
   "extends": "@repo/typescript-config/base.json",
-  "include": ["**/*.ts", "**/*.tsx", "../server/drizzle.config.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

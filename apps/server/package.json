@@ -1,0 +1,43 @@
+{
+    "name": "@repo/server",
+    "private": true,
+    "type": "module",
+    "module": "src/index.ts",
+    "main": "src/index.ts",
+    "license": "AGPL-3.0-only",
+    "scripts": {
+        "dev": "NODE_ENV=development bun --watch src/index.ts",
+        "start:bun": "NODE_ENV=production bun src/index.ts",
+        "check": "biome check && tsc",
+        "format": "biome format --write",
+        "migrate": "drizzle-kit migrate"
+    },
+    "dependencies": {
+        "@repo/emails": "workspace:*",
+        "@hono/sentry": "^1.2.1",
+        "@hono/zod-validator": "^0.5.0",
+        "@js-temporal/polyfill": "^0.5.1",
+        "@radix-ui/react-label": "^2.1.4",
+        "@radix-ui/react-slot": "^1.1.2",
+        "@radix-ui/react-tabs": "^1.1.9",
+        "@t3-oss/env-core": "^0.13.0",
+        "better-auth": "^1.2.7",
+        "drizzle-orm": "^0.43.1",
+        "fast-json-stable-stringify": "^2.1.0",
+        "hono": "^4.7.7",
+        "nanoid": "^5.1.5",
+        "pg": "^8.14.1",
+        "postgres": "^3.4.5",
+        "resend": "^4.5.0",
+        "zod": "^3.24.2"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
+        "@repo/typescript-config": "workspace:*",
+        "@types/node": "^22.5.4",
+        "@types/pg": "^8.11.11",
+        "drizzle-kit": "^0.31.0",
+        "typescript": "^5.7.2",
+        "vite-tsconfig-paths": "^5.1.4"
+    }
+}

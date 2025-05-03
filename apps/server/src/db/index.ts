@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
-import { env } from "~/utils/env";
+import { env } from "~/env";
 import {
   account,
   apikey,

@@ -35,6 +35,7 @@
         "DATABASE_URL",
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
+        "VITE_BETTER_AUTH_URL",
         "VITE_GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
         "RESEND_API_KEY",
@@ -81,6 +82,7 @@
         "DATABASE_URL",
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
+        "VITE_BETTER_AUTH_URL",
         "VITE_GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
         "RESEND_API_KEY",
@@ -91,7 +93,6 @@
         "SENTRY_AUTH_TOKEN",
         "VITE_SENTRY_DSN"
       ],
-      "cache": false,
       "persistent": true
     },
     "dev": {

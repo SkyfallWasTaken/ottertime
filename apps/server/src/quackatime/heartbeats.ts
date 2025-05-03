@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { categories } from "~/server/db/schema";
+import { categories } from "~/db/schema";
+import { sha256 } from "~/util";
+import { db, heartbeats as heartbeatsTable } from "../db";
+import stableJsonStringify from "fast-json-stable-stringify";
 
 export const heartbeatSchema = z
   .object({
@@ -52,3 +55,25 @@ export const heartbeatSchema = z
   });
 
 export type Heartbeat = z.infer<typeof heartbeatSchema>;
+
+export async function emitHeartbeats(heartbeats: Heartbeat[], userId: string) {
+  await db
+    .insert(heartbeatsTable)
+    .values(
+      await Promise.all(
+        heartbeats.map(async (heartbeat) => {
+          const rawHb = {
+            ...heartbeat,
+            userId,
+          };
+          return {
+            ...rawHb,
+            // stableJsonStringify is, well, stable! This means that object X will always stringify to Y,
+            // regardless of the order of the keys in X.
+            hash: await sha256(stableJsonStringify(rawHb)),
+          };
+        })
+      )
+    )
+    .onConflictDoNothing();
+}
