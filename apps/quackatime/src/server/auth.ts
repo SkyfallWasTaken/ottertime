@@ -97,6 +97,7 @@ export const auth = betterAuth({
         subject: "Verify your email for Quackatime",
         react: VerifyEmail({
           link: url,
+          address: env.RESEND_POSTAL_ADDRESS,
         }),
       });
       if (res.error) {
