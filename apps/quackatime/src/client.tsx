@@ -12,7 +12,10 @@ if (import.meta.env.VITE_SENTRY_DSN) {
         dsn: import.meta.env.VITE_SENTRY_DSN,
         integrations: [
             Sentry.tanstackRouterBrowserTracingIntegration(router),
-            Sentry.replayIntegration(),
+            Sentry.replayIntegration({
+                maskAllText: false,
+                blockAllMedia: false,
+            }),
         ],
 
         // Set tracesSampleRate to 1.0 to capture 100%

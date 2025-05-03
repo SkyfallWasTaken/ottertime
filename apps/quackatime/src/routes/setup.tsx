@@ -74,7 +74,7 @@ function RouteComponent() {
 				</div>
 
 				<div className="flex items-center space-x-2 mb-2">
-					<Input value={apiKey} readOnly className="font-mono" />
+					<Input value={apiKey} readOnly className="font-mono sentry-mask" />
 					<Button
 						variant="outline"
 						size="icon"
@@ -106,7 +106,7 @@ function RouteComponent() {
 						<TabsTrigger value="unix">Linux/macOS</TabsTrigger>
 					</TabsList>
 
-					<div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow]">
+					<div className="bg-transparent dark:bg-input/30 border border-input rounded-md p-4 font-mono text-sm overflow-x-auto w-full shadow-xs transition-[color,box-shadow] sentry-mask">
 						<TabsContent value="windows">{windowsCommand}</TabsContent>
 						<TabsContent value="unix">{unixCommand}</TabsContent>
 					</div>

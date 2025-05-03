@@ -123,6 +123,7 @@ function RouteComponent() {
 						<Input
 							id="password"
 							type="password"
+							className="sentry-mask"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							autoComplete="new-password"
@@ -134,6 +135,7 @@ function RouteComponent() {
 						<Input
 							id="password_confirmation"
 							type="password"
+							className="sentry-mask"
 							value={passwordConfirmation}
 							onChange={(e) => setPasswordConfirmation(e.target.value)}
 							autoComplete="new-password"
