@@ -24,7 +24,6 @@ const config = defineConfig({
         project: process.env.SENTRY_PROJECT,
       }),
     ],
-    envPrefix: ["PUBLIC_", "VITE_"],
   },
   server: isPages
     ? {

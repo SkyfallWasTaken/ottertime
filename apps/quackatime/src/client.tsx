@@ -7,9 +7,9 @@ import * as Sentry from "@sentry/tanstackstart-react";
 
 const router = createRouter();
 
-if (import.meta.env.PUBLIC_SENTRY_DSN) {
+if (import.meta.env.VITE_SENTRY_DSN) {
     Sentry.init({
-        dsn: import.meta.env.PUBLIC_SENTRY_DSN,
+        dsn: import.meta.env.VITE_SENTRY_DSN,
         integrations: [
             Sentry.tanstackRouterBrowserTracingIntegration(router),
             Sentry.replayIntegration(),

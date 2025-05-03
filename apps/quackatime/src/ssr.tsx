@@ -10,7 +10,7 @@ import { createRouter } from "./router";
 import { env } from "~/utils/env"
 
 Sentry.init({
-	dsn: env.PUBLIC_SENTRY_DSN,
+	dsn: env.VITE_SENTRY_DSN,
 	tracesSampleRate: 1.0,
 	sendDefaultPii: true,
 });

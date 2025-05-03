@@ -15,10 +15,10 @@ export const env = createEnv({
     SENTRY_PROJECT: z.string(),
     SENTRY_AUTH_TOKEN: z.string(),
   },
-  clientPrefix: "PUBLIC_",
+  clientPrefix: "VITE_",
   client: {
-    PUBLIC_GITHUB_CLIENT_ID: z.string(),
-    PUBLIC_SENTRY_DSN: z.string(),
+    VITE_GITHUB_CLIENT_ID: z.string(),
+    VITE_SENTRY_DSN: z.string(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

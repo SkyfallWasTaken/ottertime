@@ -35,7 +35,7 @@
         "DATABASE_URL",
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
-        "PUBLIC_GITHUB_CLIENT_ID",
+        "VITE_GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
         "RESEND_API_KEY",
         "RESEND_FROM_EMAIL",
@@ -43,7 +43,7 @@
         "SENTRY_ORG",
         "SENTRY_PROJECT",
         "SENTRY_AUTH_TOKEN",
-        "PUBLIC_SENTRY_DSN"
+        "VITE_SENTRY_DSN"
       ]
     },
     "check": {
@@ -81,7 +81,7 @@
         "DATABASE_URL",
         "BETTER_AUTH_SECRET",
         "BETTER_AUTH_URL",
-        "PUBLIC_GITHUB_CLIENT_ID",
+        "VITE_GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
         "RESEND_API_KEY",
         "RESEND_FROM_EMAIL",
@@ -89,7 +89,7 @@
         "SENTRY_ORG",
         "SENTRY_PROJECT",
         "SENTRY_AUTH_TOKEN",
-        "PUBLIC_SENTRY_DSN"
+        "VITE_SENTRY_DSN"
       ],
       "cache": false,
       "persistent": true

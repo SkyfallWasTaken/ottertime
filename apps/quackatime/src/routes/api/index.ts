@@ -18,7 +18,7 @@ const app = new Hono<Context>();
 app.use(
   "*",
   sentry({
-    dsn: env.PUBLIC_SENTRY_DSN,
+    dsn: env.VITE_SENTRY_DSN,
     tracesSampleRate: 1.0, // Capture 100% of transactions
   })
 );
