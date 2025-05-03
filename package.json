@@ -21,6 +21,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@sentry/tanstackstart-react": "^9.15.0"
+    "@sentry/tanstackstart-react": "^9.15.0",
+    "@sentry/vite-plugin": "^3.3.1"
   }
 }

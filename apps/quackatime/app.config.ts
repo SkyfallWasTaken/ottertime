@@ -1,6 +1,7 @@
 import { defineConfig } from "@tanstack/react-start/config";
 import { wrapVinxiConfigWithSentry } from "@sentry/tanstackstart-react";
 import { cloudflare } from "unenv";
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 const isPages = !!process.env.CF_PAGES;
@@ -10,9 +11,17 @@ const config = defineConfig({
     appDirectory: "src",
   },
   vite: {
+    build: {
+      sourcemap: true,
+    },
     plugins: [
       tsConfigPaths({
         projects: ["./tsconfig.json"],
+      }),
+      sentryVitePlugin({
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+        org: process.env.SENTRY_ORG,
+        project: process.env.SENTRY_PROJECT,
       }),
     ],
     envPrefix: ["PUBLIC_", "VITE_"],
