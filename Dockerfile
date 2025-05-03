@@ -11,5 +11,7 @@ COPY . .
 RUN apt-get update -y && apt-get install curl wget ca-certificates -y
 RUN bun install --frozen-lockfile
 
+RUN ["bun", "turbo", "run", "build"]
+
 # Run the server when the container launches
 ENTRYPOINT ["bun", "turbo", "run", "start:bun"]
