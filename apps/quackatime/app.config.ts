@@ -1,26 +1,41 @@
 import { defineConfig } from "@tanstack/react-start/config";
+import { wrapVinxiConfigWithSentry } from "@sentry/tanstackstart-react";
 import { cloudflare } from "unenv";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 const isPages = !!process.env.CF_PAGES;
 
-export default defineConfig({
-	tsr: {
-		appDirectory: "src",
-	},
-	vite: {
-		plugins: [
-			tsConfigPaths({
-				projects: ["./tsconfig.json"],
-			}),
-		],
-	},
-	server: isPages
-		? {
-				preset: "cloudflare-pages",
-				unenv: cloudflare,
-			}
-		: {
-				preset: "bun",
-			},
+const config = defineConfig({
+  tsr: {
+    appDirectory: "src",
+  },
+  vite: {
+    plugins: [
+      tsConfigPaths({
+        projects: ["./tsconfig.json"],
+      }),
+    ],
+    envPrefix: ["PUBLIC_", "VITE_"],
+  },
+  server: isPages
+    ? {
+        preset: "cloudflare-pages",
+        unenv: cloudflare,
+      }
+    : {
+        preset: "bun",
+      },
 });
+
+const exported = process.env.SENTRY_ORG
+  ? wrapVinxiConfigWithSentry(config, {
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      // Only print logs for uploading source maps in CI
+      // Set to `true` to suppress logs
+      silent: !process.env.CI,
+    })
+  : config;
+
+export default exported;

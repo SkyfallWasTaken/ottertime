@@ -4,11 +4,14 @@ import {
 	Outlet,
 	Scripts,
 	createRootRouteWithContext,
+	type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { createServerFn } from "@tanstack/react-start";
 import { getWebRequest } from "@tanstack/react-start/server";
+import * as Sentry from "@sentry/tanstackstart-react";
 import type * as React from "react";
+import { useEffect } from "react";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/fira-code";
 
@@ -29,7 +32,7 @@ const getUser = createServerFn({ method: "GET" }).handler(async () => {
 	return session?.user || null;
 });
 
-export const Route = createRootRouteWithContext<{
+export const Route = Sentry.wrapCreateRootRouteWithSentry(createRootRouteWithContext)<{
 	queryClient: QueryClient;
 	user: Awaited<ReturnType<typeof getUser>>;
 }>()({
@@ -78,7 +81,11 @@ export const Route = createRootRouteWithContext<{
 			{ rel: "icon", href: "/favicon.ico" },
 		],
 	}),
-	errorComponent: (props) => {
+	errorComponent: (props: ErrorComponentProps) => {
+		useEffect(() => {
+			Sentry.captureException(props.error)
+		}, [props.error])
+
 		return (
 			<RootDocument>
 				<DefaultCatchBoundary {...props} />

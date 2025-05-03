@@ -19,5 +19,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@sentry/tanstackstart-react": "^9.15.0"
+  }
 }

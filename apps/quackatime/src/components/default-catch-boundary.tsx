@@ -6,8 +6,9 @@ import {
 	useRouter,
 } from "@tanstack/react-router";
 import type { ErrorComponentProps } from "@tanstack/react-router";
+import * as Sentry from "@sentry/tanstackstart-react";
 
-export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
+function CatchBoundary({ error }: ErrorComponentProps) {
 	const router = useRouter();
 	const isRoot = useMatch({
 		strict: false,
@@ -58,3 +59,8 @@ export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
 		</div>
 	);
 }
+
+const DefaultCatchBoundary = Sentry.withErrorBoundary(CatchBoundary, {
+	
+});
+export { DefaultCatchBoundary };

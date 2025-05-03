@@ -36,7 +36,11 @@
         "GITHUB_CLIENT_SECRET",
         "RESEND_API_KEY",
         "RESEND_FROM_EMAIL",
-        "RESEND_POSTAL_ADDRESS"
+        "RESEND_POSTAL_ADDRESS",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT",
+        "SENTRY_AUTH_TOKEN",
+        "PUBLIC_SENTRY_DSN"
       ]
     },
     "check": {
@@ -78,7 +82,11 @@
         "GITHUB_CLIENT_SECRET",
         "RESEND_API_KEY",
         "RESEND_FROM_EMAIL",
-        "RESEND_POSTAL_ADDRESS"
+        "RESEND_POSTAL_ADDRESS",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT",
+        "SENTRY_AUTH_TOKEN",
+        "PUBLIC_SENTRY_DSN"
       ],
       "cache": false,
       "persistent": true
