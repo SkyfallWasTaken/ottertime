@@ -56,6 +56,20 @@
         "build",
         "migrate"
       ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "drizzle.config.ts",
+        "src/server/db/**",
+        "drizzle/**",
+        ".env*"
+      ],
+      "env": [
+        "DATABASE_URL",
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
+        "PUBLIC_GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET"
+      ],
       "cache": false,
       "persistent": true
     },
