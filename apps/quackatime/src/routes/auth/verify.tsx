@@ -1,7 +1,10 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Mail } from 'lucide-react'
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '~/components/ui/card'
+import { toast } from "sonner";
+import { useState } from 'react'
+import { Card, CardHeader, CardTitle, CardContent } from '~/components/ui/card'
 import { Button } from '~/components/ui/button'
+import { authClient } from '~/utils/auth'
 
 export const Route = createFileRoute('/auth/verify')({
   component: RouteComponent,
@@ -15,13 +18,15 @@ export const Route = createFileRoute('/auth/verify')({
   },
   loader: async ({ context }) => {
     return {
+      email: context.user?.email || '',
       emailClient: getEmailClient(context.user?.email || ''),
     }
   },
 })
 
 function RouteComponent() {
-  const { emailClient } = Route.useLoaderData()
+  const { emailClient, email } = Route.useLoaderData()
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="flex items-center justify-center px-4">
@@ -34,15 +39,40 @@ function RouteComponent() {
             auto-open your inbox, or check your email and follow the link to verify your account.
           </p>
         </CardHeader>
-        <CardContent>
-          <Button asChild variant={emailClient.secondary ? "secondary" : "default"} className="w-full">
+        <CardContent className="flex flex-col items-center space-y-2">
+          <Button asChild className="w-full">
             <a href={emailClient.url} target="_blank" rel="noopener noreferrer">
               Open in {emailClient.name}
             </a>
           </Button>
-          {/* <Button variant="secondary" className="w-full" onClick={() => resendVerification()}>
-            Resend Email
-          </Button> */}
+          <Button variant="outline" className="w-full" disabled={loading} onClick={() => {
+            authClient.sendVerificationEmail({
+              email, // FIXME: is this secure???
+              fetchOptions: {
+                onResponse: () => {
+                  setLoading(false);
+                },
+                onRequest: () => {
+                  setLoading(true);
+                },
+                onError: (ctx) => {
+                  toast.error(
+                    ctx.error.message ||
+                    "An unknown error occurred. Please try again!",
+                  );
+                },
+                onSuccess: async () => {
+                  toast.success("Verification email sent!");
+                },
+              },
+            });
+          }}>
+            {loading ? (
+              "Sending..."
+            ) : (
+              "Resend Verification Email"
+            )}
+          </Button>
         </CardContent>
       </Card>
     </div>
@@ -78,11 +108,5 @@ const getEmailClient = (email: string) => {
   ) {
     return { name: 'iCloud Mail', url: 'https://www.icloud.com/mail' }
   }
-  return { name: 'Gmail', url: 'https://mail.google.com', secondary: true }
+  return { name: 'Gmail', url: 'https://mail.google.com' }
 }
-
-// // TODO: implement resendVerification logic to call API for resending the email
-// function resendVerification() {
-//   // call your API endpoint to resend verification
-//   // show toast notification on success/failure
-// }
