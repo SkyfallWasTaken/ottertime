@@ -25,7 +25,7 @@ if (import.meta.env.PUBLIC_SENTRY_DSN) {
         sendDefaultPii: true,
     });
 } else {
-    console.error("no sentry")
+    console.error("No Sentry.")
 }
 
 hydrateRoot(document, <StartClient router={router} />);
