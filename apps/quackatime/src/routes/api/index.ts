@@ -19,8 +19,6 @@ app.use(
   "*",
   sentry({
     dsn: env.PUBLIC_SENTRY_DSN,
-    environment: import.meta.env.PROD ? "production" : "production",
-    debug: import.meta.env.DEV, // Enable debug in development
     tracesSampleRate: 1.0, // Capture 100% of transactions
   })
 );
