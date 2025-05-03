@@ -15,6 +15,8 @@ function CatchBoundary({ error }: ErrorComponentProps) {
 		select: (state) => state.id === rootRouteId,
 	});
 
+	Sentry.captureException(error);
+
 	console.error("DefaultCatchBoundary Error:", error);
 
 	return (
@@ -60,7 +62,5 @@ function CatchBoundary({ error }: ErrorComponentProps) {
 	);
 }
 
-const DefaultCatchBoundary = Sentry.withErrorBoundary(CatchBoundary, {
-	
-});
+const DefaultCatchBoundary = Sentry.withErrorBoundary(CatchBoundary, {});
 export { DefaultCatchBoundary };
