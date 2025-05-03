@@ -1,11 +1,11 @@
 import Layout from "../layout"
 import {
-    Section,
     Text,
+    Button,
+    Link
 } from '@react-email/components';
 
-
-export default function VerifyEmail({ code }: { code: string }) {
+export default function VerifyEmail({ link }: { link: string }) {
     return (
         <Layout title="Verify your email for Quackatime" heading="Verify your email">
             <Text className="text-[16px] leading-[24px] text-black m-0 mb-[24px] font-['Inter',Helvetica,Arial,sans-serif]">
@@ -15,15 +15,18 @@ export default function VerifyEmail({ code }: { code: string }) {
 
             <Text className="text-[16px] leading-[24px] text-black m-0 mb-[24px] font-['Inter',Helvetica,Arial,sans-serif]">
                 Welcome to Quackatime! To finish setting up your account, please
-                enter the verification code below:
+                click the button below to verify your email address.
             </Text>
             <br />
 
-            <Section className="bg-[#f9f0f0] rounded-[8px] py-[16px] px-[24px] text-center mb-[32px]">
-                <Text className="text-2xl font-bold text-black m-0 font-['Inter',Helvetica,Arial,sans-serif]">
-                    {code}
-                </Text>
-            </Section>
+            <Link href={link}>
+                <Button
+                    href={link}
+                    className="text-white bg-blue-500 hover:bg-blue-600 font-semibold rounded-[8px] py-[16px] px-[24px] text-center mb-[20px]"
+                >
+                    Verify your email
+                </Button>
+            </Link>
 
             <Text className="text-[14px] leading-[20px] text-gray-600 m-0 mb-[32px] font-['Inter',Helvetica,Arial,sans-serif]">
                 This code will expire in 10 minutes. If you didn't request this email, you can safely ignore it.
@@ -35,10 +38,10 @@ export default function VerifyEmail({ code }: { code: string }) {
                 <br />
                 The Quackatime Team
             </Text>
-        </Layout>
+        </Layout >
     )
 }
 
 VerifyEmail.PreviewProps = {
-    code: "000000",
+    link: "https://quackatime.com",
 };
