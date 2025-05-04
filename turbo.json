@@ -1,93 +1,74 @@
 {
-  "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
-  "globalDependencies": [
-    ".env"
-  ],
-  "globalEnv": [
-    "DATABASE_URL",
-    "BETTER_AUTH_SECRET",
-    "VITE_BETTER_AUTH_URL",
-    "VITE_GITHUB_CLIENT_ID",
-    "GITHUB_CLIENT_SECRET",
-    "RESEND_API_KEY",
-    "RESEND_FROM_EMAIL",
-    "RESEND_POSTAL_ADDRESS",
-    "SENTRY_ORG",
-    "SENTRY_PROJECT",
-    "SENTRY_AUTH_TOKEN",
-    "VITE_SENTRY_DSN",
-    "FRONTEND_DOMAIN",
-    "ROOT_DOMAIN",
-    "REDIS_URL"
-  ],
-  "tasks": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env*",
-        "app.config.ts",
-        "src/**",
-        "drizzle/**",
-        "drizzle.config.ts",
-        "postcss.config.mjs",
-        "tsconfig.json",
-        "package.json",
-        "public/**",
-        "!vite.config.js",
-        "!app.config.timestamp_*"
-      ],
-      "outputs": [
-        "**/.vinxi/**",
-        "**/.output/**",
-        "**/dist/**"
-      ],
-      "passThroughEnv": [
-        "SENTRY_AUTH_TOKEN"
-      ]
-    },
-    "check": {
-      "dependsOn": [
-        "^check-types"
-      ]
-    },
-    "migrate": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "drizzle.config.ts",
-        "src/server/db/**",
-        "drizzle/**",
-        "package.json",
-        ".env*"
-      ]
-    },
-    "start:bun": {
-      "dependsOn": [
-        "build",
-        "migrate"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "drizzle.config.ts",
-        "src/server/db/**",
-        "drizzle/**",
-        "package.json",
-        ".env*"
-      ],
-      "passThroughEnv": [
-        "SENTRY_AUTH_TOKEN"
-      ],
-      "persistent": true
-    },
-    "dev": {
-      "dependsOn": [
-        "migrate"
-      ],
-      "cache": false,
-      "persistent": true
-    }
-  }
+	"$schema": "https://turborepo.com/schema.json",
+	"ui": "tui",
+	"globalDependencies": [".env"],
+	"globalEnv": [
+		"DATABASE_URL",
+		"BETTER_AUTH_SECRET",
+		"VITE_BETTER_AUTH_URL",
+		"VITE_GITHUB_CLIENT_ID",
+		"GITHUB_CLIENT_SECRET",
+		"RESEND_API_KEY",
+		"RESEND_FROM_EMAIL",
+		"RESEND_POSTAL_ADDRESS",
+		"SENTRY_ORG",
+		"SENTRY_PROJECT",
+		"SENTRY_AUTH_TOKEN",
+		"VITE_SENTRY_DSN",
+		"FRONTEND_DOMAIN",
+		"ROOT_DOMAIN",
+		"REDIS_URL"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env*",
+				"app.config.ts",
+				"src/**",
+				"drizzle/**",
+				"drizzle.config.ts",
+				"postcss.config.mjs",
+				"tsconfig.json",
+				"package.json",
+				"public/**",
+				"!vite.config.js",
+				"!app.config.timestamp_*"
+			],
+			"outputs": ["**/.vinxi/**", "**/.output/**", "**/dist/**"],
+			"passThroughEnv": ["SENTRY_AUTH_TOKEN"]
+		},
+		"check": {
+			"dependsOn": ["^check-types"]
+		},
+		"migrate": {
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"drizzle.config.ts",
+				"src/server/db/**",
+				"drizzle/**",
+				"package.json",
+				".env*"
+			]
+		},
+		"start:bun": {
+			"dependsOn": ["build", "migrate"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"drizzle.config.ts",
+				"src/server/db/**",
+				"drizzle/**",
+				"package.json",
+				".env*"
+			],
+			"passThroughEnv": ["SENTRY_AUTH_TOKEN"],
+			"persistent": true
+		},
+		"dev": {
+			"dependsOn": ["migrate"],
+			"cache": false,
+			"persistent": true
+		}
+	}
 }

@@ -1,4 +1,9 @@
-import { Link, createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
+import {
+	Link,
+	createFileRoute,
+	useNavigate,
+	redirect,
+} from "@tanstack/react-router";
 import { Loader2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -191,7 +196,7 @@ function RouteComponent() {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-											"An unknown error occurred. Please try again!",
+												"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {

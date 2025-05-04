@@ -23,17 +23,21 @@ import { seo } from "~/utils/seo";
 import Header from "~/components/header";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
-import { auth } from "@repo/server/src/auth";
+import { auth } from "~/server/auth";
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
 	// biome-ignore lint: getWebRequest should always be available in server functions
 	const { headers } = getWebRequest()!;
 	const session = await auth.api.getSession({ headers });
-	console.warn("Importing `auth` from @repo/server into @repo/web. This is incorrect behaviour and should be fixed as soon as possible.")
+	console.warn(
+		"Importing `auth` from @repo/server into @repo/web. This is incorrect behaviour and should be fixed as soon as possible.",
+	);
 	return session?.user || null;
 });
 
-export const Route = Sentry.wrapCreateRootRouteWithSentry(createRootRouteWithContext)<{
+export const Route = Sentry.wrapCreateRootRouteWithSentry(
+	createRootRouteWithContext,
+)<{
 	queryClient: QueryClient;
 	user: Awaited<ReturnType<typeof getUser>>;
 }>()({
@@ -84,8 +88,8 @@ export const Route = Sentry.wrapCreateRootRouteWithSentry(createRootRouteWithCon
 	}),
 	errorComponent: (props: ErrorComponentProps) => {
 		useEffect(() => {
-			Sentry.captureException(props.error)
-		}, [props.error])
+			Sentry.captureException(props.error);
+		}, [props.error]);
 
 		return (
 			<RootDocument>

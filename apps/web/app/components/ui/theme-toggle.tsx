@@ -1,9 +1,9 @@
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./button";
-import { Theme, useTheme } from "remix-themes"
+import { Theme, useTheme } from "remix-themes";
 
 export function ThemeToggle() {
-	const [theme, setTheme] = useTheme()
+	const [theme, setTheme] = useTheme();
 
 	const toggleTheme = () => {
 		const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
