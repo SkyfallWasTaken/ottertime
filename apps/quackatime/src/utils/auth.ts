@@ -10,4 +10,10 @@ const baseURL = `${import.meta.env.VITE_BETTER_AUTH_URL}/auth`;
 export const authClient = createAuthClient({
   plugins: [inferAdditionalFields<typeof auth>(), apiKeyClient()],
   baseURL,
+  fetchOptions: {
+    onRequest(context) {
+      console.log("Request URL:", context.url);
+      return context;
+    },
+  },
 });
