@@ -13,10 +13,11 @@ import {
 } from "~/db";
 import { env } from "@repo/env/server";
 import { Resend } from "resend";
-import { redis } from "bun";
+import { RedisClient } from "bun";
 import VerifyEmail from "@repo/emails/emails/verify-email";
 
 const resend = new Resend(env.RESEND_API_KEY);
+const redis = new RedisClient(env.REDIS_URL);
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
