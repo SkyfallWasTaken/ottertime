@@ -15,7 +15,7 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/fira-code";
 
 import Header from "~/components/header";
-import { auth } from "@repo/server/src/auth";
+// import { auth } from "@repo/server/src/auth";
 
 
 export const links: Route.LinksFunction = () => [
