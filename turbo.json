@@ -36,11 +36,11 @@
 				"!vite.config.js",
 				"!app.config.timestamp_*"
 			],
-			"outputs": ["**/.vinxi/**", "**/.output/**", "**/dist/**"],
+			"outputs": ["**/.react-router/**", "**/.output/**", "**/dist/**"],
 			"passThroughEnv": ["SENTRY_AUTH_TOKEN"]
 		},
 		"check": {
-			"dependsOn": ["^check-types"]
+			"dependsOn": ["^typecheck"]
 		},
 		"migrate": {
 			"inputs": [
