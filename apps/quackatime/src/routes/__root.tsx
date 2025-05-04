@@ -28,12 +28,17 @@ import { authClient } from "~/utils/auth";
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
 	// biome-ignore lint: getWebRequest should always be available in server functions
 	const { headers } = getWebRequest()!;
-	const { data: session } = await authClient.getSession({
+	const { data: session, error } = await authClient.getSession({
 		fetchOptions: {
 			headers,
 			credentials: "include",
 		}
 	});
+
+	if (error) {
+		console.error("Error getting user session", error.code, error.message);
+		return null;
+	}
 	return session?.user || null;
 });
 
