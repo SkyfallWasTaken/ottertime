@@ -1,7 +1,8 @@
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
-import { sentry } from "@hono/sentry";
 import { cors } from "hono/cors";
+import { logger } from "hono/logger";
+import { sentry } from "@hono/sentry";
 
 import betterAuth from "./middleware/betterAuth";
 import authRouter from "./routers/betterAuth";
@@ -16,7 +17,6 @@ import { env } from "@repo/env/server";
 const app = new Hono<Context>();
 
 app.use(
-  "*",
   sentry({
     dsn: env.VITE_SENTRY_DSN,
     tracesSampleRate: 1.0, // Capture 100% of transactions
@@ -29,6 +29,7 @@ app.use(
     maxAge: 600,
     credentials: true,
   }),
+  logger(),
   betterAuth
 );
 
