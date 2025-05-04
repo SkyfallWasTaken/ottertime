@@ -5,9 +5,9 @@
 	"license": "AGPL-3.0-only",
 	"scripts": {
 		"dev": "vinxi dev",
-		"build": "vinxi build",
+		"build:old": "vinxi build",
 		"start": "vinxi start",
-		"start:bun": "bun .output/server/index.mjs",
+		"start:bun:old": "bun .output/server/index.mjs",
 		"check": "biome check && tsc",
 		"format": "biome format --write"
 	},
