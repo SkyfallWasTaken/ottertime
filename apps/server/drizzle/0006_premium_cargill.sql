@@ -1,1 +1,0 @@
-ALTER TABLE "heartbeats" ADD COLUMN "user_agent" text DEFAULT 'unknown';

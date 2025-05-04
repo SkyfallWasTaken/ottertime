@@ -10,14 +10,28 @@ import {
   session,
   user as usersTable,
   verification,
-} from "~/db";
+} from "~/server/db";
 import { env } from "@repo/env/server";
 import { Resend } from "resend";
-import { RedisClient } from "bun";
+// import { createClient } from "redis";
 import VerifyEmail from "@repo/emails/emails/verify-email";
 
+if (globalThis.window) {
+  throw new Error("`auth.ts` should only be imported on the server");
+}
+
 const resend = new Resend(env.RESEND_API_KEY);
-const redis = new RedisClient(env.REDIS_URL);
+// console.log("Connecting to Redis at", env.REDIS_URL);
+// const redis = createClient({
+//   // url: env.REDIS_URL,
+//   username: "default",
+//   password: "p38FNnA0kIYO7aaYMDUC001y5g8hTtMqe9J2eoIUHmR9pprrGJLXmlrA8dGnlNjR",
+//   socket: {
+//     host: "vm.skyfall.dev",
+//     port: 31231,
+//   },
+// });
+// await redis.connect();
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -113,29 +127,24 @@ export const auth = betterAuth({
     autoSignInAfterVerification: true,
   },
   advanced: {
-    crossSubDomainCookies: {
-      enabled: true,
-    },
     cookiePrefix: "ottertime",
+    disableCSRFCheck: process.env.NODE_ENV === "development",
   },
-  secondaryStorage: {
-    get: async (key) => {
-      const value = await redis.get(key);
-      return value ? value : null;
-    },
-    set: async (key, value, ttl) => {
-      if (ttl) {
-        await redis.set(key, value);
-        await redis.expire(key, ttl);
-      } else {
-        await redis.set(key, value);
-      }
-    },
-    delete: async (key) => {
-      await redis.del(key);
-    },
-  },
-  basePath: "/auth",
-  baseURL: env.ROOT_DOMAIN,
-  trustedOrigins: [env.FRONTEND_DOMAIN],
+  // secondaryStorage: {
+  //   get: async (key) => {
+  //     const value = await redis.get(key);
+  //     return value ? value : null;
+  //   },
+  //   set: async (key, value, ttl) => {
+  //     if (ttl) {
+  //       await redis.set(key, value);
+  //       await redis.expire(key, ttl);
+  //     } else {
+  //       await redis.set(key, value);
+  //     }
+  //   },
+  //   delete: async (key) => {
+  //     await redis.del(key);
+  //   },
+  // },
 });

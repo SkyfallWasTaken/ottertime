@@ -10,8 +10,6 @@ import heartbeatsRouter from "./routers/heartbeats";
 import statusbarRouter from "./routers/statusbar";
 import type { Context } from "./util";
 
-// Run the checks to ensure the env variables are set
-// If they aren't, the API won't work and this will be detected by Coolify health checks
 import { env } from "@repo/env/server";
 
 const app = new Hono<Context>();
@@ -20,14 +18,6 @@ app.use(
   sentry({
     dsn: env.VITE_SENTRY_DSN,
     tracesSampleRate: 1.0, // Capture 100% of transactions
-  }),
-  cors({
-    origin: env.FRONTEND_DOMAIN,
-    allowHeaders: ["Content-Type", "Authorization"],
-    allowMethods: ["POST", "GET", "OPTIONS"],
-    exposeHeaders: ["Content-Length"],
-    maxAge: 600,
-    credentials: true,
   }),
   logger(),
   betterAuth
@@ -69,7 +59,7 @@ app.onError((err, c) => {
       error:
         process.env.NODE_ENV === "production"
           ? "Internal Server Error"
-          : (err.stack ?? err.message),
+          : err.stack ?? err.message,
     },
     500
   );
@@ -78,7 +68,8 @@ app.onError((err, c) => {
 export type ApiRoutes = typeof routes;
 
 const routes = app
-  // .on("GET", ["", "/"], (c) => c.redirect(env.FRONTEND_DOMAIN))
+  .basePath("/api")
+  .on("GET", ["", "/"], (c) => c.redirect("/"))
   .get("/hello", (c) => {
     return c.json({ message: "Hello from the API!" });
   })
@@ -86,7 +77,4 @@ const routes = app
   .route("/users/current", statusbarRouter)
   .route("/auth/*", authRouter);
 
-export default {
-  port: env.PORT,
-  fetch: app.fetch,
-};
+export default app;

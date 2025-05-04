@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { type Context, requireAuth } from "~/util";
+import { type Context, requireAuth } from "~/server/util";
 
 export default new Hono<Context>().get(
   "/statusbar/today",

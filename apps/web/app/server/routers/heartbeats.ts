@@ -2,8 +2,8 @@ import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { z } from "zod";
 
-import { heartbeatSchema, emitHeartbeats } from "~/quackatime/heartbeats";
-import { type Context, requireAuth } from "~/util";
+import { heartbeatSchema, emitHeartbeats } from "~/server/ottertime/heartbeats";
+import { type Context, requireAuth } from "~/server/util";
 
 export default new Hono<Context>()
   .post(

@@ -1,4 +1,4 @@
-import hono from "~/api";
+import hono from "~/server";
 
 export async function loader({ request }: { request: Request }) {
   return hono.fetch(request);

@@ -13,9 +13,7 @@ export default function SignIn() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const isFormValid = () => {
-
-    };
+    const isFormValid = () => email.trim() && email.includes("@") && password;
 
     return (
         <Card className="z-50 rounded-xl max-w-sm mx-auto">
@@ -51,7 +49,7 @@ export default function SignIn() {
                     <Button
                         type="submit"
                         className="w-full"
-                        disabled={loading}
+                        disabled={loading || !isFormValid()}
                         onClick={async () => {
                             await authClient.signIn.email({
                                 email,

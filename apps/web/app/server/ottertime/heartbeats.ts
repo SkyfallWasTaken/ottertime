@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { categories } from "~/db/schema";
-import { sha256 } from "~/util";
-import { db, heartbeats as heartbeatsTable } from "~/db";
+import { categories } from "~/server/db/schema";
+import { sha256 } from "~/server/util";
+import { db, heartbeats as heartbeatsTable } from "~/server/db";
 import stableJsonStringify from "fast-json-stable-stringify";
 
 export const heartbeatSchema = z

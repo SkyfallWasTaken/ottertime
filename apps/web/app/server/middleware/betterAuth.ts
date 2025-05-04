@@ -1,6 +1,6 @@
 import { createMiddleware } from "hono/factory";
-import { getPasswordFromAuthHeader } from "~/util";
-import { auth } from "~/auth";
+import { getPasswordFromAuthHeader } from "~/server/util";
+import { auth } from "~/server/auth";
 
 export default createMiddleware(async (c, next) => {
   const authHeader = c.req.header("Authorization");

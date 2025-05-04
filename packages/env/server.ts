@@ -13,7 +13,6 @@ export const env = createEnv({
     SENTRY_ORG: z.string(),
     SENTRY_PROJECT: z.string(),
     SENTRY_AUTH_TOKEN: z.string(),
-    FRONTEND_DOMAIN: z.string().url(),
     PORT: z.coerce.number().default(7676),
     ROOT_DOMAIN: z.string().url(),
     REDIS_URL: z.string().url(),
@@ -21,7 +20,6 @@ export const env = createEnv({
   // Make sure to update client.ts too!
   clientPrefix: "VITE_",
   client: {
-    VITE_BETTER_AUTH_URL: z.string().url(),
     VITE_GITHUB_CLIENT_ID: z.string(),
     VITE_SENTRY_DSN: z.string(),
   },
