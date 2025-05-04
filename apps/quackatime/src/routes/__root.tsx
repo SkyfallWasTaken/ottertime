@@ -35,8 +35,8 @@ const getUser = createServerFn({ method: "GET" }).handler(async () => {
 		}
 	});
 
-	if (error) {
-		console.error("Error getting user session", error.code, error.message, statusText, statusCode);
+	if (error !== null) {
+		console.error("Error getting user session", error.code, error.message, error.statusText, error.statusCode);
 		return null;
 	}
 	return session?.user || null;
