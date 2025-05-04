@@ -3,7 +3,7 @@ import { Button } from "~/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "~/components/ui/drawer";
 import { ThemeToggle } from "~/components/ui/theme-toggle";
 import { cn } from "~/utils/misc";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const paths = [
 	{ name: "Home", href: "/" },
@@ -12,7 +12,7 @@ const paths = [
 ];
 
 export default function SiteHeader() {
-	const location = new URL("https://google.com/") // FIXME: BLOP
+	const location = useLocation();
 
 	return (
 		<header className="border-grid sticky top-0 z-50 w-full border-b py-3 px-4 md:py-4 md:px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
