@@ -11,7 +11,7 @@ import {
   user as usersTable,
   verification,
 } from "~/db";
-import { env } from "~/env";
+import { env } from "@repo/env/server";
 import { Resend } from "resend";
 import VerifyEmail from "@repo/emails/emails/verify-email";
 

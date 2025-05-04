@@ -4,13 +4,24 @@ import { z } from "zod";
 // Make sure to update the Turbo config to include new env variables!
 export const env = createEnv({
   server: {
+    DATABASE_URL: z.string().url(),
+    BETTER_AUTH_SECRET: z.string(),
+    GITHUB_CLIENT_SECRET: z.string(),
+    RESEND_API_KEY: z.string().startsWith("re_"),
+    RESEND_FROM_EMAIL: z.string().email(),
+    RESEND_POSTAL_ADDRESS: z.string().optional(),
     SENTRY_ORG: z.string(),
     SENTRY_PROJECT: z.string(),
     SENTRY_AUTH_TOKEN: z.string(),
+    FRONTEND_DOMAIN: z.string().url(),
+    PORT: z.coerce.number().default(7676),
+    ROOT_DOMAIN: z.string().url(),
   },
+  // Make sure to update client.ts too!
   clientPrefix: "VITE_",
   client: {
     VITE_BETTER_AUTH_URL: z.string().url(),
+    VITE_GITHUB_CLIENT_ID: z.string(),
     VITE_SENTRY_DSN: z.string(),
   },
   runtimeEnv: process.env,

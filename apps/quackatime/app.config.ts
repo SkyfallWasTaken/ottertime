@@ -3,6 +3,7 @@ import { wrapVinxiConfigWithSentry } from "@sentry/tanstackstart-react";
 import { cloudflare } from "unenv";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import tsConfigPaths from "vite-tsconfig-paths";
+import "dotenv/config";
 
 const isPages = !!process.env.CF_PAGES;
 

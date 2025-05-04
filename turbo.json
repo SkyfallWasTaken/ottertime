@@ -79,6 +79,9 @@
         "package.json",
         ".env*"
       ],
+      "passThroughEnv": [
+        "SENTRY_AUTH_TOKEN"
+      ],
       "env": [
         "DATABASE_URL",
         "BETTER_AUTH_SECRET",

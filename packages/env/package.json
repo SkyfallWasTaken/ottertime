@@ -1,0 +1,9 @@
+{
+    "name": "@repo/env",
+    "version": "0.0.0",
+    "private": true,
+    "dependencies": {
+        "@t3-oss/env-core": "^0.13.0",
+        "zod": "^3.24.3"
+    }
+}

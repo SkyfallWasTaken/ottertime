@@ -7,7 +7,7 @@ import {
 import * as Sentry from "@sentry/tanstackstart-react";
 
 import { createRouter } from "./router";
-import { env } from "~/utils/env"
+import { env } from "@repo/env/server";
 
 Sentry.init({
 	dsn: env.VITE_SENTRY_DSN,

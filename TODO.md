@@ -26,3 +26,4 @@
 - Sign in/sign out buttons
 - Better sign up flow
 - Ensure email verification is enforced
+- Make the `.env` handling less messy
