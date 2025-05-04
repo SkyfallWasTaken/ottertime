@@ -1,5 +1,10 @@
-import type { ActionFunction, ActionFunctionArgs } from "react-router";
+import hono from "~/api";
 
-export const action: ActionFunction = ({ request }: ActionFunctionArgs) => {
-  return new Response("api");
-};
+export async function loader({ request }: { request: Request }) {
+  return hono.fetch(request);
+}
+
+// Handles POST, PUT, PATCH, DELETE, etc.
+export async function action({ request }: { request: Request }) {
+  return hono.fetch(request);
+}

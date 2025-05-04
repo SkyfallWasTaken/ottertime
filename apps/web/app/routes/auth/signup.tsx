@@ -174,7 +174,7 @@ export default function SignUp() {
                                     onRequest: () => {
                                         setLoading(true);
                                     },
-                                    onError: (ctx) => {
+                                    onError: (ctx: ErrorContext) => {
                                         toast.error(
                                             ctx.error.message ||
                                             "An unknown error occurred. Please try again!",
