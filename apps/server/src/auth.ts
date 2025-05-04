@@ -13,6 +13,7 @@ import {
 } from "~/db";
 import { env } from "@repo/env/server";
 import { Resend } from "resend";
+import { redis } from "bun";
 import VerifyEmail from "@repo/emails/emails/verify-email";
 
 const resend = new Resend(env.RESEND_API_KEY);
@@ -115,6 +116,23 @@ export const auth = betterAuth({
       enabled: true,
     },
     cookiePrefix: "ottertime",
+  },
+  secondaryStorage: {
+    get: async (key) => {
+      const value = await redis.get(key);
+      return value ? value : null;
+    },
+    set: async (key, value, ttl) => {
+      if (ttl) {
+        await redis.set(key, value);
+        await redis.expire(key, ttl);
+      } else {
+        await redis.set(key, value);
+      }
+    },
+    delete: async (key) => {
+      await redis.del(key);
+    },
   },
   basePath: "/auth",
   baseURL: env.ROOT_DOMAIN,

@@ -18,7 +18,8 @@
     "SENTRY_AUTH_TOKEN",
     "VITE_SENTRY_DSN",
     "FRONTEND_DOMAIN",
-    "ROOT_DOMAIN"
+    "ROOT_DOMAIN",
+    "REDIS_URL"
   ],
   "tasks": {
     "build": {

@@ -35,6 +35,7 @@
     "devDependencies": {
         "@biomejs/biome": "^1.9.4",
         "@repo/typescript-config": "workspace:*",
+        "@types/bun": "^1.2.12",
         "@types/node": "^22.5.4",
         "@types/pg": "^8.11.11",
         "drizzle-kit": "^0.31.0",

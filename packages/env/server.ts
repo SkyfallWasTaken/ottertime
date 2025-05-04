@@ -16,6 +16,7 @@ export const env = createEnv({
     FRONTEND_DOMAIN: z.string().url(),
     PORT: z.coerce.number().default(7676),
     ROOT_DOMAIN: z.string().url(),
+    REDIS_URL: z.string().url(),
   },
   // Make sure to update client.ts too!
   clientPrefix: "VITE_",
