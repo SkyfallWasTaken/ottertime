@@ -11,6 +11,7 @@ import {
 import { ThemeProvider, PreventFlashOnWrongTheme, useTheme } from "remix-themes";
 import clsx from "clsx";
 import { themeSessionResolver } from "./sessions.server";
+import { Toaster } from "~/components/ui/sonner";
 
 import type { Route } from "./+types/root";
 import Header from "./components/header";
@@ -52,6 +53,16 @@ function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Header />
         <div className="container mx-auto px-4 sm:px-0 py-6">{children}</div>
+        <Toaster
+          toastOptions={{
+            className: "z-50",
+            duration: 3000,
+            style: {
+              background: "var(--background)",
+              color: "var(--text)",
+            },
+          }}
+        />
         <ScrollRestoration />
         <Scripts />
       </body>
