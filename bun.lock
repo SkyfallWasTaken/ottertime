@@ -116,6 +116,7 @@
         "react-dom": "^19.1.0",
         "react-router": "^7.5.3",
         "recharts": "^2.15.1",
+        "remix-themes": "^2.0.4",
         "sonner": "^2.0.3",
         "tailwind-merge": "^3.0.2",
         "tw-animate-css": "^1.2.4",
@@ -2018,6 +2019,8 @@
     "redis-parser": ["redis-parser@3.0.0", "", { "dependencies": { "redis-errors": "^1.0.0" } }, "sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A=="],
 
     "regex-escape": ["regex-escape@3.4.11", "", {}, "sha512-051l4Hl/0HoJwTvNztrWVjoxLiseSfCrDgWqwR1cnGM/nyQSeIjmvti5zZ7HzOmsXDPaJ2k0iFxQ6/WNpJD5wQ=="],
+
+    "remix-themes": ["remix-themes@2.0.4", "", { "peerDependencies": { "react-router": ">=7.0.0" } }, "sha512-S1vIx86xdsMv+ceaWGWtlVZBMhU4tmZeBOBzOiZnhbHnGBbd5YeyIlZ5EL3BSEhZq35oEcINeTrMrVju9GPYEA=="],
 
     "remove-trailing-separator": ["remove-trailing-separator@1.1.0", "", {}, "sha512-/hS+Y0u3aOfIETiaiirUFwDBDzmXPvO+jAfKTitUngIPzdKc6Z0LoFjM/CK5PL4C+eKwHohlHAb6H0VFfmmUsw=="],
 

@@ -1,13 +1,12 @@
-import { useAtom } from "jotai";
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
 import { Button } from "./button";
+import { Theme, useTheme } from "remix-themes"
 
 export function ThemeToggle() {
-	const [theme, setTheme] = useState("dark"); // FIXME: blop
+	const [theme, setTheme] = useTheme()
 
 	const toggleTheme = () => {
-		const newTheme = theme === "light" ? "dark" : "light";
+		const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
 		setTheme(newTheme);
 	};
 
@@ -16,9 +15,9 @@ export function ThemeToggle() {
 			variant="ghost"
 			size="icon"
 			onClick={toggleTheme}
-			aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
+			aria-label={`Switch to ${theme === Theme.LIGHT ? "dark" : "light"} theme`}
 		>
-			{theme === "light" ? (
+			{theme === Theme.LIGHT ? (
 				<Moon className="h-5 w-5" />
 			) : (
 				<Sun className="h-5 w-5" />
