@@ -110,6 +110,13 @@ export const auth = betterAuth({
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
   },
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+    },
+    cookiePrefix: "ottertime",
+  },
   basePath: "/auth",
+  baseURL: env.ROOT_DOMAIN,
   trustedOrigins: [env.FRONTEND_DOMAIN],
 });

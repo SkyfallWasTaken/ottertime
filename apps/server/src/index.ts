@@ -21,7 +21,6 @@ app.use(
     dsn: env.VITE_SENTRY_DSN,
     tracesSampleRate: 1.0, // Capture 100% of transactions
   }),
-  betterAuth,
   cors({
     origin: env.FRONTEND_DOMAIN,
     allowHeaders: ["Content-Type", "Authorization"],
@@ -29,7 +28,8 @@ app.use(
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
     credentials: true,
-  })
+  }),
+  betterAuth
 );
 
 app.onError((err, c) => {

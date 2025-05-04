@@ -15,6 +15,7 @@ export const env = createEnv({
     SENTRY_AUTH_TOKEN: z.string(),
     FRONTEND_DOMAIN: z.string().url(),
     PORT: z.coerce.number().default(7676),
+    ROOT_DOMAIN: z.string().url(),
   },
   clientPrefix: "VITE_",
   client: {

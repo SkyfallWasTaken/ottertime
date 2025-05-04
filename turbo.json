@@ -44,7 +44,8 @@
         "SENTRY_PROJECT",
         "SENTRY_AUTH_TOKEN",
         "VITE_SENTRY_DSN",
-        "FRONTEND_DOMAIN"
+        "FRONTEND_DOMAIN",
+        "ROOT_DOMAIN"
       ]
     },
     "check": {
@@ -91,7 +92,8 @@
         "SENTRY_PROJECT",
         "SENTRY_AUTH_TOKEN",
         "VITE_SENTRY_DSN",
-        "FRONTEND_DOMAIN"
+        "FRONTEND_DOMAIN",
+        "ROOT_DOMAIN"
       ],
       "persistent": true
     },
