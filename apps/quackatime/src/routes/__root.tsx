@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { createServerFn } from "@tanstack/react-start";
+import { getWebRequest } from "@tanstack/react-start/server";
 import * as Sentry from "@sentry/tanstackstart-react";
 import type * as React from "react";
 import { useEffect } from "react";
@@ -22,20 +23,13 @@ import { seo } from "~/utils/seo";
 import Header from "~/components/header";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
-import { authClient } from "~/utils/auth";
+import { auth } from "@repo/server/src/auth";
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
-	const { data: session, error } = await authClient.getSession({
-		fetchOptions: {
-			credentials: "include",
-		}
-	});
-
-	console.log(session)
-	if (error !== null) {
-		console.error("Error getting user session", error);
-		return null;
-	}
+	// biome-ignore lint: getWebRequest should always be available in server functions
+	const { headers } = getWebRequest()!;
+	const session = await auth.api.getSession({ headers });
+	console.warn("Importing `auth` from @repo/server into @repo/web. This is incorrect behaviour and should be fixed as soon as possible.")
 	return session?.user || null;
 });
 
