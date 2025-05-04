@@ -8,7 +8,6 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { createServerFn } from "@tanstack/react-start";
-import { getWebRequest } from "@tanstack/react-start/server";
 import * as Sentry from "@sentry/tanstackstart-react";
 import type * as React from "react";
 import { useEffect } from "react";
@@ -26,11 +25,8 @@ import { Toaster } from "~/components/ui/sonner";
 import { authClient } from "~/utils/auth";
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
-	// biome-ignore lint: getWebRequest should always be available in server functions
-	const { headers } = getWebRequest()!;
 	const { data: session, error } = await authClient.getSession({
 		fetchOptions: {
-			headers,
 			credentials: "include",
 		}
 	});
