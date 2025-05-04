@@ -44,7 +44,6 @@
 		"vinxi": "0.5.3"
 	},
 	"devDependencies": {
-		"@repo/server": "workspace:*",
 		"@biomejs/biome": "^1.9.4",
 		"@repo/typescript-config": "workspace:*",
 		"@sentry/vite-plugin": "^3.3.1",

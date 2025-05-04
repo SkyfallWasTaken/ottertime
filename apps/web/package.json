@@ -16,7 +16,6 @@
     "@radix-ui/react-tabs": "^1.1.9",
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
-    "@repo/server": "workspace:*",
     "@t3-oss/env-core": "^0.13.0",
     "better-auth": "^1.2.7",
     "class-variance-authority": "^0.7.1",
