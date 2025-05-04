@@ -4,6 +4,22 @@
   "globalDependencies": [
     ".env"
   ],
+  "globalEnv": [
+    "DATABASE_URL",
+    "BETTER_AUTH_SECRET",
+    "VITE_BETTER_AUTH_URL",
+    "VITE_GITHUB_CLIENT_ID",
+    "GITHUB_CLIENT_SECRET",
+    "RESEND_API_KEY",
+    "RESEND_FROM_EMAIL",
+    "RESEND_POSTAL_ADDRESS",
+    "SENTRY_ORG",
+    "SENTRY_PROJECT",
+    "SENTRY_AUTH_TOKEN",
+    "VITE_SENTRY_DSN",
+    "FRONTEND_DOMAIN",
+    "ROOT_DOMAIN"
+  ],
   "tasks": {
     "build": {
       "dependsOn": [
@@ -30,22 +46,6 @@
       ],
       "passThroughEnv": [
         "SENTRY_AUTH_TOKEN"
-      ],
-      "env": [
-        "DATABASE_URL",
-        "BETTER_AUTH_SECRET",
-        "VITE_BETTER_AUTH_URL",
-        "VITE_GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET",
-        "RESEND_API_KEY",
-        "RESEND_FROM_EMAIL",
-        "RESEND_POSTAL_ADDRESS",
-        "SENTRY_ORG",
-        "SENTRY_PROJECT",
-        "SENTRY_AUTH_TOKEN",
-        "VITE_SENTRY_DSN",
-        "FRONTEND_DOMAIN",
-        "ROOT_DOMAIN"
       ]
     },
     "check": {
@@ -61,9 +61,6 @@
         "drizzle/**",
         "package.json",
         ".env*"
-      ],
-      "env": [
-        "DATABASE_URL"
       ]
     },
     "start:bun": {
@@ -81,22 +78,6 @@
       ],
       "passThroughEnv": [
         "SENTRY_AUTH_TOKEN"
-      ],
-      "env": [
-        "DATABASE_URL",
-        "BETTER_AUTH_SECRET",
-        "VITE_BETTER_AUTH_URL",
-        "VITE_GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET",
-        "RESEND_API_KEY",
-        "RESEND_FROM_EMAIL",
-        "RESEND_POSTAL_ADDRESS",
-        "SENTRY_ORG",
-        "SENTRY_PROJECT",
-        "SENTRY_AUTH_TOKEN",
-        "VITE_SENTRY_DSN",
-        "FRONTEND_DOMAIN",
-        "ROOT_DOMAIN"
       ],
       "persistent": true
     },
