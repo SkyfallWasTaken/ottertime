@@ -6,7 +6,8 @@
 		"build": "react-router build",
 		"dev": "react-router dev",
 		"start:bun": "react-router-serve ./build/server/index.js",
-		"typecheck": "react-router typegen && tsc"
+		"typecheck": "react-router typegen && tsc",
+		"migrate": "drizzle-kit migrate"
 	},
 	"dependencies": {
 		"@fontsource-variable/fira-code": "^5.2.5",
