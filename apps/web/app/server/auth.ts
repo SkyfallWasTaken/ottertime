@@ -1,7 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { apiKey, haveIBeenPwned } from "better-auth/plugins";
-import { reactStartCookies } from "better-auth/react-start";
 import { eq } from "drizzle-orm";
 import { Resend } from "resend";
 import Keyv from "keyv";
@@ -64,7 +63,6 @@ export const auth = betterAuth({
 				enabled: true,
 			},
 		}),
-		reactStartCookies(),
 	],
 	user: {
 		additionalFields: {
