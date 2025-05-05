@@ -23,7 +23,7 @@ if (globalThis.window) {
 
 const resend = new Resend(env.RESEND_API_KEY);
 
-const keyvSqlite = new KeyvSqlite("sqlite://sessions-cache.sqlite");
+const keyvSqlite = new KeyvSqlite(env.SESSION_DB_FILE_PATH);
 const keyv = new Keyv({ store: keyvSqlite, namespace: "sessions-cache" });
 
 export const auth = betterAuth({

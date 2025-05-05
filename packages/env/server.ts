@@ -16,6 +16,7 @@ export const env = createEnv({
 		PORT: z.coerce.number().default(7676),
 		FRONTEND_DOMAIN: z.string().url(),
 		SESSION_STORAGE_SECRET: z.string(),
+		SESSION_DB_FILE_PATH: z.string().default("sqlite://sessions-cache.sqlite"),
 	},
 	// Make sure to update client.ts too!
 	clientPrefix: "VITE_",
