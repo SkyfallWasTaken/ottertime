@@ -5,7 +5,7 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"format": "biome format --write .",
-		"check-types": "turbo run check"
+		"check": "turbo run check"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
