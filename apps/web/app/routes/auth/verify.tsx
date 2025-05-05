@@ -1,15 +1,24 @@
 import { Mail } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
+import { redirect } from "react-router";
 import { Card, CardHeader, CardTitle, CardContent } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { authClient } from "~/utils/auth-client";
+import { getAuthData } from "~/middleware/auth-data";
 import type { Route } from "../auth/+types/verify";
 
-export async function loader() {
+export async function loader({ context }: Route.LoaderArgs) {
+	const authData = await getAuthData(context);
+	if (!authData) {
+		throw redirect("/auth/signin");
+	}
+	if (authData.user.emailVerified) {
+		throw redirect("/");
+	}
 	return {
-		email: "test@outlook.com", // FIXME: stop hardcoding this
-		emailClient: getEmailClient("test@outlook.com"),
+		email: authData.user.email,
+		emailClient: getEmailClient(authData.user.email),
 	};
 }
 

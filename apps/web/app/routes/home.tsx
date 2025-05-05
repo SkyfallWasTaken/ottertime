@@ -2,6 +2,8 @@ import TopLanguagesChart from "~/components/home/top-languages-chart";
 import TopProjectsChart from "~/components/home/top-projects-chart";
 import { Card, CardContent } from "~/components/ui/card";
 import { getRandomItem } from "~/utils/misc";
+import { getAuthData } from "~/middleware/auth-data";
+import { redirect } from "react-router";
 import type { Route } from "./+types/home";
 
 const timeQuotes = [
@@ -23,7 +25,11 @@ const timeQuotes = [
 	"about time!",
 ];
 
-export async function loader(_params: Route.LoaderArgs) {
+export async function loader({ context }: Route.LoaderArgs) {
+	const authData = getAuthData(context)
+	if (!authData || !authData.user.emailVerified) {
+		throw redirect("/auth/signin");
+	}
 	return {
 		firstName: "placeholder",
 		quote: getRandomItem(timeQuotes),

@@ -3,16 +3,22 @@ import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { getAuthData } from "~/middleware/auth-data";
+import { redirect } from "react-router";
 import type { Route } from "./+types/setup"
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function loader({ request, context }: Route.LoaderArgs) {
     const userAgent = request.headers.get("user-agent");
     const os = userAgent?.includes("Windows")
         ? "windows"
         : "unix"
     const origin = new URL(request.url).origin
+    const authData = getAuthData(context)
+    if (!authData || !authData.user.emailVerified) {
+        throw redirect("/auth/signin");
+    }
     return {
-        apiKey: "REPLACE_ME", // FIXME: hardcoded
+        apiKey: authData?.user.apiKey, // FIXME: hardcoded
         os,
         origin,
     };

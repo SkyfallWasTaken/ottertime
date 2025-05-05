@@ -1,7 +1,7 @@
 import { Loader2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, redirect, Link } from "react-router";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -14,6 +14,16 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { authClient } from "~/utils/auth-client";
+import { getAuthData } from "~/middleware/auth-data";
+import type { Route } from "../auth/+types/signup";
+
+export async function loader({ context }: Route.LoaderArgs) {
+	const authData = await getAuthData(context);
+	if (authData) { // also checks if user is signed in!
+		throw redirect("/");
+	}
+	return null
+}
 
 export default function SignUp() {
 	const [firstName, setFirstName] = useState("");

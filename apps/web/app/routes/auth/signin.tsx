@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, redirect, Link } from "react-router";
 import { Loader2 } from "lucide-react";
 import {
 	Card,
@@ -12,7 +12,20 @@ import {
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { authClient } from "~/utils/auth-client";
+import { getAuthData } from "~/middleware/auth-data";
 import { toast } from "sonner";
+import type { Route } from "../auth/+types/signin";
+
+export async function loader({ context }: Route.LoaderArgs) {
+	const authData = await getAuthData(context);
+	if (authData?.user.emailVerified) { // also checks if user is signed in!
+		throw redirect("/");
+	}
+	if (authData?.user) {
+		throw redirect("/auth/verify");
+	}
+	return null;
+}
 
 export default function SignIn() {
 	const [email, setEmail] = useState("");
