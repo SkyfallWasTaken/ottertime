@@ -6,6 +6,7 @@ import {
 	Scripts,
 	ScrollRestoration,
 	useLoaderData,
+	redirect,
 	type LoaderFunctionArgs,
 } from "react-router";
 import {
@@ -16,6 +17,7 @@ import {
 import clsx from "clsx";
 import { themeSessionResolver } from "./sessions.server";
 import { Toaster } from "~/components/ui/sonner";
+import { auth } from "~/server/auth";
 
 import type { Route } from "./+types/root";
 import Header from "./components/header";
@@ -36,8 +38,32 @@ export const links: Route.LinksFunction = () => [
 
 export async function loader({ request }: LoaderFunctionArgs) {
 	const { getTheme } = await themeSessionResolver(request);
+
+	const data = await auth.api.getSession({ headers: request.headers });
+
+	// 1) No session? force signin:
+	if (!data) {
+		if (!request.url.endsWith("/auth/signin") && !request.url.endsWith("/auth/signup")) {
+			return redirect("/auth/signin");
+		}
+		return {
+			theme: getTheme(),
+		}
+	}
+
+	// 2) Session exists but user hasn't finished signup flow?
+	if (data.user && !data.user.emailVerified) {
+		if (!request.url.endsWith('/auth/verify')) {
+			redirect('/auth/verify');
+			return {
+				theme: getTheme(),
+			}
+		}
+	}
+
 	return {
 		theme: getTheme(),
+		user: data.user,
 	};
 }
 
