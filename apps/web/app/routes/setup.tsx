@@ -18,7 +18,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
         throw redirect("/auth/signin");
     }
     return {
-        apiKey: authData?.user.apiKey, // FIXME: hardcoded
+        apiKey: authData?.user.apiKey,
         os,
         origin,
     };

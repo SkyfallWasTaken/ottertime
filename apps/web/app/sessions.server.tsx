@@ -1,5 +1,6 @@
 import { createThemeSessionResolver } from "remix-themes";
 import { createCookieSessionStorage } from "react-router";
+import { env } from "@repo/env/server";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -9,10 +10,10 @@ const sessionStorage = createCookieSessionStorage({
 		path: "/",
 		httpOnly: true,
 		sameSite: "lax",
-		secrets: ["s3cr3t"], // FIXME: change this to a real secret.
+		secrets: [env.SESSION_STORAGE_SECRET], // FIXME: change this to a real secret.
 		// Set domain and secure only if in production
 		...(isProduction
-			? { domain: "quack.skyfall.dev", secure: true } // FIXME: don't hardcode this.
+			? { domain: env.FRONTEND_DOMAIN, secure: true } // FIXME: don't hardcode this.
 			: {}),
 	},
 });
