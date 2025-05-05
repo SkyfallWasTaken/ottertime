@@ -107,7 +107,7 @@ export const auth = betterAuth({
 					await db
 						.update(usersTable)
 						.set({ apiKey: key.key })
-						.where(eq(usersTable.id, user.id));
+						.where(eq(usersTable.id, key.userId));
 				},
 			},
 		},
@@ -138,20 +138,20 @@ export const auth = betterAuth({
 		cookiePrefix: "ottertime",
 		disableCSRFCheck: process.env.NODE_ENV === "development",
 	},
-	secondaryStorage: {
-		get: async (key) => {
-			const value = await keyv.get(key);
-			return value ? value : null;
-		},
-		set: async (key, value, ttl) => {
-			if (ttl) {
-				await keyv.set(key, value, ttl);
-			} else {
-				await keyv.set(key, value);
-			}
-		},
-		delete: async (key) => {
-			await keyv.delete(key);
-		},
-	},
+	// secondaryStorage: {
+	// 	get: async (key) => {
+	// 		const value = await keyv.get(key);
+	// 		return value ? value : null;
+	// 	},
+	// 	set: async (key, value, ttl) => {
+	// 		if (ttl) {
+	// 			await keyv.set(key, value, ttl);
+	// 		} else {
+	// 			await keyv.set(key, value);
+	// 		}
+	// 	},
+	// 	delete: async (key) => {
+	// 		await keyv.delete(key);
+	// 	},
+	// },
 });

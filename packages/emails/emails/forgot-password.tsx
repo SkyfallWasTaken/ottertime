@@ -12,7 +12,8 @@ export default function ForgotPassword({
 			address={address}
 		>
 			<Text className="text-[16px] leading-[24px] text-black m-0 mb-[24px] font-['Inter',Helvetica,Arial,sans-serif]">
-				Someone (probably you) requested a password reset for your OtterTime account.
+				Someone (probably you) requested a password reset for your OtterTime
+				account.
 			</Text>
 			<br />
 

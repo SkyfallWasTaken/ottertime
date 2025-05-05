@@ -15,6 +15,9 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 	if (!authData || !authData.user.emailVerified) {
 		throw redirect("/auth/signin");
 	}
+	if (!authData.user.apiKey) {
+		throw new Error("API key not found. Is the secondary storage corrupt?");
+	}
 	return {
 		apiKey: authData?.user.apiKey,
 		os,
