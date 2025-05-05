@@ -25,7 +25,7 @@
 				"$TURBO_DEFAULT$",
 				".env*",
 				"app.config.ts",
-				"src/**",
+				"app/**",
 				"drizzle/**",
 				"drizzle.config.ts",
 				"postcss.config.mjs",
@@ -35,7 +35,7 @@
 				"!vite.config.js",
 				"!app.config.timestamp_*"
 			],
-			"outputs": ["**/.react-router/**", "**/build/**", "**/dist/**"],
+			"outputs": ["**/build/**"],
 			"passThroughEnv": ["SENTRY_AUTH_TOKEN"]
 		},
 		"check": {
