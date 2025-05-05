@@ -102,9 +102,9 @@ export const auth = betterAuth({
     sendVerificationEmail: async ({ user, url }) => {
       console.log("Sending email verification to", user.email);
       const res = await resend.emails.send({
-        from: `Quackatime <${env.RESEND_FROM_EMAIL}>`,
+        from: `OtterTime <${env.RESEND_FROM_EMAIL}>`,
         to: [user.email],
-        subject: "Verify your email for Quackatime",
+        subject: "Verify your email for OtterTime",
         react: VerifyEmail({
           link: url,
           address: env.RESEND_POSTAL_ADDRESS,

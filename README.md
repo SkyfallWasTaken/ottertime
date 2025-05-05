@@ -1,14 +1,14 @@
-# Quackatime
+# OtterTime
 
 ![Screenshot](https://files.catbox.moe/02c2v9.png)
 
-Quackatime is an open-source, self-hostable time tracking server compatible with [WakaTime.](https://waka.hackclub.com) If you want to figure out how long you're spending on code to e.g. bill for consulting hours (or simply because you're curious about the stats!), setup Quackatime in _two minutes_ and get started!
+OtterTime is an open-source, self-hostable time tracking server compatible with [WakaTime.](https://waka.hackclub.com) If you want to figure out how long you're spending on code to e.g. bill for consulting hours (or simply because you're curious about the stats!), setup OtterTime in _two minutes_ and get started!
 
 ## Running the installer
 
-Sign in to Quackatime, then go to the [setup page](https://quack.skyfall.dev) and copy and paste the relevant command for your platform.
+Sign in to OtterTime, then go to the [setup page](https://ottertime.skyfall.dev) and copy and paste the relevant command for your platform.
 
-The installer's code is [here](https://github.com/quackatime/extension-installer), and supports VSCode, VSCode forks like Cursor and Windsurf, and most JetBrains IDEs.
+The installer's code is [here](https://github.com/ottertime/extension-installer), and supports VSCode, VSCode forks like Cursor and Windsurf, and most JetBrains IDEs.
 
 ## Development
 
@@ -25,7 +25,9 @@ Set the following `.env` variables:
     SENTRY_ORG: z.string(),
     SENTRY_PROJECT: z.string(),
     SENTRY_AUTH_TOKEN: z.string(),
+    PORT: z.coerce.number().default(7676),
     FRONTEND_DOMAIN: z.string().url(),
+    SESSION_STORAGE_SECRET: z.string(),
     VITE_BETTER_AUTH_URL: z.string().url(),
     VITE_GITHUB_CLIENT_ID: z.string(),
     VITE_SENTRY_DSN: z.string(),
@@ -34,7 +36,7 @@ Set the following `.env` variables:
 
 Then, run:
 
-```
+```bash
 bun install
 bun dev
 ```

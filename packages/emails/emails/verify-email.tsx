@@ -7,7 +7,7 @@ export default function VerifyEmail({
 }: { link: string; address?: string }) {
 	return (
 		<Layout
-			title="Verify your email for Quackatime"
+			title="Verify your email for OtterTime"
 			heading="Verify your email"
 			address={address}
 		>
@@ -17,7 +17,7 @@ export default function VerifyEmail({
 			<br />
 
 			<Text className="text-[16px] leading-[24px] text-black m-0 mb-[24px] font-['Inter',Helvetica,Arial,sans-serif]">
-				Welcome to Quackatime! To finish setting up your account, please click
+				Welcome to OtterTime! To finish setting up your account, please click
 				the button below to verify your email address.
 			</Text>
 			<br />
@@ -40,12 +40,12 @@ export default function VerifyEmail({
 			<Text className="text-[16px] leading-[24px] text-black m-0 mb-[32px] font-['Inter',Helvetica,Arial,sans-serif]">
 				Welcome aboard!
 				<br />
-				The Quackatime Team
+				The OtterTime Team
 			</Text>
 		</Layout>
 	);
 }
 
 VerifyEmail.PreviewProps = {
-	link: "https://quackatime.com",
+	link: "https://ottertime.com",
 };

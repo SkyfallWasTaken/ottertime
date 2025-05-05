@@ -16,7 +16,7 @@ import {
 import { clamp } from "~/utils/misc";
 
 const chartData = [
-	{ project: "Quackatime", minutes: 275, fill: "var(--chart-1)" },
+	{ project: "OtterTime", minutes: 275, fill: "var(--chart-1)" },
 	{ project: "Archimedes", minutes: 200, fill: "var(--chart-2)" },
 	{ project: "hc-site", minutes: 187, fill: "var(--chart-3)" },
 	{ project: "Edge", minutes: 90, fill: "var(--chart-4)" },

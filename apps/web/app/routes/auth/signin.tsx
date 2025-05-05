@@ -40,7 +40,7 @@ export default function SignIn() {
 			<CardHeader>
 				<CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
 				<CardDescription className="text-xs md:text-sm">
-					Enter your information to access Quackatime
+					Enter your information to access OtterTime
 				</CardDescription>
 			</CardHeader>
 			<CardContent>

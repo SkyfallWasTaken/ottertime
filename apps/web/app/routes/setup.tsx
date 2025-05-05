@@ -27,8 +27,8 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 export default function Setup({ loaderData }: Route.ComponentProps) {
     const { apiKey, os, origin } = loaderData;
     const apiUrl = `${origin}/api/v1`;
-    const unixCommand = `curl -fsSL ${origin}/install-unix.sh | QUACKATIME_API_KEY="${apiKey}" QUACKATIME_API_URL="${apiUrl}" bash`;
-    const windowsCommand = `$env:QUACKATIME_API_KEY="${apiKey}"; $env:QUACKATIME_API_URL="${apiUrl}"; irm ${origin}/install-windows.ps1 | iex`;
+    const unixCommand = `curl -fsSL ${origin}/install-unix.sh | OTTERTIME_API_KEY="${apiKey}" OTTERTIME_API_URL="${apiUrl}" bash`;
+    const windowsCommand = `$env:OTTERTIME_API_KEY="${apiKey}"; $env:OTTERTIME_API_URL="${apiUrl}"; irm ${origin}/install-windows.ps1 | iex`;
 
     const copyToClipboard = (
         text: string,
@@ -51,7 +51,7 @@ export default function Setup({ loaderData }: Route.ComponentProps) {
     return (
         <div className="space-y-4">
             <div>
-                <h1 className="text-2xl font-bold sm:text-3xl">Setup Quackatime</h1>
+                <h1 className="text-2xl font-bold sm:text-3xl">Setup OtterTime</h1>
                 <p className="text-muted-foreground text-lg">
                     Start tracking time with your editor.
                 </p>
@@ -88,7 +88,7 @@ export default function Setup({ loaderData }: Route.ComponentProps) {
                 <div>
                     <h3 className="text-lg font-medium">Installation</h3>
                     <p className="text-sm text-muted-foreground">
-                        Run this command in your terminal to install Quackatime with your
+                        Run this command in your terminal to install OtterTime with your
                         API key:
                     </p>
                 </div>
@@ -112,7 +112,7 @@ export default function Setup({ loaderData }: Route.ComponentProps) {
                         <br />
                         It'll also install the WakaTime extension if you have a{" "}
                         <a
-                            href="https://github.com/quackatime/extension-installer#supported-ides"
+                            href="https://github.com/ottertime/extension-installer#supported-ides"
                             className="underline"
                             target="_blank"
                             rel="noreferrer"

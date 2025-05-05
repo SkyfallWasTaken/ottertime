@@ -20,7 +20,7 @@ export default function SiteHeader() {
 				<div className="flex items-center">
 					<Link to="/" className="mr-4 flex items-center gap-2 lg:mr-6">
 						<span className="font-bold text-sm md:text-base lg:inline-block">
-							Quackatime
+							OtterTime
 						</span>
 					</Link>
 					<nav className="hidden md:flex items-center gap-4 text-sm xl:gap-6">

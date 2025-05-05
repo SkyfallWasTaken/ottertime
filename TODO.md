@@ -10,7 +10,7 @@
 - Projects chart looks pretty bad in general
 - There's both a `created_at` and `time` field for heartbeats
 - Write tests (API/browser tests)
-- See how Quackatime copes with scale
+- See how Ottertime copes with scale
   - 100k heartbeats
   - 600k heartbeats
   - 5 million heartbeats
@@ -20,7 +20,6 @@
 - Move off github-colors package (or at the very least, write types for it!)
   - <https://www.npmjs.com/package/linguist-languages> has a way smaller bundle size
 - After signing up, you're redirected to the sign in page instead of the setup page
-- Add an email verification page
 - Add "Forgot your password?"
 - Add GitHub OAuth
 - Sign in/sign out buttons

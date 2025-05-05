@@ -61,7 +61,7 @@ const Layout = ({
 						<Section className="mb-[32px]">
 							<Img
 								src={LOGO_URL}
-								alt="Quackatime logo"
+								alt="OtterTime logo"
 								width="78"
 								height="78"
 								className="rounded-[12px] w-[78px] h-[78px] object-cover"
@@ -89,7 +89,7 @@ const Layout = ({
 						</Text>
 
 						<Text className="text-[12px] leading-[16px] text-gray-500 m-0 font-['Inter',Helvetica,Arial,sans-serif]">
-							© {new Date().getFullYear()} Quackatime. All rights reserved.
+							© {new Date().getFullYear()} OtterTime. All rights reserved.
 						</Text>
 
 						{address && (
