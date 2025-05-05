@@ -10,10 +10,10 @@ const sessionStorage = createCookieSessionStorage({
 		path: "/",
 		httpOnly: true,
 		sameSite: "lax",
-		secrets: [env.SESSION_STORAGE_SECRET], // FIXME: change this to a real secret.
+		secrets: [env.SESSION_STORAGE_SECRET],
 		// Set domain and secure only if in production
 		...(isProduction
-			? { domain: env.FRONTEND_DOMAIN, secure: true } // FIXME: don't hardcode this.
+			? { domain: env.FRONTEND_DOMAIN, secure: true }
 			: {}),
 	},
 });

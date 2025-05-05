@@ -31,7 +31,7 @@ export async function loader({ context }: Route.LoaderArgs) {
 		throw redirect("/auth/signin");
 	}
 	return {
-		firstName: "placeholder",
+		firstName: authData.user.name.split(" ")[0],
 		quote: getRandomItem(timeQuotes),
 	};
 }
