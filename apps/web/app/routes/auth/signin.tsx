@@ -18,7 +18,8 @@ import type { Route } from "../auth/+types/signin";
 
 export async function loader({ context }: Route.LoaderArgs) {
 	const authData = await getAuthData(context);
-	if (authData?.user.emailVerified) { // also checks if user is signed in!
+	if (authData?.user.emailVerified) {
+		// also checks if user is signed in!
 		throw redirect("/");
 	}
 	if (authData?.user) {
@@ -85,7 +86,7 @@ export default function SignIn() {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-											"An unknown error occurred. Please try again!",
+												"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {

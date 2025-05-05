@@ -26,7 +26,7 @@ const timeQuotes = [
 ];
 
 export async function loader({ context }: Route.LoaderArgs) {
-	const authData = getAuthData(context)
+	const authData = getAuthData(context);
 	if (!authData || !authData.user.emailVerified) {
 		throw redirect("/auth/signin");
 	}

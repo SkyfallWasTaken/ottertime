@@ -19,10 +19,11 @@ import type { Route } from "../auth/+types/signup";
 
 export async function loader({ context }: Route.LoaderArgs) {
 	const authData = await getAuthData(context);
-	if (authData) { // also checks if user is signed in!
+	if (authData) {
+		// also checks if user is signed in!
 		throw redirect("/");
 	}
-	return null
+	return null;
 }
 
 export default function SignUp() {
@@ -187,7 +188,7 @@ export default function SignUp() {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-											"An unknown error occurred. Please try again!",
+												"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {

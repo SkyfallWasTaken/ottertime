@@ -18,8 +18,8 @@ import { themeSessionResolver } from "./sessions.server";
 import { Toaster } from "~/components/ui/sonner";
 import { authDataMiddleware } from "./middleware/auth-data";
 
-import "@fontsource-variable/inter"
-import "@fontsource-variable/fira-code"
+import "@fontsource-variable/inter";
+import "@fontsource-variable/fira-code";
 
 import type { Route } from "./+types/root";
 import Header from "./components/header";
