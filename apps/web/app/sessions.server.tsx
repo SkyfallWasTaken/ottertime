@@ -12,7 +12,9 @@ const sessionStorage = createCookieSessionStorage({
 		sameSite: "lax",
 		secrets: [env.SESSION_STORAGE_SECRET],
 		// Set domain and secure only if in production
-		...(isProduction ? { domain: new URL(env.FRONTEND_DOMAIN).hostname, secure: true } : {}),
+		...(isProduction
+			? { domain: new URL(env.FRONTEND_DOMAIN).hostname, secure: true }
+			: {}),
 	},
 });
 

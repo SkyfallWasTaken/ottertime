@@ -11,8 +11,8 @@ import {
 	CardTitle,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
-import { authClient } from "~/utils/auth-client";
 import { getAuthData } from "~/middleware/auth-data";
+import { authClient } from "~/utils/auth-client";
 import type { Route } from "./+types/start-reset";
 
 export async function loader({ context }: Route.LoaderArgs) {
@@ -68,16 +68,17 @@ export default function SignIn() {
 									},
 									onError: (ctx) => {
 										toast.error(
-											ctx.error.message === "invalid token" ? "Invalid reset URL. Please request another one on the signin page." :
-												ctx.error.message ||
-												"An unknown error occurred. Please try again!",
+											ctx.error.message === "invalid token"
+												? "Invalid reset URL. Please request another one on the signin page."
+												: ctx.error.message ||
+														"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {
 										toast.success("Sent! Check your email for the reset link.");
 									},
 								},
-							})
+							});
 						}}
 					>
 						{loading ? (

@@ -187,7 +187,7 @@ export default function SignUp() {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-											"An unknown error occurred. Please try again!",
+												"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {

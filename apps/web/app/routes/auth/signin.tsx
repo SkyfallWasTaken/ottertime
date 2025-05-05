@@ -86,7 +86,7 @@ export default function SignIn() {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-											"An unknown error occurred. Please try again!",
+												"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {

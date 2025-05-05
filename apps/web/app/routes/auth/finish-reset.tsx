@@ -21,8 +21,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 		throw redirect("/auth/signin");
 	}
 	return {
-		token
-	}
+		token,
+	};
 }
 
 export default function SignIn({ loaderData }: Route.ComponentProps) {
@@ -83,16 +83,17 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
 									},
 									onError: (ctx) => {
 										toast.error(
-											ctx.error.message === "invalid token" ? "Invalid reset URL. Please request another one on the signin page." :
-												ctx.error.message ||
-												"An unknown error occurred. Please try again!",
+											ctx.error.message === "invalid token"
+												? "Invalid reset URL. Please request another one on the signin page."
+												: ctx.error.message ||
+														"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {
 										navigate("/");
 									},
 								},
-							})
+							});
 						}}
 					>
 						{loading ? (
