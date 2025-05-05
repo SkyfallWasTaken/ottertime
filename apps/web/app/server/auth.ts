@@ -1,11 +1,13 @@
+import KeyvSqlite from "@keyv/sqlite";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { apiKey, haveIBeenPwned } from "better-auth/plugins";
 import { eq } from "drizzle-orm";
-import { Resend } from "resend";
 import Keyv from "keyv";
-import KeyvSqlite from "@keyv/sqlite";
+import { Resend } from "resend";
 
+import VerifyEmail from "@repo/emails/emails/verify-email";
+import { env } from "@repo/env/server";
 import {
 	account,
 	apikey,
@@ -14,8 +16,6 @@ import {
 	user as usersTable,
 	verification,
 } from "~/server/db";
-import { env } from "@repo/env/server";
-import VerifyEmail from "@repo/emails/emails/verify-email";
 
 if (globalThis.window) {
 	throw new Error("`auth.ts` should only be imported on the server");

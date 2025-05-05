@@ -1,7 +1,7 @@
+import { sentry } from "@hono/sentry";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import { logger } from "hono/logger";
-import { sentry } from "@hono/sentry";
 
 import betterAuth from "./middleware/betterAuth";
 import authRouter from "./routers/betterAuth";

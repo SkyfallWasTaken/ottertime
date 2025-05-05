@@ -1,22 +1,22 @@
+import clsx from "clsx";
 import {
-	isRouteErrorResponse,
 	Links,
+	type LoaderFunctionArgs,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	isRouteErrorResponse,
 	useLoaderData,
-	type LoaderFunctionArgs,
 } from "react-router";
 import {
-	ThemeProvider,
 	PreventFlashOnWrongTheme,
+	ThemeProvider,
 	useTheme,
 } from "remix-themes";
-import clsx from "clsx";
-import { themeSessionResolver } from "./sessions.server";
 import { Toaster } from "~/components/ui/sonner";
 import { authDataMiddleware } from "./middleware/auth-data";
+import { themeSessionResolver } from "./sessions.server";
 
 import "@fontsource-variable/inter";
 import "@fontsource-variable/fira-code";

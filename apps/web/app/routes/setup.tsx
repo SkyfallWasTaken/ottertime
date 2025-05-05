@@ -1,10 +1,10 @@
 import { CheckIcon, ClipboardCopyIcon } from "lucide-react";
 import { useState } from "react";
+import { redirect } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { getAuthData } from "~/middleware/auth-data";
-import { redirect } from "react-router";
 import type { Route } from "./+types/setup";
 
 export async function loader({ request, context }: Route.LoaderArgs) {

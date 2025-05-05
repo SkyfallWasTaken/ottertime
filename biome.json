@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["src/routeTree.gen.ts"]
+		"ignore": ["apps/web/.react-router/types/**"]
 	},
 	"formatter": {
 		"enabled": true,

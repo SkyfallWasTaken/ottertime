@@ -1,6 +1,6 @@
 import { Moon, Sun } from "lucide-react";
-import { Button } from "./button";
 import { Theme, useTheme } from "remix-themes";
+import { Button } from "./button";
 
 export function ThemeToggle() {
 	const [theme, setTheme] = useTheme();

@@ -1,11 +1,11 @@
 import { Mail } from "lucide-react";
-import { toast } from "sonner";
 import { useState } from "react";
 import { redirect } from "react-router";
-import { Card, CardHeader, CardTitle, CardContent } from "~/components/ui/card";
+import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
-import { authClient } from "~/utils/auth-client";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { getAuthData } from "~/middleware/auth-data";
+import { authClient } from "~/utils/auth-client";
 import type { Route } from "../auth/+types/verify";
 
 export async function loader({ context }: Route.LoaderArgs) {

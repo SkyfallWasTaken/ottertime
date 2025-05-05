@@ -1,8 +1,8 @@
+import stableJsonStringify from "fast-json-stable-stringify";
 import { z } from "zod";
+import { db, heartbeats as heartbeatsTable } from "~/server/db";
 import { categories } from "~/server/db/schema";
 import { sha256 } from "~/server/util";
-import { db, heartbeats as heartbeatsTable } from "~/server/db";
-import stableJsonStringify from "fast-json-stable-stringify";
 
 export const heartbeatSchema = z
 	.object({

@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { useNavigate, redirect, Link } from "react-router";
 import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import { Link, redirect, useNavigate } from "react-router";
+import { toast } from "sonner";
+import { Button } from "~/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -10,10 +12,8 @@ import {
 	CardTitle,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
-import { Button } from "~/components/ui/button";
-import { authClient } from "~/utils/auth-client";
 import { getAuthData } from "~/middleware/auth-data";
-import { toast } from "sonner";
+import { authClient } from "~/utils/auth-client";
 import type { Route } from "../auth/+types/signin";
 
 export async function loader({ context }: Route.LoaderArgs) {

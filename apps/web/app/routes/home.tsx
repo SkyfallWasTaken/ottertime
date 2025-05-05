@@ -1,9 +1,9 @@
+import { redirect } from "react-router";
 import TopLanguagesChart from "~/components/home/top-languages-chart";
 import TopProjectsChart from "~/components/home/top-projects-chart";
 import { Card, CardContent } from "~/components/ui/card";
-import { getRandomItem } from "~/utils/misc";
 import { getAuthData } from "~/middleware/auth-data";
-import { redirect } from "react-router";
+import { getRandomItem } from "~/utils/misc";
 import type { Route } from "./+types/home";
 
 const timeQuotes = [

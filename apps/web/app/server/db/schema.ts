@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import {
 	boolean,
+	index,
 	integer,
 	pgEnum,
 	pgTable,
@@ -8,7 +9,6 @@ import {
 	text,
 	timestamp,
 	varchar,
-	index,
 } from "drizzle-orm/pg-core";
 import { nanoid } from "nanoid";
 

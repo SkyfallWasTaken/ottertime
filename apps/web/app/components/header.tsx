@@ -1,9 +1,9 @@
 import { Menu } from "lucide-react";
+import { Link, useLocation } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "~/components/ui/drawer";
 import { ThemeToggle } from "~/components/ui/theme-toggle";
 import { cn } from "~/utils/misc";
-import { Link, useLocation } from "react-router";
 
 const paths = [
 	{ name: "Home", href: "/" },
