@@ -15,7 +15,6 @@ export const env = createEnv({
 		SENTRY_AUTH_TOKEN: z.string(),
 		PORT: z.coerce.number().default(7676),
 		ROOT_DOMAIN: z.string().url(),
-		REDIS_URL: z.string().url(),
 	},
 	// Make sure to update client.ts too!
 	clientPrefix: "VITE_",
