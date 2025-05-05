@@ -11,7 +11,7 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
-import { authClient } from "~/utils/auth";
+import { authClient } from "~/utils/auth-client";
 import { toast } from "sonner";
 
 export default function SignIn() {
@@ -72,7 +72,7 @@ export default function SignIn() {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-												"An unknown error occurred. Please try again!",
+											"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {

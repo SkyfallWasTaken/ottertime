@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
-import { authClient } from "~/utils/auth";
+import { authClient } from "~/utils/auth-client";
 import type { Route } from "../auth/+types/verify";
 
 export async function loader() {
@@ -54,7 +54,7 @@ export default function VerifyEmail({ loaderData }: Route.ComponentProps) {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-												"An unknown error occurred. Please try again!",
+											"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {

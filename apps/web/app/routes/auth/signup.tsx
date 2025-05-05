@@ -13,7 +13,7 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { authClient } from "~/utils/auth";
+import { authClient } from "~/utils/auth-client";
 
 export default function SignUp() {
 	const [firstName, setFirstName] = useState("");
@@ -177,7 +177,7 @@ export default function SignUp() {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-												"An unknown error occurred. Please try again!",
+											"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {
