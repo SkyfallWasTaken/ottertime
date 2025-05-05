@@ -28,6 +28,7 @@
 		"fast-json-stable-stringify": "^2.1.0",
 		"github-colors": "^2.2.21",
 		"hono": "^4.7.8",
+		"isbot": "^5",
 		"keyv": "^5.3.3",
 		"lucide-react": "^0.507.0",
 		"nanoid": "^5.1.5",
