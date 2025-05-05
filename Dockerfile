@@ -8,7 +8,6 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN apt-get update -y && apt-get install curl wget ca-certificates -y
 RUN bun install --frozen-lockfile
 
 RUN ["bun", "turbo", "run", "build"]
