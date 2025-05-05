@@ -35,7 +35,7 @@
 				"!vite.config.js",
 				"!app.config.timestamp_*"
 			],
-			"outputs": ["**/.react-router/**", "**/.output/**", "**/dist/**"],
+			"outputs": ["**/.react-router/**", "**/build/**", "**/dist/**"],
 			"passThroughEnv": ["SENTRY_AUTH_TOKEN"]
 		},
 		"check": {
