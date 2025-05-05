@@ -6,7 +6,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { getAuthData } from "~/middleware/auth-data";
 import { authClient } from "~/utils/auth-client";
-import type { Route } from "../auth/+types/verify";
+import type { Route } from "./+types/verify";
 
 export async function loader({ context }: Route.LoaderArgs) {
 	const authData = await getAuthData(context);
@@ -63,7 +63,7 @@ export default function VerifyEmail({ loaderData }: Route.ComponentProps) {
 									onError: (ctx) => {
 										toast.error(
 											ctx.error.message ||
-												"An unknown error occurred. Please try again!",
+											"An unknown error occurred. Please try again!",
 										);
 									},
 									onSuccess: async () => {
