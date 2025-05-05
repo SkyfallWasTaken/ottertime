@@ -28,7 +28,6 @@ Set the following `.env` variables:
     PORT: z.coerce.number().default(7676),
     FRONTEND_DOMAIN: z.string().url(),
     SESSION_STORAGE_SECRET: z.string(),
-    VITE_BETTER_AUTH_URL: z.string().url(),
     VITE_GITHUB_CLIENT_ID: z.string(),
     VITE_SENTRY_DSN: z.string(),
 }

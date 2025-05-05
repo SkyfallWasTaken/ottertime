@@ -17,6 +17,7 @@
         "@hono/sentry": "^1.2.1",
         "@hono/zod-validator": "^0.5.0",
         "@keyv/sqlite": "^4.0.3",
+        "@marsidev/react-turnstile": "^1.1.0",
         "@radix-ui/react-label": "^2.1.4",
         "@radix-ui/react-slot": "^1.1.2",
         "@radix-ui/react-tabs": "^1.1.9",
@@ -301,6 +302,8 @@
     "@keyv/sqlite": ["@keyv/sqlite@4.0.3", "", { "dependencies": { "sqlite3": "^5.1.7" }, "peerDependencies": { "keyv": "^5.3.3" } }, "sha512-tdgelzrlng0cIiOZpxuDd/Ii/79h9On/0lcEyZ2s0Ml+9NXS6JnRrlb01+nfUWY53ioSDGvPKt4yL+s76uTWSg=="],
 
     "@levischuck/tiny-cbor": ["@levischuck/tiny-cbor@0.2.11", "", {}, "sha512-llBRm4dT4Z89aRsm6u2oEZ8tfwL/2l6BwpZ7JcyieouniDECM5AqNgr/y08zalEIvW3RSK4upYyybDcmjXqAow=="],
+
+    "@marsidev/react-turnstile": ["@marsidev/react-turnstile@1.1.0", "", { "peerDependencies": { "react": "^17.0.2 || ^18.0.0 || ^19.0", "react-dom": "^17.0.2 || ^18.0.0 || ^19.0" } }, "sha512-X7bP9ZYutDd+E+klPYF+/BJHqEyyVkN4KKmZcNRr84zs3DcMoftlMAuoKqNSnqg0HE7NQ1844+TLFSJoztCdSA=="],
 
     "@mjackson/node-fetch-server": ["@mjackson/node-fetch-server@0.2.0", "", {}, "sha512-EMlH1e30yzmTpGLQjlFmaDAjyOeZhng1/XCd7DExR8PNAnG/G1tyruZxEoUe11ClnwGhGrtsdnyyUx1frSzjng=="],
 

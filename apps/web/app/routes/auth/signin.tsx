@@ -2,6 +2,7 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Link, redirect, useNavigate } from "react-router";
 import { toast } from "sonner";
+import Turnstile from "~/components/turnstile";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -14,6 +15,7 @@ import {
 import { Input } from "~/components/ui/input";
 import { getAuthData } from "~/middleware/auth-data";
 import { authClient } from "~/utils/auth-client";
+import { env } from "@repo/env/client";
 import type { Route } from "./+types/signin";
 
 export async function loader({ context }: Route.LoaderArgs) {
@@ -31,10 +33,12 @@ export async function loader({ context }: Route.LoaderArgs) {
 export default function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [turnstileToken, setTurnstileToken] = useState("");
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
-	const isFormValid = () => email.trim() && email.includes("@") && password;
+	const isFormValid = () =>
+		email.trim() && email.includes("@") && password && turnstileToken;
 
 	return (
 		<Card className="z-50 rounded-xl max-w-sm mx-auto">
@@ -67,6 +71,11 @@ export default function SignIn() {
 						placeholder="Password"
 						aria-label="Password"
 					/>
+					<Turnstile
+						onSuccess={(token) => {
+							setTurnstileToken(token);
+						}}
+					/>
 					<Button
 						type="submit"
 						className="w-full"
@@ -77,6 +86,9 @@ export default function SignIn() {
 								password,
 								callbackURL: "/",
 								fetchOptions: {
+									headers: {
+										"x-captcha-response": turnstileToken,
+									},
 									onResponse: () => {
 										setLoading(false);
 									},

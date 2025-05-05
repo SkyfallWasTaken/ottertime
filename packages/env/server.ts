@@ -17,12 +17,14 @@ export const env = createEnv({
 		FRONTEND_DOMAIN: z.string().url(),
 		SESSION_STORAGE_SECRET: z.string(),
 		SESSION_DB_FILE_PATH: z.string().default("sqlite://sessions-cache.sqlite"),
+		TURNSTILE_SECRET_KEY: z.string(),
 	},
 	// Make sure to update client.ts too!
 	clientPrefix: "VITE_",
 	client: {
 		VITE_GITHUB_CLIENT_ID: z.string(),
 		VITE_SENTRY_DSN: z.string(),
+		VITE_TURNSTILE_SITE_KEY: z.string(),
 	},
 	runtimeEnv: process.env,
 	emptyStringAsUndefined: true,

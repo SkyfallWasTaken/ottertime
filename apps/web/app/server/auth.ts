@@ -1,7 +1,7 @@
 import KeyvSqlite from "@keyv/sqlite";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { apiKey, haveIBeenPwned } from "better-auth/plugins";
+import { apiKey, haveIBeenPwned, captcha } from "better-auth/plugins";
 import { eq } from "drizzle-orm";
 import Keyv from "keyv";
 import { Resend } from "resend";
@@ -78,6 +78,10 @@ export const auth = betterAuth({
 				timeWindow: 3 * 60 * 1000, // 3 minute
 				enabled: true,
 			},
+		}),
+		captcha({
+			provider: "cloudflare-turnstile",
+			secretKey: env.TURNSTILE_SECRET_KEY,
 		}),
 	],
 	user: {

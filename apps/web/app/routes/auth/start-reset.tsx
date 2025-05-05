@@ -11,6 +11,7 @@ import {
 	CardTitle,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
+import Turnstile from "~/components/turnstile";
 import { getAuthData } from "~/middleware/auth-data";
 import { authClient } from "~/utils/auth-client";
 import type { Route } from "./+types/start-reset";
@@ -25,6 +26,7 @@ export async function loader({ context }: Route.LoaderArgs) {
 
 export default function SignIn() {
 	const [email, setEmail] = useState("");
+	const [turnstileToken, setTurnstileToken] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	const isFormValid = () => email.trim() && email.includes("@");
@@ -51,6 +53,11 @@ export default function SignIn() {
 						value={email}
 						aria-label="Email"
 					/>
+					<Turnstile
+						onSuccess={(token) => {
+							setTurnstileToken(token);
+						}}
+					/>
 					<Button
 						type="submit"
 						className="w-full"
@@ -60,6 +67,9 @@ export default function SignIn() {
 								email,
 								redirectTo: "/auth/finish-reset",
 								fetchOptions: {
+									headers: {
+										"x-captcha-response": turnstileToken,
+									},
 									onResponse: () => {
 										setLoading(false);
 									},

@@ -13,6 +13,7 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import Turnstile from "~/components/turnstile";
 import { getAuthData } from "~/middleware/auth-data";
 import { authClient } from "~/utils/auth-client";
 import type { Route } from "./+types/signup";
@@ -33,6 +34,7 @@ export default function SignUp() {
 	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 	const [image, setImage] = useState<File | null>(null);
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [turnstileToken, setTurnstileToken] = useState("");
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
@@ -166,6 +168,11 @@ export default function SignUp() {
 							</div>
 						</div>
 					</div>
+					<Turnstile
+						onSuccess={(token) => {
+							setTurnstileToken(token);
+						}}
+					/>
 					<Button
 						type="submit"
 						className="w-full"
@@ -178,6 +185,9 @@ export default function SignUp() {
 								image: image ? await convertImageToBase64(image) : "",
 								callbackURL: "/auth/verify",
 								fetchOptions: {
+									headers: {
+										"x-captcha-response": turnstileToken,
+									},
 									onResponse: () => {
 										setLoading(false);
 									},
