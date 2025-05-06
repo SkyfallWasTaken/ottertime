@@ -65,13 +65,15 @@ export default function SignIn() {
 										ctx.error.message === "invalid token"
 											? "Invalid reset URL. Please request another one on the signin page."
 											: ctx.error.message ||
-													"An unknown error occurred. Please try again!",
+											"An unknown error occurred. Please try again!",
 									);
 									turnstileRef.current?.reset();
 									setTurnstileToken("");
 								},
 								onSuccess: async () => {
 									toast.success("Sent! Check your email for the reset link.");
+									turnstileRef.current?.reset();
+									setTurnstileToken("");
 								},
 							},
 						});
