@@ -1,7 +1,7 @@
 import KeyvSqlite from "@keyv/sqlite";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { apiKey, haveIBeenPwned, captcha } from "better-auth/plugins";
+import { apiKey, captcha, haveIBeenPwned } from "better-auth/plugins";
 import { eq } from "drizzle-orm";
 import Keyv from "keyv";
 import { Resend } from "resend";

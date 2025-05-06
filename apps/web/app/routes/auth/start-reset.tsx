@@ -2,6 +2,7 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { redirect, useNavigate } from "react-router";
 import { toast } from "sonner";
+import Turnstile from "~/components/turnstile";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -11,7 +12,6 @@ import {
 	CardTitle,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
-import Turnstile from "~/components/turnstile";
 import { getAuthData } from "~/middleware/auth-data";
 import { authClient } from "~/utils/auth-client";
 import type { Route } from "./+types/start-reset";
@@ -29,7 +29,8 @@ export default function SignIn() {
 	const [turnstileToken, setTurnstileToken] = useState("");
 	const [loading, setLoading] = useState(false);
 
-	const isFormValid = () => email.trim() && email.includes("@") && turnstileToken;
+	const isFormValid = () =>
+		email.trim() && email.includes("@") && turnstileToken;
 
 	return (
 		<Card className="z-50 rounded-xl max-w-sm mx-auto gap-4">

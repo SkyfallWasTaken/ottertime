@@ -2,6 +2,7 @@ import { Loader2, X } from "lucide-react";
 import { useState } from "react";
 import { Link, redirect, useNavigate } from "react-router";
 import { toast } from "sonner";
+import Turnstile from "~/components/turnstile";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -13,7 +14,6 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import Turnstile from "~/components/turnstile";
 import { getAuthData } from "~/middleware/auth-data";
 import { authClient } from "~/utils/auth-client";
 import type { Route } from "./+types/signup";

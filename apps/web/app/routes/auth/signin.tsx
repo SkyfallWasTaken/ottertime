@@ -1,3 +1,4 @@
+import { env } from "@repo/env/client";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Link, redirect, useNavigate } from "react-router";
@@ -15,7 +16,6 @@ import {
 import { Input } from "~/components/ui/input";
 import { getAuthData } from "~/middleware/auth-data";
 import { authClient } from "~/utils/auth-client";
-import { env } from "@repo/env/client";
 import type { Route } from "./+types/signin";
 
 export async function loader({ context }: Route.LoaderArgs) {
