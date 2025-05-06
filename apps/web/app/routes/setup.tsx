@@ -27,7 +27,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 
 export default function Setup({ loaderData }: Route.ComponentProps) {
 	const { apiKey, os, origin } = loaderData;
-	const apiUrl = `${origin}/api/v1`;
+	const apiUrl = `${origin}/api`;
 	const unixCommand = `curl -fsSL ${origin}/install-unix.sh | OTTERTIME_API_KEY="${apiKey}" OTTERTIME_API_URL="${apiUrl}" bash`;
 	const windowsCommand = `$env:OTTERTIME_API_KEY="${apiKey}"; $env:OTTERTIME_API_URL="${apiUrl}"; irm ${origin}/install-windows.ps1 | iex`;
 
