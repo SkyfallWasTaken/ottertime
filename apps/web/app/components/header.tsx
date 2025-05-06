@@ -77,7 +77,7 @@ export default function SiteHeader({ signedIn }: { signedIn: boolean }) {
 									{signedIn && (
 										<>
 											<hr />
-											<Link to="#" className="text-sm cursor-pointer font-medium transition-colors hover:text-accent-foreground">Sign out</Link>
+											<Link to="#" className="text-sm cursor-pointer font-medium transition-colors hover:text-accent-foreground" onClick={handleSignOut}>Sign out</Link>
 										</>
 									)}
 								</div>
