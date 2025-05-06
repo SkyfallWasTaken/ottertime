@@ -1,8 +1,8 @@
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
-import { redirect, useNavigate } from "react-router";
+import { type Ref, useRef, useState } from "react";
+import { redirect } from "react-router";
 import { toast } from "sonner";
-import Turnstile from "~/components/turnstile";
+import { Turnstile, type TurnstileRefFields } from "~/components/turnstile";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -28,6 +28,7 @@ export default function SignIn() {
 	const [email, setEmail] = useState("");
 	const [turnstileToken, setTurnstileToken] = useState("");
 	const [loading, setLoading] = useState(false);
+	const turnstileRef: Ref<TurnstileRefFields | null> = useRef(null);
 
 	const isFormValid = () =>
 		email.trim() && email.includes("@") && turnstileToken;
@@ -55,6 +56,7 @@ export default function SignIn() {
 						aria-label="Email"
 					/>
 					<Turnstile
+						ref={turnstileRef}
 						onSuccess={(token) => {
 							setTurnstileToken(token);
 						}}
@@ -84,6 +86,7 @@ export default function SignIn() {
 												: ctx.error.message ||
 														"An unknown error occurred. Please try again!",
 										);
+										turnstileRef.current?.reset();
 									},
 									onSuccess: async () => {
 										toast.success("Sent! Check your email for the reset link.");

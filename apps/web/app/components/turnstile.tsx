@@ -3,24 +3,39 @@ import {
 	Turnstile as TurnstileWidget,
 } from "@marsidev/react-turnstile";
 import { env } from "@repo/env/client";
-import { type Ref, useRef } from "react";
+import { type Ref, useImperativeHandle, useRef } from "react";
 import { useTheme } from "remix-themes";
 
-export default function Turnstile({
+export interface TurnstileRefFields {
+	reset: () => void;
+}
+
+export function Turnstile({
 	onSuccess,
-}: { onSuccess: (token: string) => void }) {
+	ref,
+}: { onSuccess: (token: string) => void; ref: Ref<TurnstileRefFields> }) {
 	const [theme] = useTheme();
-	const ref: Ref<TurnstileInstance | null> = useRef(null);
+	const tsRef: Ref<TurnstileInstance | null> = useRef(null);
+
+	useImperativeHandle(
+		ref,
+		() => {
+			return {
+				reset: () => tsRef.current?.reset(),
+			};
+		},
+		[],
+	);
+
 	return (
 		<div className="border-r border-[#797979] border-[1px]">
 			<TurnstileWidget
 				siteKey={env.VITE_TURNSTILE_SITE_KEY}
-				ref={ref}
+				ref={tsRef}
 				options={{
 					theme: theme || "auto",
 					size: "flexible",
 				}}
-				onError={() => ref.current?.reset()}
 				onSuccess={(token) => {
 					onSuccess(token);
 				}}

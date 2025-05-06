@@ -1,9 +1,8 @@
-import { env } from "@repo/env/client";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { type Ref, useRef, useState } from "react";
 import { Link, redirect, useNavigate } from "react-router";
 import { toast } from "sonner";
-import Turnstile from "~/components/turnstile";
+import { Turnstile, type TurnstileRefFields } from "~/components/turnstile";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -35,6 +34,7 @@ export default function SignIn() {
 	const [password, setPassword] = useState("");
 	const [turnstileToken, setTurnstileToken] = useState("");
 	const [loading, setLoading] = useState(false);
+	const turnstileRef: Ref<TurnstileRefFields | null> = useRef(null);
 	const navigate = useNavigate();
 
 	const isFormValid = () =>
@@ -75,6 +75,7 @@ export default function SignIn() {
 						onSuccess={(token) => {
 							setTurnstileToken(token);
 						}}
+						ref={turnstileRef}
 					/>
 					<Button
 						type="submit"
@@ -100,6 +101,7 @@ export default function SignIn() {
 											ctx.error.message ||
 												"An unknown error occurred. Please try again!",
 										);
+										turnstileRef.current?.reset();
 									},
 									onSuccess: async () => {
 										navigate("/");
