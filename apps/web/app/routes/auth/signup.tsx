@@ -80,7 +80,42 @@ export default function SignUp() {
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<div className="grid gap-4">
+				<form
+					className="grid gap-4"
+					onSubmit={async (event) => {
+						event.preventDefault();
+						if (!isFormValid()) return;
+						await authClient.signUp.email({
+							email,
+							password,
+							name: `${firstName} ${lastName}`,
+							image: image ? await convertImageToBase64(image) : "",
+							callbackURL: "/auth/verify",
+							fetchOptions: {
+								headers: {
+									"x-captcha-response": turnstileToken,
+								},
+								onResponse: () => {
+									setLoading(false);
+								},
+								onRequest: () => {
+									setLoading(true);
+								},
+								onError: (ctx) => {
+									toast.error(
+										ctx.error.message ||
+											"An unknown error occurred. Please try again!",
+									);
+									turnstileRef.current?.reset();
+									setTurnstileToken("");
+								},
+								onSuccess: async () => {
+									navigate("/setup");
+								},
+							},
+						});
+					}}
+				>
 					<div className="grid grid-cols-2 gap-4">
 						<div className="grid gap-2">
 							<Label htmlFor="first-name">First name</Label>
@@ -127,6 +162,7 @@ export default function SignUp() {
 							type="password"
 							className="sentry-mask"
 							value={password}
+							required
 							onChange={(e) => setPassword(e.target.value)}
 							autoComplete="new-password"
 							placeholder="Password"
@@ -136,6 +172,7 @@ export default function SignUp() {
 							type="password"
 							className="sentry-mask"
 							value={passwordConfirmation}
+							required
 							onChange={(e) => setPasswordConfirmation(e.target.value)}
 							autoComplete="new-password"
 							placeholder="Confirm Password"
@@ -180,36 +217,6 @@ export default function SignUp() {
 						type="submit"
 						className="w-full"
 						disabled={loading || !isFormValid()}
-						onClick={async () => {
-							await authClient.signUp.email({
-								email,
-								password,
-								name: `${firstName} ${lastName}`,
-								image: image ? await convertImageToBase64(image) : "",
-								callbackURL: "/auth/verify",
-								fetchOptions: {
-									headers: {
-										"x-captcha-response": turnstileToken,
-									},
-									onResponse: () => {
-										setLoading(false);
-									},
-									onRequest: () => {
-										setLoading(true);
-									},
-									onError: (ctx) => {
-										toast.error(
-											ctx.error.message ||
-												"An unknown error occurred. Please try again!",
-										);
-										turnstileRef.current?.reset();
-									},
-									onSuccess: async () => {
-										navigate("/setup");
-									},
-								},
-							});
-						}}
 					>
 						{loading ? (
 							<Loader2 size={16} className="animate-spin" />
@@ -217,7 +224,7 @@ export default function SignUp() {
 							"Create an account"
 						)}
 					</Button>
-				</div>
+				</form>
 			</CardContent>
 			<CardFooter>
 				<div className="flex justify-center w-full border-t py-4">

@@ -7,7 +7,6 @@ import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "~/components/ui/card";
@@ -43,10 +42,40 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<div className="grid gap-2">
+				<form
+					className="grid gap-2"
+					onSubmit={async (event) => {
+						event.preventDefault();
+						if (!isFormValid()) return;
+						await authClient.resetPassword({
+							newPassword: password,
+							token,
+							fetchOptions: {
+								onResponse: () => {
+									setLoading(false);
+								},
+								onRequest: () => {
+									setLoading(true);
+								},
+								onError: (ctx) => {
+									toast.error(
+										ctx.error.message === "invalid token"
+											? "Invalid reset URL. Please request another one on the signin page."
+											: ctx.error.message ||
+													"An unknown error occurred. Please try again!",
+									);
+								},
+								onSuccess: async () => {
+									navigate("/");
+								},
+							},
+						});
+					}}
+				>
 					<Input
 						id="password"
 						type="password"
+						autoComplete="new-password"
 						className="sentry-mask"
 						placeholder="Password"
 						required
@@ -70,31 +99,6 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
 						type="submit"
 						className="w-full"
 						disabled={loading || !isFormValid()}
-						onClick={async () => {
-							await authClient.resetPassword({
-								newPassword: password,
-								token,
-								fetchOptions: {
-									onResponse: () => {
-										setLoading(false);
-									},
-									onRequest: () => {
-										setLoading(true);
-									},
-									onError: (ctx) => {
-										toast.error(
-											ctx.error.message === "invalid token"
-												? "Invalid reset URL. Please request another one on the signin page."
-												: ctx.error.message ||
-														"An unknown error occurred. Please try again!",
-										);
-									},
-									onSuccess: async () => {
-										navigate("/");
-									},
-								},
-							});
-						}}
 					>
 						{loading ? (
 							<Loader2 size={16} className="animate-spin" />
@@ -102,7 +106,7 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
 							"Reset password"
 						)}
 					</Button>
-				</div>
+				</form>
 			</CardContent>
 		</Card>
 	);

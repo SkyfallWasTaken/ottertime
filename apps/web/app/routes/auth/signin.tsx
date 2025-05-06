@@ -37,8 +37,12 @@ export default function SignIn() {
 	const turnstileRef: Ref<TurnstileRefFields | null> = useRef(null);
 	const navigate = useNavigate();
 
-	const isFormValid = () =>
-		email.trim() && email.includes("@") && password && turnstileToken;
+	const isFormValid =
+		email.trim() &&
+		email.includes("@") &&
+		password &&
+		turnstileToken &&
+		!loading;
 
 	return (
 		<Card className="z-50 rounded-xl max-w-sm mx-auto">
@@ -49,7 +53,40 @@ export default function SignIn() {
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<div className="grid gap-2">
+				<form
+					className="grid gap-2"
+					onSubmit={async (event) => {
+						event.preventDefault();
+						if (!isFormValid) return;
+						await authClient.signIn.email({
+							email,
+							password,
+							callbackURL: "/",
+							fetchOptions: {
+								headers: {
+									"x-captcha-response": turnstileToken,
+								},
+								onResponse: () => {
+									setLoading(false);
+								},
+								onRequest: () => {
+									setLoading(true);
+								},
+								onError: (ctx) => {
+									toast.error(
+										ctx.error.message ||
+											"An unknown error occurred. Please try again!",
+									);
+									turnstileRef.current?.reset();
+									setTurnstileToken("");
+								},
+								onSuccess: async () => {
+									navigate("/");
+								},
+							},
+						});
+					}}
+				>
 					<Input
 						id="email"
 						type="email"
@@ -66,8 +103,9 @@ export default function SignIn() {
 						type="password"
 						className="sentry-mask mb-2"
 						value={password}
+						required
 						onChange={(e) => setPassword(e.target.value)}
-						autoComplete="new-password"
+						autoComplete="current-password"
 						placeholder="Password"
 						aria-label="Password"
 					/>
@@ -77,46 +115,14 @@ export default function SignIn() {
 						}}
 						ref={turnstileRef}
 					/>
-					<Button
-						type="submit"
-						className="w-full"
-						disabled={loading || !isFormValid()}
-						onClick={async () => {
-							await authClient.signIn.email({
-								email,
-								password,
-								callbackURL: "/",
-								fetchOptions: {
-									headers: {
-										"x-captcha-response": turnstileToken,
-									},
-									onResponse: () => {
-										setLoading(false);
-									},
-									onRequest: () => {
-										setLoading(true);
-									},
-									onError: (ctx) => {
-										toast.error(
-											ctx.error.message ||
-												"An unknown error occurred. Please try again!",
-										);
-										turnstileRef.current?.reset();
-									},
-									onSuccess: async () => {
-										navigate("/");
-									},
-								},
-							});
-						}}
-					>
+					<Button type="submit" className="w-full" disabled={!isFormValid}>
 						{loading ? (
 							<Loader2 size={16} className="animate-spin" />
 						) : (
 							"Sign in"
 						)}
 					</Button>
-				</div>
+				</form>
 			</CardContent>
 			<CardFooter>
 				<div className="flex flex-col gap-2 justify-center w-full border-t py-4">

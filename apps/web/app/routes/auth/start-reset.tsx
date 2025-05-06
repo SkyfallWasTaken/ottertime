@@ -42,7 +42,41 @@ export default function SignIn() {
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<div className="grid gap-2">
+				<form
+					className="grid gap-2"
+					onSubmit={async (event) => {
+						event.preventDefault();
+						if (!isFormValid()) return;
+						await authClient.forgetPassword({
+							email,
+							redirectTo: "/auth/finish-reset",
+							fetchOptions: {
+								headers: {
+									"x-captcha-response": turnstileToken,
+								},
+								onResponse: () => {
+									setLoading(false);
+								},
+								onRequest: () => {
+									setLoading(true);
+								},
+								onError: (ctx) => {
+									toast.error(
+										ctx.error.message === "invalid token"
+											? "Invalid reset URL. Please request another one on the signin page."
+											: ctx.error.message ||
+													"An unknown error occurred. Please try again!",
+									);
+									turnstileRef.current?.reset();
+									setTurnstileToken("");
+								},
+								onSuccess: async () => {
+									toast.success("Sent! Check your email for the reset link.");
+								},
+							},
+						});
+					}}
+				>
 					<Input
 						id="email"
 						type="email"
@@ -65,35 +99,6 @@ export default function SignIn() {
 						type="submit"
 						className="w-full"
 						disabled={loading || !isFormValid()}
-						onClick={async () => {
-							await authClient.forgetPassword({
-								email,
-								redirectTo: "/auth/finish-reset",
-								fetchOptions: {
-									headers: {
-										"x-captcha-response": turnstileToken,
-									},
-									onResponse: () => {
-										setLoading(false);
-									},
-									onRequest: () => {
-										setLoading(true);
-									},
-									onError: (ctx) => {
-										toast.error(
-											ctx.error.message === "invalid token"
-												? "Invalid reset URL. Please request another one on the signin page."
-												: ctx.error.message ||
-														"An unknown error occurred. Please try again!",
-										);
-										turnstileRef.current?.reset();
-									},
-									onSuccess: async () => {
-										toast.success("Sent! Check your email for the reset link.");
-									},
-								},
-							});
-						}}
 					>
 						{loading ? (
 							<Loader2 size={16} className="animate-spin" />
@@ -101,7 +106,7 @@ export default function SignIn() {
 							"Reset password"
 						)}
 					</Button>
-				</div>
+				</form>
 			</CardContent>
 		</Card>
 	);
