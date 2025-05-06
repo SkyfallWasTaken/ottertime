@@ -1,9 +1,10 @@
 import { Menu } from "lucide-react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useRevalidator } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "~/components/ui/drawer";
 import { ThemeToggle } from "~/components/ui/theme-toggle";
 import { cn } from "~/utils/misc";
+import { authClient } from "~/utils/auth-client"
 
 const paths = [
 	{ name: "Home", href: "/" },
@@ -11,8 +12,14 @@ const paths = [
 	{ name: "Settings", href: "/settings" },
 ];
 
-export default function SiteHeader() {
+export default function SiteHeader({ signedIn }: { signedIn: boolean }) {
 	const location = useLocation();
+	const revalidator = useRevalidator();
+
+	const handleSignOut = async () => {
+		await authClient.signOut();
+		revalidator.revalidate();
+	};
 
 	return (
 		<header className="border-grid sticky top-0 z-50 w-full border-b py-3 px-4 md:py-4 md:px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -32,7 +39,7 @@ export default function SiteHeader() {
 									"transition-colors hover:text-accent-foreground",
 									location.pathname === href
 										? "text-accent-foreground font-semibold"
-										: "",
+										: "text-muted-foreground",
 								)}
 							>
 								{name}
@@ -61,16 +68,33 @@ export default function SiteHeader() {
 												"text-sm font-medium transition-colors hover:text-accent-foreground",
 												location.pathname === href
 													? "text-accent-foreground font-semibold"
-													: "",
+													: "text-muted-foreground",
 											)}
 										>
 											{name}
 										</Link>
 									))}
+									{signedIn && (
+										<>
+											<hr />
+											<Link to="#" className="text-sm cursor-pointer font-medium transition-colors hover:text-accent-foreground">Sign out</Link>
+										</>
+									)}
 								</div>
 							</DrawerContent>
 						</Drawer>
 					</div>
+
+					{/* Desktop Sign Out Button */}
+					{signedIn && (
+						<Button
+							variant="ghost"
+							onClick={handleSignOut}
+							className="hidden md:inline-flex text-sm cursor-pointer"
+						>
+							Sign Out
+						</Button>
+					)}
 
 					{/* Theme Toggle */}
 					<ThemeToggle />

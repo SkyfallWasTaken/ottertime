@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import {
 	Links,
-	type LoaderFunctionArgs,
 	Meta,
 	Outlet,
 	Scripts,
@@ -15,7 +14,7 @@ import {
 	useTheme,
 } from "remix-themes";
 import { Toaster } from "~/components/ui/sonner";
-import { authDataMiddleware } from "./middleware/auth-data";
+import { authDataMiddleware, getAuthData } from "./middleware/auth-data";
 import { themeSessionResolver } from "./sessions.server";
 
 import "@fontsource-variable/inter";
@@ -38,10 +37,12 @@ export const links: Route.LinksFunction = () => [
 	},
 ];
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request, context }: Route.LoaderArgs) {
 	const { getTheme } = await themeSessionResolver(request);
+	const authData = getAuthData(context);
 	return {
 		theme: getTheme(),
+		signedIn: Boolean(authData),
 	};
 }
 
@@ -61,7 +62,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				<Header />
+				<Header signedIn={data.signedIn} />
 				<div className="container mx-auto px-4 sm:px-0 py-6">{children}</div>
 				<Toaster
 					toastOptions={{
