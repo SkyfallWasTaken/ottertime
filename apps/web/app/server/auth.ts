@@ -65,7 +65,7 @@ export const auth = betterAuth({
 	plugins: [
 		haveIBeenPwned({
 			customPasswordCompromisedMessage:
-				"This password has been detected as part of a data breach. Please choose a more secure password.",
+				"This password has been detected as part of a data breach. Please choose a more secure password (you might need to reset it if you already have an account).",
 		}),
 		apiKey({
 			customKeyGenerator: async () => {
