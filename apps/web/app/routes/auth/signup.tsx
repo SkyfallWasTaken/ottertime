@@ -44,7 +44,8 @@ export default function SignUp() {
 			!lastName ||
 			!email ||
 			!password ||
-			!passwordConfirmation
+			!passwordConfirmation ||
+			!turnstileToken
 		) {
 			return false;
 		}

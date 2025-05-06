@@ -29,7 +29,7 @@ export default function SignIn() {
 	const [turnstileToken, setTurnstileToken] = useState("");
 	const [loading, setLoading] = useState(false);
 
-	const isFormValid = () => email.trim() && email.includes("@");
+	const isFormValid = () => email.trim() && email.includes("@") && turnstileToken;
 
 	return (
 		<Card className="z-50 rounded-xl max-w-sm mx-auto gap-4">
